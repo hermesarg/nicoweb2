@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gorras — STAMPD</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#0a0a0a;--white:#f5f0e8;--yellow:#f5d800;--red:#e8291c;--gray:#1a1a1a;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;background:var(--black);border-bottom:1px solid #222;}
+  .logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--yellow);text-decoration:none;}
+  .logo span{color:var(--red);}
+  nav ul{list-style:none;display:flex;gap:2.5rem;}
+  nav a{color:var(--white);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;}
+  nav a:hover,nav a.active{color:var(--yellow);}
+  .nav-cta{background:var(--yellow);color:var(--black)!important;padding:.55rem 1.4rem;font-weight:700!important;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+  .nav-cta:hover{background:var(--red)!important;color:var(--white)!important;}
+
+  .page-hero{padding:140px 4rem 5rem;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid #1a1a1a;position:relative;overflow:hidden;}
+  .page-hero::before{content:'GORRAS';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:12rem;color:rgba(255,255,255,.03);pointer-events:none;white-space:nowrap;}
+  .breadcrumb{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:1rem;}
+  .breadcrumb a{color:#555;text-decoration:none;} .breadcrumb a:hover{color:var(--yellow);} .breadcrumb span{color:var(--yellow);}
+  .page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,7vw,7rem);line-height:.9;}
+  .page-hero h1 em{color:var(--yellow);font-style:normal;display:block;}
+  .page-hero-desc{max-width:340px;text-align:right;}
+  .page-hero-desc p{color:#888;font-size:.9rem;line-height:1.7;margin-bottom:1.5rem;}
+
+  .filters{padding:2rem 4rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;border-bottom:1px solid #1a1a1a;}
+  .filter-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-right:.5rem;}
+  .filter-btn{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid #2a2a2a;background:transparent;color:#888;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;}
+  .filter-btn:hover,.filter-btn.active{border-color:var(--yellow);color:var(--yellow);background:rgba(245,216,0,.05);}
+
+  .catalog-section{padding:4rem;}
+  .catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#1a1a1a;}
+
+  .product-card{background:var(--black);position:relative;overflow:hidden;cursor:pointer;transition:background .3s;}
+  .product-card:hover{background:#0f0f0f;}
+  .product-img{width:100%;aspect-ratio:4/3;background:var(--gray);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+  .product-card:hover .product-img{transform:scale(1.04);}
+  .product-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:#333;}
+  .img-placeholder span{font-size:4rem;}
+  .img-placeholder p{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#2a2a2a;text-align:center;}
+  .product-badge{position:absolute;top:.8rem;left:.8rem;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;background:var(--yellow);color:var(--black);padding:.2rem .6rem;font-weight:700;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+  .product-overlay{position:absolute;inset:0;background:rgba(0,0,0,.8);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;opacity:0;transition:opacity .3s;}
+  .product-card:hover .product-overlay{opacity:1;}
+  .overlay-btn{padding:.7rem 1.8rem;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:.2s;}
+  .overlay-btn-primary{background:var(--yellow);color:var(--black);}
+  .overlay-btn-primary:hover{background:var(--red);color:var(--white);}
+  .overlay-btn-secondary{background:transparent;color:var(--white);border:1px solid #555;clip-path:none;font-size:.72rem;}
+  .overlay-btn-secondary:hover{border-color:var(--yellow);color:var(--yellow);}
+  .product-info{padding:1.5rem 1.5rem 2rem;}
+  .product-info h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.05em;margin-bottom:.3rem;}
+  .product-info .technique{font-size:.72rem;color:#666;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;}
+  .product-colors{display:flex;gap:.4rem;margin-bottom:.8rem;}
+  .color-dot{width:16px;height:16px;border-radius:50%;border:1px solid #333;cursor:pointer;transition:transform .2s;}
+  .color-dot:hover{transform:scale(1.3);}
+  .product-price{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--yellow);}
+  .product-price small{font-family:'DM Sans',sans-serif;font-size:.65rem;color:#555;font-weight:400;letter-spacing:.1em;text-transform:uppercase;margin-left:.3rem;}
+
+  .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+  .modal-overlay.open{opacity:1;pointer-events:all;}
+  .modal{background:var(--gray);max-width:860px;width:90%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;transform:scale(.95);transition:transform .3s;}
+  .modal-overlay.open .modal{transform:scale(1);}
+  .modal-img{background:var(--black);display:flex;align-items:center;justify-content:center;font-size:7rem;min-height:380px;position:relative;}
+  .modal-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .modal-content{padding:2.5rem 2rem;}
+  .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:.5rem;}
+  .modal-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.8rem;}
+  .modal-content h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.05em;margin-bottom:.5rem;}
+  .modal-price{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--yellow);margin-bottom:1.2rem;}
+  .modal-desc{font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem;}
+  .modal-specs h4{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.8rem;}
+  .spec-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid #222;font-size:.82rem;}
+  .spec-row span:first-child{color:#666;} .spec-row span:last-child{color:var(--white);font-weight:500;}
+  .modal-btn{display:block;text-align:center;margin-top:1.5rem;padding:.9rem;background:var(--yellow);color:var(--black);font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:.2s;}
+  .modal-btn:hover{background:var(--red);color:var(--white);}
+
+  .cta-banner{margin:0 4rem 6rem;background:var(--yellow);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;clip-path:polygon(20px 0%,100% 0%,calc(100% - 20px) 100%,0% 100%);}
+  .cta-banner h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--black);line-height:.95;}
+  .cta-banner p{color:rgba(0,0,0,.6);font-size:.9rem;margin-top:.5rem;}
+  .cta-btn{background:var(--black);color:var(--yellow);padding:1rem 2.5rem;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);white-space:nowrap;transition:.2s;}
+  .cta-btn:hover{background:var(--red);}
+
+  footer{background:var(--gray);border-top:1px solid #1a1a1a;padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  footer p{font-size:.75rem;color:#444;}
+  .footer-links{display:flex;gap:2rem;}
+  .footer-links a{font-size:.75rem;color:#444;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}
+  .footer-links a:hover{color:var(--yellow);}
+
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+  .reveal.visible{opacity:1;transform:none;}
+
+  @media(max-width:900px){
+    nav ul{display:none;}
+    .page-hero{padding:120px 1.5rem 3rem;flex-direction:column;gap:1.5rem;}
+    .page-hero::before{display:none;}
+    .page-hero-desc{text-align:left;max-width:100%;}
+    .filters{padding:1.5rem;}
+    .catalog-section{padding:2rem 1.5rem;}
+    .catalog-grid{grid-template-columns:1fr 1fr;}
+    .modal{grid-template-columns:1fr;}
+    .modal-img{min-height:220px;}
+    .cta-banner{margin:0 1.5rem 4rem;padding:2rem;flex-direction:column;clip-path:none;}
+    footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">PERSONALIZATE</a>
+  <ul>
+    <li><a href="remeras.html">Remeras</a></li>
+    <li><a href="stickers.html">Stickers</a></li>
+    <li><a href="gorras.html" class="active">Gorras</a></li>
+    <li><a href="index.html#contacto" class="nav-cta">Cotizar</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div>
+    <div class="breadcrumb"><a href="index.html">Inicio</a> → <span>Gorras</span></div>
+    <h1>GORRAS<br><em>PERSONALIZADAS</em></h1>
+  </div>
+  <div class="page-hero-desc">
+    <p>, vinilo, transfer. Snapback, trucker, dad hat, 5 paneles. Para equipos, marcas y eventos.</p>
+    <a href="index.html#contacto" class="nav-cta" style="display:inline-block;padding:.8rem 1.8rem;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);background:var(--yellow);color:var(--black);">Pedir cotización</a>
+  </div>
+</section>
+
+<div class="filters reveal">
+  <span class="filter-label">Filtrar por:</span>
+  <button class="filter-btn active" onclick="filterProducts('todos',this)">Todos</button>
+  <button class="filter-btn" onclick="filterProducts('',this)"></button>
+  <button class="filter-btn" onclick="filterProducts('vinilo',this)">Vinilo</button>
+  <button class="filter-btn" onclick="filterProducts('transfer',this)">Transfer</button>
+  <button class="filter-btn" onclick="filterProducts('snapback',this)">Snapback</button>
+  <button class="filter-btn" onclick="filterProducts('trucker',this)">Trucker</button>
+</div>
+
+<section class="catalog-section">
+  <div class="catalog-grid" id="grid">
+
+    <div class="product-card reveal" data-category=" snapback" onclick="openModal('mg-1')">
+      <div class="product-img">
+        <!-- <img src="img/gorra-snapback-bordada.jpg" alt="Gorra snapback bordada"> -->
+        <div class="img-placeholder"><span>🧢</span><p>img/gorra-snapback-bordada.jpg</p></div>
+        <div class="product-badge"></div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-1')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Snapback Bordada</h3>
+        <div class="technique"> computarizado · Panel frontal</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000"></div>
+          <div class="color-dot" style="background:#1a1a4a"></div>
+          <div class="color-dot" style="background:#4a0000"></div>
+          <div class="color-dot" style="background:#2d4a1e"></div>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="vinilo trucker" onclick="openModal('mg-2')">
+      <div class="product-img">
+        <!-- <img src="img/gorra-trucker-vinilo.jpg" alt="Gorra trucker con vinilo"> -->
+        <div class="img-placeholder"><span>🧢</span><p>img/gorra-trucker-vinilo.jpg</p></div>
+        <div class="product-badge" style="background:var(--red);color:#fff">Vinilo</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-2')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Trucker Vinilo</h3>
+        <div class="technique">Vinilo termosellado · Full color</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000"></div>
+          <div class="color-dot" style="background:#f5f0e8;border-color:#555"></div>
+          <div class="color-dot" style="background:#888"></div>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="transfer snapback" onclick="openModal('mg-3')">
+      <div class="product-img">
+        <!-- <img src="img/gorra-snapback-transfer.jpg" alt="Gorra snapback transfer"> -->
+        <div class="img-placeholder"><span>🧢</span><p>img/gorra-snapback-transfer.jpg</p></div>
+        <div class="product-badge" style="background:#555;color:#f5d800">Transfer</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-3')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Snapback Transfer DTF</h3>
+        <div class="technique">Transfer DTF · Colores ilimitados</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000"></div>
+          <div class="color-dot" style="background:#1a1a1a"></div>
+          <div class="color-dot" style="background:#3a2a0a"></div>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category=" trucker" onclick="openModal('mg-4')">
+      <div class="product-img">
+        <!-- <img src="img/gorra-trucker-bordada-3d.jpg" alt="Gorra trucker  3D"> -->
+        <div class="img-placeholder"><span>🧢</span><p>img/gorra-trucker-bordada-3d.jpg</p></div>
+        <div class="product-badge"> 3D</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-4')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Trucker  3D</h3>
+        <div class="technique"> en relieve · Foam interior</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000"></div>
+          <div class="color-dot" style="background:#1a1a4a"></div>
+          <div class="color-dot" style="background:#f5f0e8;border-color:#555"></div>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="vinilo snapback" onclick="openModal('mg-5')">
+      <div class="product-img">
+        <!-- <img src="img/gorra-5panel-vinilo.jpg" alt="Gorra 5 panel con vinilo"> -->
+        <div class="img-placeholder"><span>🧢</span><p>img/gorra-5panel-vinilo.jpg</p></div>
+        <div class="product-badge" style="background:var(--red);color:#fff">5 Paneles</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-5')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>5 Paneles Vinilo</h3>
+        <div class="technique">Estilo skate · Vinilo o transfer</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000"></div>
+          <div class="color-dot" style="background:#c8b89a"></div>
+          <div class="color-dot" style="background:#2d4a1e"></div>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="" onclick="openModal('mg-6')">
+      <div class="product-img">
+        <!-- <img src="img/gorra-pack-equipos.jpg" alt="Pack gorras para equipos"> -->
+        <div class="img-placeholder"><span>📦</span><p>img/gorra-pack-equipos.jpg</p></div>
+        <div class="product-badge" style="background:#f5d800;color:#000">Pack Equipo</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-6')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Pack Equipos / Eventos</h3>
+        <div class="technique">Precio mayorista · Desde 12 unidades</div>
+        <div class="product-colors">
+          <div class="color-dot" style="background:#000"></div>
+          <div class="color-dot" style="background:#1a1a4a"></div>
+          <div class="color-dot" style="background:#4a0000"></div>
+          <div class="color-dot" style="background:#888"></div>
+        </div>
+        <div class="product-price">Precio especial <small>por volumen</small></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="cta-banner reveal">
+  <div>
+    <h3>UNIFORMES Y<br>EQUIPOS</h3>
+    <p>Precios especiales para pedidos de 12 unidades o más. Todos iguales o con nombres individuales.</p>
+  </div>
+  <a href="index.html#contacto" class="cta-btn">Cotizar por volumen →</a>
+</div>
+
+<!-- MODALES -->
+<div class="modal-overlay" id="mg-1" onclick="closeModal(event,'mg-1')">
+  <div class="modal">
+    <div class="modal-img">🧢</div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('mg-1').classList.remove('open')">✕</button>
+      <div class="modal-tag">Snapback ·  computarizado</div>
+      <h2>Snapback Bordada</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc"> de alta definición en panel frontal. Hilo resistente al lavado y al uso. Cierre snapback regulable. Ideal para marcas y uniformes.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Técnica</span><span> computarizado</span></div>
+        <div class="spec-row"><span>Colores de hilo</span><span>Hasta 15 colores</span></div>
+        <div class="spec-row"><span>Tamaño logo</span><span>Hasta 10×8 cm</span></div>
+        <div class="spec-row"><span>Modelo</span><span>Snapback 6 paneles</span></div>
+        <div class="spec-row"><span>Cierre</span><span>Snapback plástico</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar snapback bordada →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="mg-2" onclick="closeModal(event,'mg-2')">
+  <div class="modal">
+    <div class="modal-img">🧢</div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('mg-2').classList.remove('open')">✕</button>
+      <div class="modal-tag">Trucker · Vinilo termosellado</div>
+      <h2>Trucker Vinilo</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc">Vinilo termosellado sobre panel frontal de la trucker. Full color, cualquier diseño. Resistente al uso diario y lavado suave.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Técnica</span><span>Vinilo termosellado</span></div>
+        <div class="spec-row"><span>Colores</span><span>Full color ilimitado</span></div>
+        <div class="spec-row"><span>Modelo</span><span>Trucker 5 paneles</span></div>
+        <div class="spec-row"><span>Cierre</span><span>Snapback plástico</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar trucker vinilo →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="mg-3" onclick="closeModal(event,'mg-3')">
+  <div class="modal">
+    <div class="modal-img">🧢</div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('mg-3').classList.remove('open')">✕</button>
+      <div class="modal-tag">Snapback · Transfer DTF</div>
+      <h2>Snapback Transfer DTF</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc">Transfer DTF aplicado sobre el panel. Permite degradés, fotografías y diseños complejos que el  no puede reproducir.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Técnica</span><span>Transfer DTF prensado</span></div>
+        <div class="spec-row"><span>Colores</span><span>Full color con degradé</span></div>
+        <div class="spec-row"><span>Modelo</span><span>Snapback 6 paneles</span></div>
+        <div class="spec-row"><span>Cierre</span><span>Snapback plástico</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar transfer DTF →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="mg-4" onclick="closeModal(event,'mg-4')">
+  <div class="modal">
+    <div class="modal-img">🧢</div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('mg-4').classList.remove('open')">✕</button>
+      <div class="modal-tag">Trucker ·  3D en relieve</div>
+      <h2>Trucker  3D</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc"> en relieve con foam interior. El logo se levanta del panel dando un efecto tridimensional premium. Muy popular en streetwear.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Técnica</span><span> 3D con foam</span></div>
+        <div class="spec-row"><span>Relieve</span><span>4–6 mm de altura</span></div>
+        <div class="spec-row"><span>Colores de hilo</span><span>Hasta 10 colores</span></div>
+        <div class="spec-row"><span>Modelo</span><span>Trucker 5 paneles</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>6 unidades</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar  3D →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="mg-5" onclick="closeModal(event,'mg-5')">
+  <div class="modal">
+    <div class="modal-img">🧢</div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('mg-5').classList.remove('open')">✕</button>
+      <div class="modal-tag">5 Paneles · Estilo skate</div>
+      <h2>5 Paneles Vinilo</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc">Gorra de 5 paneles estilo skate/surf. Corte más bajo y recto que la snapback. Vinilo o transfer en el panel central.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Modelo</span><span>5 paneles camp cap</span></div>
+        <div class="spec-row"><span>Técnica</span><span>Vinilo o transfer DTF</span></div>
+        <div class="spec-row"><span>Colores</span><span>Full color</span></div>
+        <div class="spec-row"><span>Cierre</span><span>Strapback tela</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar 5 paneles →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="mg-6" onclick="closeModal(event,'mg-6')">
+  <div class="modal">
+    <div class="modal-img">📦</div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('mg-6').classList.remove('open')">✕</button>
+      <div class="modal-tag">Pack · Equipos y eventos</div>
+      <h2>Pack Equipos / Eventos</h2>
+      <div class="modal-price">Precio especial</div>
+      <p class="modal-desc">Pedidos de 12 unidades o más con precio mayorista. Podés mezclar colores, talles y agregar nombres individuales. Ideal para equipos deportivos, empresas y eventos.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Mínimo</span><span>12 unidades</span></div>
+        <div class="spec-row"><span>Técnica</span><span> o vinilo</span></div>
+        <div class="spec-row"><span>Personalización</span><span>Nombre + número opcional</span></div>
+        <div class="spec-row"><span>Colores prenda</span><span>Todos disponibles</span></div>
+        <div class="spec-row"><span>Producción</span><span>7–10 días hábiles</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar pack equipos →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2024 STAMPD — Todos los derechos reservados.</p>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="remeras.html">Remeras</a>
+    <a href="stickers.html">Stickers</a>
+    <a href="index.html#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script>
+  const reveals=document.querySelectorAll('.reveal');
+  const observer=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);observer.unobserve(e.target);}});},{threshold:.1});
+  reveals.forEach(el=>observer.observe(el));
+  function filterProducts(cat,btn){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.product-card').forEach(card=>{
+      const cats=card.dataset.category||'';
+      card.style.display=(cat==='todos'||cats.includes(cat))?'block':'none';
+    });
+  }
+  function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+  function closeModal(e,id){if(e.target.classList.contains('modal-overlay')){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(m=>{m.classList.remove('open');document.body.style.overflow='';});}});
+</script>
+</body>
+</html>

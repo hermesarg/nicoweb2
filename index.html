@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="description" content="Personalizate - Tu diseño, tu estilo. Remeras, stickers y gorras personalizadas en Villa Manzano, Cinco Saltos, Río Negro.">
+<title>PERSONALIZATE — Tu diseño, tu estilo</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#050505;--pink:#ff2d9b;--yellow:#ffd700;--cyan:#00e5ff;
+  --green:#39ff14;--orange:#ff6b00;--purple:#bf00ff;--white:#fff;
+  --card:rgba(255,255,255,.04);--border:rgba(255,255,255,.08);
+  --radius:16px;
+}
+body{background:var(--bg);color:var(--white);font-family:'Nunito',sans-serif;overflow-x:hidden;-webkit-tap-highlight-color:transparent;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:
+  radial-gradient(ellipse 500px 350px at 15% 20%,rgba(255,45,155,.12) 0%,transparent 70%),
+  radial-gradient(ellipse 450px 300px at 88% 12%,rgba(0,229,255,.09) 0%,transparent 70%),
+  radial-gradient(ellipse 600px 350px at 50% 85%,rgba(57,255,20,.07) 0%,transparent 70%),
+  radial-gradient(ellipse 350px 250px at 82% 55%,rgba(255,107,0,.09) 0%,transparent 70%);}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.5rem .9rem 1.5rem;background:rgba(5,5,5,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);}
+.nav-logo{font-family:'Fredoka One',cursive;font-size:1.5rem;letter-spacing:.04em;background:linear-gradient(90deg,var(--pink),var(--yellow),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;text-decoration:none;flex-shrink:0;}
+.nav-links{display:flex;list-style:none;gap:1.5rem;align-items:center;}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--yellow);}
+.nav-cta{background:linear-gradient(135deg,var(--pink),var(--orange));color:var(--white)!important;padding:.55rem 1.3rem;border-radius:50px;font-weight:900!important;box-shadow:0 0 18px rgba(255,45,155,.35);transition:transform .2s,box-shadow .2s!important;}
+.nav-cta:hover{transform:scale(1.05);}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;margin-left:.5rem;}
+.nav-toggle span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:.3s;}
+.nav-mobile{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(5,5,5,.98);padding:1.2rem 1.5rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.07);z-index:999;}
+.nav-mobile.open{display:block;}
+.nav-mobile ul{list-style:none;display:flex;flex-direction:column;gap:.2rem;}
+.nav-mobile a{color:rgba(255,255,255,.8);text-decoration:none;font-size:1rem;font-weight:700;padding:.75rem .5rem;display:flex;align-items:center;gap:.8rem;border-bottom:1px solid rgba(255,255,255,.05);}
+.nav-mobile a:last-child{border-bottom:none;}
+
+/* ─── MASCOT ─── */
+.mascot-container{position:fixed;bottom:0;right:1.2rem;z-index:900;display:flex;flex-direction:column;align-items:center;}
+.mascot-img{width:115px;cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1);animation:mascotFloat 3s ease-in-out infinite;filter:drop-shadow(0 4px 18px rgba(255,215,0,.45));user-select:none;}
+.mascot-img:hover,.mascot-img:active{transform:scale(1.1) translateY(-5px)!important;filter:drop-shadow(0 4px 28px rgba(255,215,0,.85));}
+@keyframes mascotFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.mascot-bubble{position:absolute;bottom:132px;right:0;background:rgba(8,0,20,.97);border:1px solid rgba(255,45,155,.3);border-radius:18px 18px 4px 18px;padding:1.1rem 1.3rem;width:220px;box-shadow:0 15px 50px rgba(0,0,0,.9),0 0 25px rgba(255,45,155,.15);opacity:0;transform:scale(.8) translateY(16px);transform-origin:bottom right;transition:all .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;}
+.mascot-bubble.open{opacity:1;transform:scale(1) translateY(0);pointer-events:all;}
+.mascot-bubble::after{content:'';position:absolute;bottom:-7px;right:16px;width:14px;height:14px;background:rgba(8,0,20,.97);border-right:1px solid rgba(255,45,155,.3);border-bottom:1px solid rgba(255,45,155,.3);transform:rotate(45deg);}
+.bubble-title{font-family:'Fredoka One',cursive;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;background:linear-gradient(90deg,var(--pink),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.7rem;padding-bottom:.55rem;border-bottom:1px solid rgba(255,255,255,.07);}
+.bubble-link{display:flex;align-items:center;gap:.65rem;padding:.48rem .55rem;border-radius:9px;text-decoration:none;color:rgba(255,255,255,.8);font-size:.82rem;font-weight:700;transition:.2s;margin-bottom:.1rem;}
+.bubble-link:hover,.bubble-link:active{background:rgba(255,45,155,.12);color:#fff;}
+.bl-icon{font-size:1rem;width:24px;text-align:center;}
+.bl-arrow{margin-left:auto;font-size:.65rem;opacity:.35;}
+.bubble-divider{height:1px;background:rgba(255,255,255,.06);margin:.45rem 0;}
+.bubble-cta{display:block;margin-top:.8rem;padding:.7rem;text-align:center;background:linear-gradient(135deg,#25d366,#128c7e);border-radius:9px;color:#fff!important;font-weight:900;font-size:.8rem;letter-spacing:.04em;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,.35);transition:transform .2s;}
+.bubble-cta:hover,.bubble-cta:active{transform:scale(1.04);}
+.mascot-hint{font-size:.58rem;color:rgba(255,255,255,.32);letter-spacing:.1em;text-transform:uppercase;margin-top:.25rem;margin-bottom:.35rem;animation:fadeHint 2s ease-in-out infinite;}
+@keyframes fadeHint{0%,100%{opacity:.32}50%{opacity:.7}}
+
+/* ─── HERO ─── */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:90px 3rem 4rem 4rem;z-index:1;gap:2rem;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.68rem;font-weight:900;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:1rem;}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--cyan);}
+.hero-title{font-family:'Fredoka One',cursive;font-size:clamp(2.8rem,5.5vw,6rem);line-height:1;margin-bottom:.3rem;}
+.line1{background:linear-gradient(90deg,var(--pink) 0%,var(--yellow) 50%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;}
+.line2{background:linear-gradient(90deg,var(--cyan),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;font-size:.58em;}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.6);line-height:1.7;max-width:420px;margin:1.4rem 0 2.2rem;}
+.hero-sub strong{color:var(--yellow);}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;}
+.btn-main{padding:.9rem 2rem;background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;font-weight:900;font-size:.88rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:50px;box-shadow:0 0 25px rgba(255,45,155,.45);transition:transform .2s,box-shadow .2s;white-space:nowrap;display:inline-flex;align-items:center;gap:.4rem;}
+.btn-main:hover,.btn-main:active{transform:translateY(-2px) scale(1.03);box-shadow:0 0 40px rgba(255,45,155,.65);}
+.btn-sec{padding:.9rem 1.8rem;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);color:#fff;font-weight:700;font-size:.88rem;letter-spacing:.07em;text-transform:uppercase;text-decoration:none;border-radius:50px;transition:.2s;white-space:nowrap;}
+.btn-sec:hover,.btn-sec:active{border-color:var(--yellow);color:var(--yellow);}
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:1.8rem;border-top:1px solid rgba(255,255,255,.07);}
+.stat-num{font-family:'Fredoka One',cursive;font-size:2rem;color:var(--yellow);line-height:1;}
+.stat-lab{font-size:.65rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.1em;margin-top:.15rem;}
+.hero-right{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;z-index:2;}
+.hero-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.2rem;text-align:center;cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s;text-decoration:none;color:#fff;}
+.hero-card:hover,.hero-card:active{transform:translateY(-5px);border-color:var(--pink);box-shadow:0 8px 30px rgba(255,45,155,.2);}
+.hero-card:nth-child(2),.hero-card:nth-child(4){margin-top:1.2rem;}
+.hero-card-icon{font-size:2.4rem;display:block;margin-bottom:.7rem;}
+.hero-card h3{font-family:'Fredoka One',cursive;font-size:1.1rem;margin-bottom:.25rem;}
+.hero-card p{font-size:.68rem;color:rgba(255,255,255,.4);}
+.card-tag{display:inline-block;margin-top:.6rem;font-size:.58rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem;border-radius:50px;}
+.tag-pink{background:rgba(255,45,155,.2);color:var(--pink);}
+.tag-cyan{background:rgba(0,229,255,.2);color:var(--cyan);}
+.tag-green{background:rgba(57,255,20,.2);color:var(--green);}
+.tag-yellow{background:rgba(255,215,0,.2);color:var(--yellow);}
+
+/* ─── TICKER ─── */
+.ticker-wrap{overflow:hidden;position:relative;z-index:1;padding:.8rem 0;background:linear-gradient(90deg,var(--pink),var(--orange),var(--yellow),var(--green),var(--cyan),var(--purple),var(--pink));background-size:200%;animation:gs 4s linear infinite;}
+@keyframes gs{0%{background-position:0%}100%{background-position:200%}}
+.ticker{display:flex;gap:2.5rem;animation:ticker 22s linear infinite;width:max-content;}
+.ticker-item{font-family:'Fredoka One',cursive;font-size:.95rem;letter-spacing:.1em;color:#000;white-space:nowrap;display:flex;align-items:center;gap:.8rem;}
+.ticker-item::after{content:'✦';}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ─── SECTION BASE ─── */
+.section{padding:5rem 4rem;position:relative;z-index:1;}
+.sec-eye{font-size:.68rem;font-weight:900;letter-spacing:.28em;text-transform:uppercase;color:var(--pink);margin-bottom:.7rem;display:flex;align-items:center;gap:.7rem;}
+.sec-eye::before{content:'';display:block;width:22px;height:2px;background:var(--pink);}
+.sec-title{font-family:'Fredoka One',cursive;font-size:clamp(2rem,3.5vw,3.5rem);line-height:1;margin-bottom:.5rem;}
+.sec-title span{background:linear-gradient(90deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.sec-sub{font-size:.9rem;color:rgba(255,255,255,.48);max-width:480px;line-height:1.7;}
+
+/* ─── SERVICES ─── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem;}
+.svc{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2.2rem 1.8rem;position:relative;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;text-decoration:none;color:#fff;}
+.svc::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 0% 0%,var(--gc,rgba(255,45,155,.1)) 0%,transparent 60%);opacity:0;transition:opacity .3s;}
+.svc:hover::before{opacity:1;}
+.svc:hover,.svc:active{transform:translateY(-7px);border-color:var(--bc,var(--pink));box-shadow:0 12px 40px var(--sc,rgba(255,45,155,.18));}
+.svc[data-c="cyan"]{--bc:var(--cyan);--gc:rgba(0,229,255,.1);--sc:rgba(0,229,255,.18);}
+.svc[data-c="green"]{--bc:var(--green);--gc:rgba(57,255,20,.1);--sc:rgba(57,255,20,.18);}
+.svc[data-c="flag"]{--bc:var(--yellow);--gc:rgba(255,215,0,.1);--sc:rgba(255,215,0,.18);}
+.svc[data-c="banner"]{--bc:var(--cyan);--gc:rgba(0,229,255,.1);--sc:rgba(0,229,255,.18);}
+.svc[data-c="card"]{--bc:var(--pink);--gc:rgba(255,45,155,.1);--sc:rgba(255,45,155,.18);}
+.svc-num{font-family:'Fredoka One',cursive;font-size:3.5rem;color:rgba(255,255,255,.04);position:absolute;top:.3rem;right:.8rem;line-height:1;}
+.svc-icon{font-size:2.5rem;display:block;margin-bottom:1rem;}
+.svc h3{font-family:'Fredoka One',cursive;font-size:1.5rem;margin-bottom:.5rem;}
+.svc p{font-size:.82rem;color:rgba(255,255,255,.48);line-height:1.65;margin-bottom:1.2rem;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.2rem;}
+.stag{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .55rem;border-radius:50px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);}
+.svc-link{display:inline-flex;align-items:center;gap:.45rem;font-size:.75rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);text-decoration:none;transition:gap .2s;}
+.svc[data-c="cyan"] .svc-link{color:var(--cyan);}
+.svc[data-c="green"] .svc-link{color:var(--green);}
+.svc-link:hover{gap:.8rem;}
+.svc-link::after{content:'→';}
+
+/* ─── PROCESS ─── */
+.process-section{padding:5rem 4rem;background:linear-gradient(180deg,transparent,rgba(255,255,255,.015),transparent);position:relative;z-index:1;}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.8rem;margin-top:3rem;position:relative;}
+.steps-grid::before{content:'';position:absolute;top:25px;left:13%;right:13%;height:1px;background:linear-gradient(90deg,transparent,var(--pink),var(--yellow),var(--cyan),transparent);opacity:.25;}
+.step{text-align:center;}
+.step-circle{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--orange));display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:1.3rem;margin:0 auto 1rem;box-shadow:0 0 18px rgba(255,45,155,.35);}
+.step:nth-child(2) .step-circle{background:linear-gradient(135deg,var(--cyan),var(--purple));}
+.step:nth-child(3) .step-circle{background:linear-gradient(135deg,var(--yellow),var(--orange));}
+.step:nth-child(4) .step-circle{background:linear-gradient(135deg,var(--green),var(--cyan));}
+.step h4{font-family:'Fredoka One',cursive;font-size:1.1rem;margin-bottom:.5rem;}
+.step p{font-size:.8rem;color:rgba(255,255,255,.48);line-height:1.6;}
+
+/* ─── PROMO ─── */
+.promo-section{padding:4rem 4rem;position:relative;z-index:1;}
+.promo-banner{background:linear-gradient(135deg,rgba(255,45,155,.13),rgba(255,107,0,.1),rgba(255,215,0,.08));border:1px solid rgba(255,215,0,.22);border-radius:22px;padding:3rem 3.5rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2.5rem;position:relative;overflow:hidden;}
+.promo-banner::before{content:'🔥';position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);font-size:7rem;opacity:.07;pointer-events:none;}
+.promo-banner h2{font-family:'Fredoka One',cursive;font-size:clamp(1.6rem,2.8vw,2.7rem);line-height:1.1;margin-bottom:.7rem;}
+.promo-banner h2 span{background:linear-gradient(90deg,var(--yellow),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.promo-banner p{font-size:.9rem;color:rgba(255,255,255,.58);line-height:1.65;max-width:520px;}
+.promo-items{display:flex;flex-direction:column;gap:.5rem;margin-top:1.2rem;}
+.promo-item{display:flex;align-items:center;gap:.7rem;font-size:.86rem;color:rgba(255,255,255,.7);}
+.promo-item::before{content:'✦';color:var(--yellow);font-size:.65rem;flex-shrink:0;}
+.promo-cta-col{display:flex;flex-direction:column;gap:.7rem;align-items:stretch;min-width:195px;}
+.btn-wa{display:block;padding:.9rem 1.5rem;border-radius:50px;font-weight:900;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;text-align:center;white-space:nowrap;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;box-shadow:0 0 18px rgba(37,211,102,.35);transition:transform .2s,box-shadow .2s;}
+.btn-wa:hover,.btn-wa:active{transform:scale(1.04);box-shadow:0 0 28px rgba(37,211,102,.55);}
+.btn-alt{display:block;padding:.9rem 1.5rem;border-radius:50px;font-weight:900;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.75);transition:.2s;}
+.btn-alt:hover,.btn-alt:active{border-color:var(--yellow);color:var(--yellow);}
+
+/* ─── VIDEOS ─── */
+.videos-section{padding:5rem 4rem;position:relative;z-index:1;}
+.videos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:2.5rem;}
+.vid-wrap{border-radius:18px;overflow:hidden;background:#0a0a0a;border:1px solid var(--border);position:relative;aspect-ratio:9/16;}
+.vid-wrap video{width:100%;height:100%;object-fit:cover;display:block;}
+.vid-label{position:absolute;bottom:0;left:0;right:0;padding:1.5rem .9rem .7rem;background:linear-gradient(transparent,rgba(0,0,0,.85));font-family:'Fredoka One',cursive;font-size:.9rem;}
+
+/* ─── CATALOGO ─── */
+.catalogo-section{padding:5rem 4rem;position:relative;z-index:1;}
+.cat-header{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+.cat-filter{display:flex;gap:.5rem;flex-wrap:wrap;}
+.cat-btn{padding:.45rem 1.1rem;border-radius:50px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);color:rgba(255,255,255,.55);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'Nunito',sans-serif;transition:.2s;}
+.cat-btn:hover,.cat-btn.active{background:rgba(255,45,155,.15);border-color:var(--pink);color:var(--pink);}
+.cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;}
+.cat-item{border-radius:12px;overflow:hidden;background:#0d0d0d;border:1px solid var(--border);aspect-ratio:3/4;position:relative;cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.cat-item:hover,.cat-item:active{transform:translateY(-4px);box-shadow:0 8px 28px rgba(255,45,155,.18);}
+.cat-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+.cat-item:hover img{transform:scale(1.05);}
+.cat-item-label{position:absolute;bottom:0;left:0;right:0;padding:1rem .7rem .5rem;background:linear-gradient(transparent,rgba(0,0,0,.88));font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8);}
+.cat-item-tag{position:absolute;top:.5rem;left:.5rem;font-size:.52rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .55rem;border-radius:50px;background:rgba(255,45,155,.9);color:#fff;}
+.cat-item-tag.cyan{background:rgba(0,180,240,.9);}
+.cat-item-tag.green{background:rgba(40,180,40,.9);}
+.cat-item-tag.orange{background:rgba(220,90,0,.9);}
+.cat-item-tag.purple{background:rgba(160,0,220,.9);}
+
+/* ─── CONTACTO ─── */
+.contact-section{padding:5rem 4rem;position:relative;z-index:1;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;align-items:start;}
+.contact-left h2{font-family:'Fredoka One',cursive;font-size:clamp(2rem,3vw,3.2rem);line-height:1.1;margin:.7rem 0 1.3rem;}
+.contact-left h2 span{background:linear-gradient(90deg,var(--pink),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.contact-left p{color:rgba(255,255,255,.48);line-height:1.7;margin-bottom:1.5rem;font-size:.9rem;}
+.contact-info{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.8rem;}
+.ci{display:flex;align-items:flex-start;gap:.8rem;font-size:.88rem;color:rgba(255,255,255,.58);}
+.ci span:first-child{font-size:1.1rem;flex-shrink:0;margin-top:.05rem;}
+.contact-form{display:flex;flex-direction:column;gap:.9rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;}
+.fg{display:flex;flex-direction:column;gap:.35rem;}
+.fg label{font-size:.62rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;color:#fff;padding:.8rem .95rem;font-family:'Nunito',sans-serif;font-size:.88rem;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--pink);box-shadow:0 0 12px rgba(255,45,155,.15);}
+.fg textarea{resize:vertical;min-height:100px;}
+.fg select option{background:#12001f;}
+.upload-zone{border:1px dashed rgba(255,255,255,.11);border-radius:10px;padding:1.4rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;}
+.upload-zone:hover,.upload-zone:active{border-color:var(--pink);background:rgba(255,45,155,.04);}
+.upload-zone p{font-size:.72rem;color:rgba(255,255,255,.28);margin-top:.35rem;}
+.form-submit{padding:.95rem;border-radius:50px;border:none;cursor:pointer;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.9rem;letter-spacing:.07em;text-transform:uppercase;box-shadow:0 0 20px rgba(37,211,102,.35);transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.form-submit:hover,.form-submit:active{transform:translateY(-2px);box-shadow:0 0 35px rgba(37,211,102,.55);}
+.form-note{font-size:.68rem;color:rgba(255,255,255,.25);text-align:center;}
+
+/* ─── FOOTER ─── */
+footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padding:2.5rem 4rem 1.8rem;position:relative;z-index:1;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2rem;}
+.footer-brand-logo{font-family:'Fredoka One',cursive;font-size:1.4rem;background:linear-gradient(90deg,var(--pink),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.3);line-height:1.65;margin-top:.7rem;max-width:220px;}
+.footer-col h4{font-size:.62rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:.85rem;}
+.footer-col a{display:block;color:rgba(255,255,255,.3);text-decoration:none;font-size:.78rem;margin-bottom:.45rem;transition:color .2s;}
+.footer-col a:hover{color:var(--yellow);}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:1.3rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;}
+.footer-bottom p{font-size:.68rem;color:rgba(255,255,255,.18);}
+.socials{display:flex;gap:.6rem;}
+.soc{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.38);font-size:.72rem;text-decoration:none;transition:.2s;font-weight:700;}
+.soc:hover,.soc:active{border-color:var(--pink);color:var(--pink);box-shadow:0 0 12px rgba(255,45,155,.3);}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ─── MOBILE ─── */
+@media(max-width:768px){
+  nav{padding:.8rem 1rem;}
+  .nav-logo{font-size:1.3rem;}
+  .nav-links{display:none;}
+  .nav-toggle{display:flex;}
+  .nav-mobile{top:54px;}
+
+  .hero{grid-template-columns:1fr;padding:80px 1.2rem 2.5rem;min-height:auto;gap:0;}
+  .hero-right{display:none;}
+  .hero-title{font-size:clamp(2.4rem,10vw,3.5rem);}
+  .hero-sub{font-size:.9rem;margin:1rem 0 1.8rem;}
+  .hero-actions{flex-direction:column;}
+  .btn-main,.btn-sec{width:100%;text-align:center;justify-content:center;padding:1rem;}
+  .hero-stats{gap:1.5rem;margin-top:2rem;padding-top:1.5rem;}
+  .stat-num{font-size:1.6rem;}
+
+  .ticker-wrap{padding:.65rem 0;}
+  .ticker-item{font-size:.85rem;}
+
+  .section,.process-section,.promo-section,.videos-section,.catalogo-section,.contact-section{padding:3.5rem 1.2rem;}
+
+  .services-grid{grid-template-columns:1fr;gap:1rem;}
+  .steps-grid{grid-template-columns:1fr 1fr;gap:1.2rem;}.steps-grid::before{display:none;}
+
+  .promo-banner{grid-template-columns:1fr;padding:2rem 1.5rem;gap:1.5rem;}
+  .promo-cta-col{flex-direction:row;flex-wrap:wrap;}
+  .promo-cta-col a{flex:1;min-width:140px;}
+
+  .videos-grid{grid-template-columns:1fr;gap:1rem;}
+  .vid-wrap{aspect-ratio:9/16;max-height:65vh;}
+
+  .cat-header{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);gap:.7rem;}
+
+  .contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .form-row{grid-template-columns:1fr;}
+
+  .footer-top{grid-template-columns:1fr 1fr;gap:1.5rem;}
+  .footer-brand{grid-column:span 2;}
+  footer{padding:2.5rem 1.2rem 1.5rem;}
+  .footer-bottom{flex-direction:column;text-align:center;gap:.8rem;}
+
+  .mascot-container{right:.6rem;}
+  .mascot-img{width:90px;}
+  .mascot-bubble{width:195px;bottom:108px;padding:1rem 1.1rem;}
+}
+@media(max-width:380px){
+  .hero-title{font-size:2.2rem;}
+  .cat-grid{grid-template-columns:repeat(2,1fr);}
+  .steps-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">PERSONALIZATE</a>
+  <ul class="nav-links">
+    <li><a href="remeras.html">Remeras</a></li>
+    <li><a href="stickers.html">Stickers</a></li>
+    <li><a href="gorras.html">Gorras</a></li>
+    <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas%20personalizadas" target="_blank">Banderas</a></li>
+    <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners%20personalizados" target="_blank">Banners</a></li>
+    <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria%20personalizada" target="_blank">Tarjetería</a></li>
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#contacto" class="nav-cta">Cotizar</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="navMobile">
+  <ul>
+    <li><a href="remeras.html" onclick="closeNav()">👕 Remeras</a></li>
+    <li><a href="stickers.html" onclick="closeNav()">🏷️ Stickers</a></li>
+    <li><a href="gorras.html" onclick="closeNav()">🧢 Gorras</a></li>
+    <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas%20personalizadas" target="_blank" onclick="closeNav()">🚩 Banderas</a></li>
+    <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners%20personalizados" target="_blank" onclick="closeNav()">🖼️ Banners</a></li>
+    <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria%20personalizada" target="_blank" onclick="closeNav()">📇 Tarjetería</a></li>
+    <li><a href="#catalogo" onclick="closeNav()">📷 Catálogo</a></li>
+    <li><a href="#contacto" onclick="closeNav()" style="color:var(--pink);">⚡ Cotizar ahora</a></li>
+  </ul>
+</div>
+
+<!-- MASCOT -->
+<div class="mascot-container" id="mascotContainer">
+  <div class="mascot-bubble" id="mascotBubble">
+    <div class="bubble-title">¿Qué buscás?</div>
+    <a href="remeras.html" class="bubble-link"><span class="bl-icon">👕</span>Remeras estampadas<span class="bl-arrow">→</span></a>
+    <a href="stickers.html" class="bubble-link"><span class="bl-icon">🏷️</span>Stickers premium<span class="bl-arrow">→</span></a>
+    <a href="gorras.html" class="bubble-link"><span class="bl-icon">🧢</span>Gorras personalizadas<span class="bl-arrow">→</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas%20personalizadas" target="_blank" class="bubble-link"><span class="bl-icon">🚩</span>Banderas<span class="bl-arrow">→</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners%20personalizados" target="_blank" class="bubble-link"><span class="bl-icon">🖼️</span>Banners<span class="bl-arrow">→</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria%20personalizada" target="_blank" class="bubble-link"><span class="bl-icon">📇</span>Tarjetería<span class="bl-arrow">→</span></a>
+    <div class="bubble-divider"></div>
+    <a href="#catalogo" class="bubble-link"><span class="bl-icon">🖼️</span>Ver catálogo<span class="bl-arrow">→</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20consultar%20sobre%20descuentos%20por%20cantidad" target="_blank" class="bubble-link"><span class="bl-icon">💰</span>Descuentos cantidad<span class="bl-arrow">→</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" class="bubble-cta">💬 Cotizar por WhatsApp</a>
+  </div>
+  <img src="mascota.png" alt="Personalizate" class="mascot-img" id="mascotImg" onclick="toggleMascot()">
+  <div class="mascot-hint" id="mascotHint">¡Tocame!</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Tu diseño, tu estilo</div>
+    <h1 class="hero-title">
+      <span class="line1">PERSONALIZATE</span>
+      <span class="line2">Hacemos tu idea realidad</span>
+    </h1>
+    <p class="hero-sub">Remeras, stickers, gorras, banderas, banners y más. <strong>Full color, cualquier diseño,</strong> desde una sola unidad. Villa Manzano, Cinco Saltos, Río Negro.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20hacer%20un%20pedido%20personalizado" class="btn-main" target="_blank">💬 Pedir por WhatsApp</a>
+      <a href="#catalogo" class="btn-sec">Ver catálogo</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">Express</div><div class="stat-lab">Entrega rápida</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-lab">Custom</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <a href="remeras.html" class="hero-card"><span class="hero-card-icon">👕</span><h3>Remeras</h3><p>DTF · Sublimación · Vinilo</p><span class="card-tag tag-pink">Ver modelos</span></a>
+    <a href="stickers.html" class="hero-card"><span class="hero-card-icon">🏷️</span><h3>Stickers</h3><p>Rectangular · Holo · UV</p><span class="card-tag tag-cyan">Ver tipos</span></a>
+    <a href="gorras.html" class="hero-card"><span class="hero-card-icon">🧢</span><h3>Gorras</h3><p>DTF · Vinilo · Transfer</p><span class="card-tag tag-green">Ver modelos</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar" class="hero-card" target="_blank"><span class="hero-card-icon">🎨</span><h3>Tu diseño</h3><p>Lo creamos gratis</p><span class="card-tag tag-yellow">Cotizar</span></a>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">REMERAS DTF</span><span class="ticker-item">STICKERS PREMIUM</span><span class="ticker-item">GORRAS PERSONALIZADAS</span><span class="ticker-item">ESTAMPAS FULL COLOR</span><span class="ticker-item">ENVÍOS A TODO EL PAÍS</span><span class="ticker-item">DISEÑO INCLUIDO</span><span class="ticker-item">DESDE 1 UNIDAD</span><span class="ticker-item">REMERAS DTF</span><span class="ticker-item">STICKERS PREMIUM</span><span class="ticker-item">GORRAS PERSONALIZADAS</span><span class="ticker-item">ESTAMPAS FULL COLOR</span><span class="ticker-item">ENVÍOS A TODO EL PAÍS</span><span class="ticker-item">DISEÑO INCLUIDO</span><span class="ticker-item">DESDE 1 UNIDAD</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="reveal">
+    <div class="sec-eye">Nuestros productos</div>
+    <h2 class="sec-title">LO QUE <span>HACEMOS</span></h2>
+    <p class="sec-sub">Estampados de calidad sin mínimo. Desde una unidad, sin complicaciones.</p>
+  </div>
+  <div class="services-grid">
+    <a href="remeras.html" class="svc reveal"><div class="svc-num">01</div><span class="svc-icon">👕</span><h3>Remeras</h3><p>Full color, cualquier diseño, en cualquier color de prenda.</p><div class="svc-tags"><span class="stag">DTF</span><span class="stag">Sublimación</span><span class="stag">Vinilo</span></div><span class="svc-link">Ver remeras</span></a>
+    <a href="stickers.html" class="svc reveal" data-c="cyan"><div class="svc-num">02</div><span class="svc-icon">🏷️</span><h3>Stickers</h3><p>Vinilo premium resistente. Rectangular, holográfico, transparente y UV.</p><div class="svc-tags"><span class="stag">Rectangular</span><span class="stag">Holográfico</span><span class="stag">Transparente</span><span class="stag">UV</span></div><span class="svc-link">Ver stickers</span></a>
+    <a href="gorras.html" class="svc reveal" data-c="green"><div class="svc-num">03</div><span class="svc-icon">🧢</span><h3>Gorras</h3><p>Estampado DTF y vinilo termosellado. Cualquier modelo o estilo.</p><div class="svc-tags"><span class="stag">DTF</span><span class="stag">Vinilo</span><span class="stag">Transfer</span></div><span class="svc-link">Ver gorras</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas%20personalizadas" target="_blank" class="svc reveal" data-c="flag"><div class="svc-num">04</div><span class="svc-icon">🚩</span><h3>Banderas</h3><p>Banderas personalizadas sublimadas en tela. Para eventos, clubes, negocios y equipos.</p><div class="svc-tags"><span class="stag">Sublimación</span><span class="stag">Tela</span><span class="stag">Full color</span></div><span class="svc-link" style="color:var(--yellow)">Cotizar</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners%20personalizados" target="_blank" class="svc reveal" data-c="banner"><div class="svc-num">05</div><span class="svc-icon">🖼️</span><h3>Banners</h3><p>Banners PVC y lona para locales, eventos y publicidad exterior. Alta resolución.</p><div class="svc-tags"><span class="stag">PVC</span><span class="stag">Lona</span><span class="stag">Exterior</span></div><span class="svc-link" style="color:var(--cyan)">Cotizar</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria%20personalizada" target="_blank" class="svc reveal" data-c="card"><div class="svc-num">06</div><span class="svc-icon">📇</span><h3>Tarjetería</h3><p>Tarjetas de presentación, flyers, menús y papelería corporativa impresa en alta calidad.</p><div class="svc-tags"><span class="stag">Tarjetas</span><span class="stag">Flyers</span><span class="stag">Papelería</span></div><span class="svc-link" style="color:var(--pink)">Cotizar</span></a>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="process-section" id="proceso">
+  <div class="reveal">
+    <div class="sec-eye">Cómo funciona</div>
+    <h2 class="sec-title">4 PASOS <span>SIMPLES</span></h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step reveal"><div class="step-circle">1</div><h4>Enviás tu diseño</h4><p>Por WhatsApp o el formulario. Si no tenés diseño, lo creamos sin costo extra.</p></div>
+    <div class="step reveal"><div class="step-circle">2</div><h4>Te cotizamos</h4><p>En menos de 2 horas tenés precio y tiempo estimado de producción.</p></div>
+    <div class="step reveal"><div class="step-circle">3</div><h4>Producimos</h4><p>Con el pago confirmado empezamos. Te avisamos el estado del producto en todo momento.</p></div>
+    <div class="step reveal"><div class="step-circle">4</div><h4>Entregamos</h4><p>Retiro en Villa Manzano o envío a todo el país.</p></div>
+  </div>
+</section>
+
+<!-- DESCUENTOS -->
+<section class="promo-section" id="precios">
+  <div class="promo-banner reveal">
+    <div>
+      <div class="sec-eye" style="margin-bottom:.5rem;">Descuentos por volumen</div>
+      <h2>COMPRÁS EN CANTIDAD,<br><span>GANÁS EN PRECIO</span></h2>
+      <p>Cuanto más pedís, más ahorrás. Precios especiales por volumen que se definen directamente con nosotros.</p>
+      <div class="promo-items">
+        <div class="promo-item">Precio especial a partir de 10 unidades del mismo producto</div>
+        <div class="promo-item">Descuentos adicionales para 25, 50 y 100+ unidades</div>
+        <div class="promo-item">Combos mix de productos con precio preferencial</div>
+        <div class="promo-item">Presupuesto sin cargo, respuesta en menos de 2 horas</div>
+      </div>
+    </div>
+    <div class="promo-cta-col">
+      <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20consultar%20sobre%20descuentos%20por%20cantidad" class="btn-wa" target="_blank">💬 Consultar descuentos</a>
+      <a href="mailto:riffonicolas8@gmail.com" class="btn-alt">✉️ Escribir por email</a>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="videos-section" id="trabajo">
+  <div class="reveal">
+    <div class="sec-eye">Lo que hacemos</div>
+    <h2 class="sec-title">NUESTRO <span>TRABAJO</span></h2>
+    <p class="sec-sub">Mirá de cerca la calidad de nuestros estampados.</p>
+  </div>
+  <div class="videos-grid reveal">
+    <div class="vid-wrap">
+      <video src="video1.mp4" controls playsinline poster="video1_thumb.jpg" preload="metadata"></video>
+      <div class="vid-label">Proceso de estampado</div>
+    </div>
+    <div class="vid-wrap">
+      <video src="video2.mp4" controls playsinline poster="video_thumb.jpg" preload="metadata"></video>
+      <div class="vid-label">Nuestros trabajos</div>
+    </div>
+  </div>
+</section>
+
+<!-- CATÁLOGO -->
+<section class="catalogo-section" id="catalogo">
+  <div class="cat-header reveal">
+    <div>
+      <div class="sec-eye">Portfolio</div>
+      <h2 class="sec-title">CATÁLOGO <span>COMPLETO</span></h2>
+      <p class="sec-sub">Todos nuestros trabajos. Filtrá por categoría.</p>
+    </div>
+    <div class="cat-filter">
+      <button class="cat-btn active" onclick="filterCat('todos',this)">Todos</button>
+      <button class="cat-btn" onclick="filterCat('remera',this)">Remeras</button>
+      <button class="cat-btn" onclick="filterCat('gorra',this)">Gorras</button>
+      <button class="cat-btn" onclick="filterCat('sticker',this)">Stickers</button>
+      <button class="cat-btn" onclick="filterCat('otro',this)">Otros</button>
+    </div>
+  </div>
+  <div class="cat-grid" id="catalogoGrid">
+    <!--
+    ══════════════════════════════════════════════════════
+    CÓMO AGREGAR FOTOS AL CATÁLOGO:
+    1. Copiá la carpeta completa a tu PC
+    2. Poné tu foto nueva en la misma carpeta (ej: mi_foto.jpg)
+    3. Duplicá uno de los bloques .cat-item de abajo
+    4. Cambiá: src="gallery_XXXX.jpg"  →  src="mi_foto.jpg"
+    5. Cambiá el texto de .cat-item-label  y .cat-item-tag
+    6. En data-cat poné: remera / gorra / sticker / otro
+    7. Guardá y volvé a subir la carpeta a Netlify Drop
+    ══════════════════════════════════════════════════════
+    -->
+    <div class="cat-item reveal" data-cat="remera"><img src="gallery_remera1.jpg" alt="Remera Maradona DTF" loading="lazy"><div class="cat-item-tag">Remera</div><div class="cat-item-label">Remera DTF Maradona</div></div>
+    <div class="cat-item reveal" data-cat="remera"><img src="gallery_remera2.jpg" alt="Remera Carros Food Truck" loading="lazy"><div class="cat-item-tag">Remera</div><div class="cat-item-label">Carros Food Truck</div></div>
+    <div class="cat-item reveal" data-cat="remera"><img src="gallery_remera3.jpg" alt="Remera espalda DTF" loading="lazy"><div class="cat-item-tag">Remera</div><div class="cat-item-label">Diseño espalda DTF</div></div>
+    <div class="cat-item reveal" data-cat="remera"><img src="gallery_remera4.jpg" alt="La Chorineta" loading="lazy"><div class="cat-item-tag">Remera</div><div class="cat-item-label">La Chorineta</div></div>
+    <div class="cat-item reveal" data-cat="remera"><img src="gallery_remera5.jpg" alt="Staff Punto 13" loading="lazy"><div class="cat-item-tag">Remera</div><div class="cat-item-label">Staff Punto 13</div></div>
+    <div class="cat-item reveal" data-cat="remera"><img src="gallery_remera6.jpg" alt="Los Pollos Hermanos" loading="lazy"><div class="cat-item-tag">Remera</div><div class="cat-item-label">Los Pollos Hermanos</div></div>
+    <div class="cat-item reveal" data-cat="remera"><img src="gallery_remera7.jpg" alt="DTF alta definición" loading="lazy"><div class="cat-item-tag">Remera</div><div class="cat-item-label">DTF alta definición</div></div>
+    <div class="cat-item reveal" data-cat="gorra"><img src="gallery_gorra1.jpg" alt="Gorra Sangre Negra" loading="lazy"><div class="cat-item-tag green">Gorra</div><div class="cat-item-label">Sangre Negra DTF</div></div>
+    <div class="cat-item reveal" data-cat="gorra"><img src="gallery_gorras_pack.jpg" alt="Pack gorras" loading="lazy"><div class="cat-item-tag green">Gorra</div><div class="cat-item-label">Pack Fuerza Rionegrina</div></div>
+    <div class="cat-item reveal" data-cat="gorra"><img src="gallery_gorra2.jpg" alt="Gorra DTF" loading="lazy"><div class="cat-item-tag green">Gorra</div><div class="cat-item-label">Gorra vinilo transfer</div></div>
+    <div class="cat-item reveal" data-cat="sticker"><img src="gallery_sticker1.jpg" alt="Stickers rectangulares" loading="lazy"><div class="cat-item-tag cyan">Sticker</div><div class="cat-item-label">Stickers rectangular</div></div>
+    <div class="cat-item reveal" data-cat="otro"><img src="gallery_bolsas.jpg" alt="Bolsas personalizadas" loading="lazy"><div class="cat-item-tag orange">Otro</div><div class="cat-item-label">Bolsas personalizadas</div></div>
+    <div class="cat-item reveal" data-cat="otro"><img src="gallery_pkg1.jpg" alt="Packaging" loading="lazy"><div class="cat-item-tag purple">Otro</div><div class="cat-item-label">Packaging con marca</div></div>
+    <div class="cat-item reveal" data-cat="otro"><img src="gallery_pkg2.jpg" alt="Pedidos" loading="lazy"><div class="cat-item-tag purple">Otro</div><div class="cat-item-label">Paquetes entregados</div></div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact-section" id="contacto">
+  <div class="contact-grid">
+    <div class="contact-left reveal">
+      <div class="sec-eye">Contacto</div>
+      <h2>PEDÍ TU <span>COTIZACIÓN</span></h2>
+      <p>Completá el formulario y abrimos WhatsApp con tu consulta lista para enviar. Sin vueltas.</p>
+      <div class="contact-info">
+        <div class="ci"><span>📍</span><span>Villa Manzano, Cinco Saltos, Río Negro, Argentina</span></div>
+        <div class="ci"><span>📱</span><span>+54 299 517-4801</span></div>
+        <div class="ci"><span>✉️</span><span>riffonicolas8@gmail.com</span></div>
+        <div class="ci"><span>🕐</span><span>Todos los días, a toda hora</span></div>
+      </div>
+      <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20hacer%20un%20pedido%20personalizado" class="btn-main" target="_blank">💬 Escribir por WhatsApp</a>
+    </div>
+    <div class="contact-right reveal">
+      <form id="contactForm" class="contact-form">
+        <div class="form-row">
+          <div class="fg"><label>Nombre</label><input type="text" id="f_nombre" placeholder="Tu nombre" required></div>
+          <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" id="f_tel" placeholder="+54 299 XXX XXXX"></div>
+        </div>
+        <div class="form-row">
+          <div class="fg"><label>Producto</label>
+            <select id="f_producto" required>
+              <option value="">Elegir...</option>
+              <option>Remeras</option><option>Stickers</option>
+              <option>Gorras</option><option>Banderas</option><option>Banners</option><option>Tarjetería</option><option>Combo varios productos</option><option>Otro</option>
+            </select>
+          </div>
+          <div class="fg"><label>Cantidad</label>
+            <select id="f_cantidad" onchange="toggleOtra(this)">
+              <option value="1 unidad">1 unidad</option>
+              <option value="2 a 5 unidades">2 a 5 unidades</option>
+              <option value="6 a 10 unidades">6 a 10 unidades</option>
+              <option value="11 a 25 unidades">11 a 25 unidades</option>
+              <option value="26 a 50 unidades">26 a 50 unidades</option>
+              <option value="50+ unidades">50+ unidades</option>
+              <option value="otro">Otro (especificar)</option>
+            </select>
+          </div>
+        </div>
+        <div class="fg" id="otraBox" style="display:none;">
+          <label>Especificá la cantidad</label>
+          <input type="text" id="f_otra" placeholder="Ej: 300 remeras + 150 gorras">
+        </div>
+        <div class="fg"><label>Tu idea o consulta</label><textarea id="f_msg" placeholder="Contanos qué querés imprimir, colores, medidas..." required></textarea></div>
+        <div class="fg">
+          <label>Adjuntar diseño (opcional)</label>
+          <div class="upload-zone" onclick="document.getElementById('fi').click()">
+            <div style="font-size:1.6rem">📎</div>
+            <p id="uploadLabel">Hacé click · PNG, JPG, PDF</p>
+            <input type="file" id="fi" style="display:none" onchange="updateFile(this)">
+          </div>
+        </div>
+        <button type="button" class="form-submit" onclick="sendWA()">💬 Enviar consulta por WhatsApp</button>
+        <p class="form-note">Se abrirá WhatsApp con tu mensaje pre-armado listo para enviar.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-brand-logo">PERSONALIZATE</div>
+      <p>Tu diseño, tu estilo. Remeras, stickers, gorras, banderas, banners y tarjetería. Villa Manzano, Cinco Saltos, Río Negro.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Productos</h4>
+      <a href="remeras.html">Remeras</a>
+      <a href="stickers.html">Stickers</a>
+      <a href="gorras.html">Gorras</a>
+      <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas" target="_blank">Banderas</a>
+      <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners" target="_blank">Banners</a>
+      <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria" target="_blank">Tarjetería</a>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#proceso">Cómo funciona</a>
+      <a href="#trabajo">Nuestro trabajo</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <a href="https://wa.me/542995174801" target="_blank">WhatsApp</a>
+      <a href="mailto:riffonicolas8@gmail.com">Email</a>
+      <a href="#contacto">Formulario</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 PERSONALIZATE · Villa Manzano, Cinco Saltos, Río Negro</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/personalizatee_1" target="_blank" class="soc" title="Instagram">IG</a>
+      <a href="https://wa.me/542995174801" target="_blank" class="soc" title="WhatsApp">WA</a>
+      <a href="mailto:riffonicolas8@gmail.com" class="soc" title="Email">@</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*70);obs.unobserve(e.target);}});
+},{threshold:.06});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Nav
+function toggleNav(){
+  const m=document.getElementById('navMobile');
+  m.classList.toggle('open');
+}
+function closeNav(){document.getElementById('navMobile').classList.remove('open');}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('nav')&&!e.target.closest('#navMobile')) closeNav();
+});
+
+// Mascot
+let mOpen=false;
+function toggleMascot(){
+  mOpen=!mOpen;
+  document.getElementById('mascotBubble').classList.toggle('open',mOpen);
+  document.getElementById('mascotHint').style.display=mOpen?'none':'block';
+}
+document.addEventListener('click',e=>{
+  if(mOpen&&!e.target.closest('#mascotContainer')){
+    mOpen=false;
+    document.getElementById('mascotBubble').classList.remove('open');
+    document.getElementById('mascotHint').style.display='block';
+  }
+});
+
+// Catalog filter
+function filterCat(cat,btn){
+  document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#catalogoGrid .cat-item').forEach(item=>{
+    item.style.display=(cat==='todos'||item.dataset.cat===cat)?'block':'none';
+  });
+}
+
+// Quantity toggle
+function toggleOtra(sel){
+  document.getElementById('otraBox').style.display=sel.value==='otro'?'flex':'none';
+}
+
+// File
+function updateFile(input){
+  if(input.files[0]) document.getElementById('uploadLabel').textContent='✓ '+input.files[0].name;
+}
+
+// WhatsApp sender
+function sendWA(){
+  const nombre=document.getElementById('f_nombre').value.trim();
+  const tel=document.getElementById('f_tel').value.trim();
+  const prod=document.getElementById('f_producto').value;
+  const cantSel=document.getElementById('f_cantidad').value;
+  const otraCant=document.getElementById('f_otra').value.trim();
+  const cant=cantSel==='otro'?otraCant:cantSel;
+  const msg=document.getElementById('f_msg').value.trim();
+  const fi=document.getElementById('fi');
+  
+  if(!nombre||!prod||!msg){
+    alert('Por favor completá Nombre, Producto y tu consulta antes de enviar.');
+    return;
+  }
+  
+  const fileNote=fi.files.length>0?`\n📎 *Archivo:* ${fi.files[0].name} (lo enviamos en el chat)`:'';
+  
+  const text=
+    `¡Hola PERSONALIZATE! 👋\n\n`+
+    `👤 *Nombre:* ${nombre}\n`+
+    (tel?`📱 *Teléfono:* ${tel}\n`:'')+
+    `🛍️ *Producto:* ${prod}\n`+
+    (cant?`📦 *Cantidad:* ${cant}\n`:'')+
+    `💬 *Consulta:* ${msg}`+
+    fileNote+
+    `\n\n_Enviado desde personalizate.com_`;
+  
+  window.open(`https://wa.me/542995174801?text=${encodeURIComponent(text)}`,'_blank');
+}
+</script>
+</body>
+</html>
