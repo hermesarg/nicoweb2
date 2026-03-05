@@ -225,9 +225,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--pink);box-shadow:0 0 12px rgba(255,45,155,.15);}
 .fg textarea{resize:vertical;min-height:100px;}
 .fg select option{background:#12001f;}
-.upload-zone{border:1px dashed rgba(255,255,255,.11);border-radius:10px;padding:1.4rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;}
-.upload-zone:hover,.upload-zone:active{border-color:var(--pink);background:rgba(255,45,155,.04);}
-.upload-zone p{font-size:.72rem;color:rgba(255,255,255,.28);margin-top:.35rem;}
+
 .form-submit{padding:.95rem;border-radius:50px;border:none;cursor:pointer;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-family:'Nunito',sans-serif;font-weight:900;font-size:.9rem;letter-spacing:.07em;text-transform:uppercase;box-shadow:0 0 20px rgba(37,211,102,.35);transition:transform .2s,box-shadow .2s;display:flex;align-items:center;justify-content:center;gap:.5rem;}
 .form-submit:hover,.form-submit:active{transform:translateY(-2px);box-shadow:0 0 35px rgba(37,211,102,.55);}
 .form-note{font-size:.68rem;color:rgba(255,255,255,.25);text-align:center;}
@@ -575,12 +573,7 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
         </div>
         <div class="fg"><label>Tu idea o consulta</label><textarea id="f_msg" placeholder="Contanos qué querés imprimir, colores, medidas..." required></textarea></div>
         <div class="fg">
-          <label>Adjuntar diseño (opcional)</label>
-          <div class="upload-zone" onclick="document.getElementById('fi').click()">
-            <div style="font-size:1.6rem">📎</div>
-            <p id="uploadLabel">Hacé click · PNG, JPG, PDF</p>
-            <input type="file" id="fi" style="display:none" onchange="updateFile(this)">
-          </div>
+
         </div>
         <button type="button" class="form-submit" onclick="sendWA()">💬 Enviar consulta por WhatsApp</button>
         <p class="form-note">Se abrirá WhatsApp con tu mensaje pre-armado listo para enviar.</p>
@@ -675,9 +668,7 @@ function toggleOtra(sel){
 }
 
 // File
-function updateFile(input){
-  if(input.files[0]) document.getElementById('uploadLabel').textContent='✓ '+input.files[0].name;
-}
+
 
 // WhatsApp sender
 function sendWA(){
@@ -688,14 +679,12 @@ function sendWA(){
   const otraCant=document.getElementById('f_otra').value.trim();
   const cant=cantSel==='otro'?otraCant:cantSel;
   const msg=document.getElementById('f_msg').value.trim();
-  const fi=document.getElementById('fi');
   
   if(!nombre||!prod||!msg){
     alert('Por favor completá Nombre, Producto y tu consulta antes de enviar.');
     return;
   }
   
-  const fileNote=fi.files.length>0?`\n📎 *Tengo un diseño adjunto:* ${fi.files[0].name}\n➡️ _Te lo envío en el próximo mensaje de este chat._`:'';
   
   const text=
     `¡Hola PERSONALIZATE! 👋\n\n`+
@@ -704,8 +693,7 @@ function sendWA(){
     `🛍️ *Producto:* ${prod}\n`+
     (cant?`📦 *Cantidad:* ${cant}\n`:'')+
     `💬 *Consulta:* ${msg}`+
-    fileNote+
-    `\n\n_Enviado desde personalizate.com_`;
+    `\n\n📎 _Si tenés un diseño, envialo como imagen en este mismo chat._\n_Enviado desde personalizate.com_`;
   
   window.open(`https://wa.me/542995174801?text=${encodeURIComponent(text)}`,'_blank');
 }
