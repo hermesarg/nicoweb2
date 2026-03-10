@@ -3,111 +3,120 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gorras y Pullovers — PERSONALIZATE</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<title>Gorras Personalizadas — PERSONALIZATE</title>
+<meta name="description" content="Gorras personalizadas DTF, vinilo y transfer. Snapback, trucker, bucket hat. Full color desde 1 unidad. Villa Manzano, Río Negro.">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{--black:#0a0a0a;--white:#f5f0e8;--yellow:#f5d800;--red:#e8291c;--gray:#1a1a1a;}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
   body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;background:var(--black);border-bottom:1px solid #222;}
-  .logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--yellow);text-decoration:none;}
+  .logo{font-family:'Fredoka One',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--yellow);text-decoration:none;}
   nav ul{list-style:none;display:flex;gap:2.5rem;}
   nav a{color:var(--white);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;}
   nav a:hover,nav a.active{color:var(--yellow);}
   .nav-cta{background:var(--yellow);color:var(--black)!important;padding:.55rem 1.4rem;font-weight:700!important;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
   .nav-cta:hover{background:var(--red)!important;color:var(--white)!important;}
+
   .page-hero{padding:140px 4rem 5rem;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid #1a1a1a;position:relative;overflow:hidden;}
-  .page-hero::before{content:'GORRAS';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:12rem;color:rgba(255,255,255,.03);pointer-events:none;white-space:nowrap;}
+  .page-hero::before{content:'GORRAS';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Fredoka One',sans-serif;font-size:12rem;color:rgba(255,255,255,.03);pointer-events:none;white-space:nowrap;}
   .breadcrumb{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:1rem;}
-  .breadcrumb a{color:#555;text-decoration:none;} .breadcrumb a:hover{color:var(--yellow);} .breadcrumb span{color:var(--yellow);}
-  .page-hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,7vw,7rem);line-height:.9;}
+  .breadcrumb a{color:#555;text-decoration:none;}.breadcrumb a:hover{color:var(--yellow);}.breadcrumb span{color:var(--yellow);}
+  .page-hero h1{font-family:'Fredoka One',sans-serif;font-size:clamp(4rem,7vw,7rem);line-height:.9;}
   .page-hero h1 em{color:var(--yellow);font-style:normal;display:block;}
-  .page-hero-desc{max-width:340px;text-align:right;}
+  .page-hero-desc{max-width:360px;text-align:right;}
   .page-hero-desc p{color:#888;font-size:.9rem;line-height:1.7;margin-bottom:1.5rem;}
-  .filters{padding:2rem 4rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;border-bottom:1px solid #1a1a1a;}
-  .filter-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-right:.5rem;}
-  .filter-btn{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid #2a2a2a;background:transparent;color:#888;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;}
-  .filter-btn:hover,.filter-btn.active{border-color:var(--yellow);color:var(--yellow);background:rgba(245,216,0,.05);}
+  .hero-btn{display:inline-block;padding:.8rem 1.8rem;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);background:var(--yellow);color:var(--black);transition:background .2s;}
+  .hero-btn:hover{background:var(--red);color:var(--white);}
+
+  .tecnicas-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#1a1a1a;border-bottom:1px solid #1a1a1a;}
+  .tecnica-item{background:var(--black);padding:2rem;display:flex;align-items:flex-start;gap:1.2rem;}
+  .tecnica-icon{font-size:2rem;flex-shrink:0;}
+  .tecnica-item h4{font-family:'Fredoka One',sans-serif;font-size:1.3rem;letter-spacing:.05em;margin-bottom:.3rem;}
+  .tecnica-item p{font-size:.78rem;color:#666;line-height:1.6;}
+  .tecnica-tag{display:inline-block;margin-top:.6rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;background:var(--yellow);color:var(--black);padding:.2rem .6rem;font-weight:700;}
+
   .catalog-section{padding:4rem;}
-  .catalog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#1a1a1a;}
-  .product-card{background:var(--black);position:relative;overflow:hidden;cursor:pointer;transition:background .3s;}
+  .catalog-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid #1a1a1a;flex-wrap:wrap;gap:1rem;}
+  .catalog-header h2{font-family:'Fredoka One',sans-serif;font-size:2rem;letter-spacing:.05em;}
+  .filter-bar{display:flex;gap:.5rem;flex-wrap:wrap;}
+  .filter-btn{padding:.45rem 1.1rem;border:1px solid #333;background:transparent;color:#666;font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+  .filter-btn:hover,.filter-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--black);}
+
+  .catalog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5px;background:#1a1a1a;}
+  .product-card{background:var(--black);cursor:pointer;transition:background .2s;}
   .product-card:hover{background:#0f0f0f;}
-  .product-img{width:100%;aspect-ratio:4/3;background:var(--gray);position:relative;overflow:hidden;}
-  .product-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+  .product-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:#111;}
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
   .product-card:hover .product-img img{transform:scale(1.04);}
-  .product-badge{position:absolute;top:.8rem;left:.8rem;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;background:var(--yellow);color:var(--black);padding:.2rem .6rem;font-weight:700;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);z-index:2;}
-  .product-overlay{position:absolute;inset:0;background:rgba(0,0,0,.8);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;opacity:0;transition:opacity .3s;z-index:3;}
+  .img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;color:#333;}
+  .img-placeholder span{font-size:3.5rem;}
+  .img-placeholder p{font-size:.75rem;color:#333;text-align:center;line-height:1.5;}
+  .img-placeholder strong{color:#444;}
+  .product-badge{position:absolute;top:1rem;left:1rem;background:var(--yellow);color:var(--black);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .7rem;}
+  .product-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;opacity:0;transition:opacity .2s;}
   .product-card:hover .product-overlay{opacity:1;}
-  .overlay-btn{padding:.7rem 1.8rem;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);transition:.2s;}
+  .overlay-btn{padding:.65rem 1.5rem;font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
   .overlay-btn-primary{background:var(--yellow);color:var(--black);}
-  .overlay-btn-primary:hover{background:var(--red);color:var(--white);}
-  .overlay-btn-secondary{background:transparent;color:var(--white);border:1px solid #555;clip-path:none;font-size:.72rem;}
-  .overlay-btn-secondary:hover{border-color:var(--yellow);color:var(--yellow);}
-  .product-info{padding:1.5rem 1.5rem 2rem;}
-  .product-info h3{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.05em;margin-bottom:.3rem;}
-  .product-info .technique{font-size:.72rem;color:#666;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;}
-  .product-colors{display:flex;gap:.4rem;margin-bottom:.8rem;align-items:center;}
-  .color-dot{width:16px;height:16px;border-radius:50%;border:1px solid #333;cursor:pointer;transition:transform .2s,border-color .2s;flex-shrink:0;}
-  .color-dot:hover{transform:scale(1.3);}
-  .color-dot.selected{border-color:var(--yellow);transform:scale(1.25);}
-  .color-name{font-size:.62rem;color:#666;letter-spacing:.1em;text-transform:uppercase;margin-left:.3rem;}
-  .product-price{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:var(--yellow);}
-  .product-price small{font-family:'DM Sans',sans-serif;font-size:.65rem;color:#555;font-weight:400;letter-spacing:.1em;text-transform:uppercase;margin-left:.3rem;}
-  /* Modal */
-  .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
-  .modal-overlay.open{opacity:1;pointer-events:all;}
-  .modal{background:var(--gray);max-width:900px;width:92%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;transform:scale(.95);transition:transform .3s;position:relative;}
-  .modal-overlay.open .modal{transform:scale(1);}
-  .modal-img{background:var(--black);min-height:380px;position:relative;overflow:hidden;}
-  .modal-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
-  .modal-content{padding:2.5rem 2rem;overflow-y:auto;}
-  .modal-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.7);border:1px solid #333;color:var(--white);font-size:1.1rem;cursor:pointer;padding:.35rem .65rem;z-index:10;}
-  .modal-close:hover{background:var(--red);}
-  .modal-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.8rem;}
-  .modal-content h2{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:.05em;margin-bottom:.5rem;}
-  .modal-price{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--yellow);margin-bottom:1.2rem;}
-  .modal-desc{font-size:.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem;}
-  .modal-specs h4,.talle-selector h4,.modal-color-selector h4{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;}
-  .spec-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid #222;font-size:.82rem;}
-  .spec-row span:first-child{color:#666;} .spec-row span:last-child{color:var(--white);font-weight:500;}
-  .talle-selector,.modal-color-selector{margin-bottom:1.2rem;}
-  .talle-btns{display:flex;gap:.5rem;flex-wrap:wrap;}
-  .talle-btn{padding:.4rem .9rem;border:1px solid #333;background:transparent;color:#888;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:.2s;}
-  .talle-btn:hover,.talle-btn.active{border-color:var(--yellow);color:var(--yellow);background:rgba(245,216,0,.07);}
-  .modal-colors{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;}
-  .modal-color-dot{width:22px;height:22px;border-radius:50%;border:2px solid #333;cursor:pointer;transition:transform .2s,border-color .2s;}
-  .modal-color-dot:hover{transform:scale(1.2);}
-  .modal-color-dot.active{border-color:var(--yellow);transform:scale(1.15);}
-  .modal-btn{display:block;text-align:center;margin-top:1.5rem;padding:.9rem;background:var(--yellow);color:var(--black);font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:.2s;}
-  .modal-btn:hover{background:var(--red);color:var(--white);}
-  .section-divider{padding:3rem 4rem 1.5rem;border-top:1px solid #1a1a1a;}
-  .section-divider h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);letter-spacing:.05em;}
-  .section-divider h2 em{color:var(--yellow);font-style:normal;}
-  .section-divider p{color:#666;font-size:.88rem;margin-top:.5rem;}
-  .cta-banner{margin:0 4rem 6rem;background:var(--yellow);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;clip-path:polygon(20px 0%,100% 0%,calc(100% - 20px) 100%,0% 100%);}
-  .cta-banner h3{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--black);line-height:.95;}
-  .cta-banner p{color:rgba(0,0,0,.6);font-size:.9rem;margin-top:.5rem;}
-  .cta-btn{background:var(--black);color:var(--yellow);padding:1rem 2.5rem;font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);white-space:nowrap;transition:.2s;}
-  .cta-btn:hover{background:var(--red);}
-  footer{background:var(--gray);border-top:1px solid #1a1a1a;padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+  .overlay-btn-secondary{background:transparent;border:1px solid #fff;color:#fff;}
+
+  .product-info{padding:1.8rem 2rem;}
+  .technique{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;}
+  .product-info h3{font-family:'Fredoka One',sans-serif;font-size:1.6rem;letter-spacing:.03em;margin-bottom:.5rem;}
+  .product-colors{display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem;flex-wrap:wrap;}
+  .colors-label{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:#555;}
+  .color-dot{width:16px;height:16px;border-radius:50%;border:2px solid #333;cursor:pointer;transition:border-color .15s;}
+  .color-dot:hover{border-color:var(--yellow);}
+  .color-name{font-size:.7rem;color:#888;margin-left:.2rem;}
+  .product-features{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem;}
+  .feat-tag{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid #2a2a2a;color:#555;}
+  .product-price{font-family:'Fredoka One',sans-serif;font-size:1.8rem;color:var(--yellow);}
+  .product-price small{font-size:.65rem;color:#555;font-family:'DM Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;}
+
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;}
+  .modal-overlay.open{display:flex;}
+  .modal{background:#0f0f0f;border:1px solid #222;width:100%;max-width:680px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;}
+  .modal-img{background:#111;display:flex;align-items:center;justify-content:center;font-size:5rem;min-height:300px;overflow:hidden;}
+  .modal-img img{width:100%;height:100%;object-fit:cover;}
+  .modal-content{padding:2rem;position:relative;}
+  .modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;color:#666;font-size:1.2rem;cursor:pointer;line-height:1;}
+  .modal-close:hover{color:#fff;}
+  .modal-tag{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:.8rem;}
+  .modal h2{font-family:'Fredoka One',sans-serif;font-size:1.8rem;margin-bottom:.4rem;}
+  .modal-price{font-family:'Fredoka One',sans-serif;font-size:1.4rem;color:var(--yellow);margin-bottom:1rem;}
+  .modal-desc{font-size:.82rem;color:#888;line-height:1.7;margin-bottom:1.2rem;}
+  .modal-specs{margin-bottom:1.5rem;}
+  .modal-specs h4{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:.7rem;}
+  .spec-row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid #1a1a1a;font-size:.8rem;}
+  .spec-row span:first-child{color:#555;}
+  .modal-btn{display:block;padding:.85rem;text-align:center;background:var(--yellow);color:var(--black);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+  .modal-btn:hover{background:var(--red);color:#fff;}
+
+  footer{padding:2rem 4rem;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
   footer p{font-size:.75rem;color:#444;}
   .footer-links{display:flex;gap:2rem;}
-  .footer-links a{font-size:.75rem;color:#444;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}
+  .footer-links a{color:#444;text-decoration:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}
   .footer-links a:hover{color:var(--yellow);}
-  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s;}
   .reveal.visible{opacity:1;transform:none;}
-  @media(max-width:900px){
+
+  @media(max-width:768px){
+    nav{padding:.9rem 1.2rem;}
     nav ul{display:none;}
-    .page-hero{padding:120px 1.5rem 3rem;flex-direction:column;gap:1.5rem;}
-    .page-hero::before{display:none;}
+    .page-hero{padding:100px 1.5rem 3rem;flex-direction:column;gap:1.5rem;}
     .page-hero-desc{text-align:left;max-width:100%;}
-    .filters,.catalog-section,.section-divider{padding:1.5rem;}
-    .catalog-grid{grid-template-columns:1fr 1fr;}
+    .page-hero::before{font-size:5rem;}
+    .tecnicas-bar{grid-template-columns:1fr;}
+    .catalog-section{padding:2rem 1.2rem;}
+    .catalog-grid{grid-template-columns:1fr;}
+    .product-info{padding:1.2rem 1.5rem;}
     .modal{grid-template-columns:1fr;}
-    .modal-img{min-height:220px;}
-    .cta-banner{margin:0 1.5rem 4rem;padding:2rem;flex-direction:column;clip-path:none;}
-    footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;}
+    .modal-img{min-height:200px;}
+    footer{padding:1.5rem 1.2rem;flex-direction:column;text-align:center;}
+    .footer-links{justify-content:center;gap:1.2rem;}
   }
 </style>
 </head>
@@ -119,473 +128,347 @@
     <li><a href="remeras.html">Remeras</a></li>
     <li><a href="stickers.html">Stickers</a></li>
     <li><a href="gorras.html" class="active">Gorras</a></li>
+    <li><a href="pullovers.html">Pullovers</a></li>
     <li><a href="index.html#contacto" class="nav-cta">Cotizar</a></li>
   </ul>
 </nav>
 
-<section class="page-hero">
+<!-- HERO -->
+<div class="page-hero">
   <div>
-    <div class="breadcrumb"><a href="index.html">Inicio</a> &rarr; <span>Gorras</span></div>
-    <h1>GORRAS<br><em>PERSONALIZADAS</em></h1>
+    <div class="breadcrumb"><a href="index.html">Inicio</a> → <span>Gorras</span></div>
+    <h1>GORRAS<em>PERSONALIZADAS</em></h1>
   </div>
   <div class="page-hero-desc">
-    <p>DTF, vinilo, transfer. Snapback, trucker, bucket hat, 5 paneles. Para equipos, marcas y eventos.</p>
-    <a href="index.html#contacto" style="display:inline-block;padding:.8rem 1.8rem;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);background:var(--yellow);color:var(--black);">Pedir cotizacion</a>
+    <p>DTF, vinilo, transfer. Snapback, trucker, bucket hat. Full color desde 1 unidad, con tu logo o diseño.</p>
+    <a href="index.html#contacto" class="hero-btn">Pedir cotización</a>
   </div>
-</section>
-
-<div class="filters reveal">
-  <span class="filter-label">Filtrar por:</span>
-  <button class="filter-btn active" onclick="filterProducts('todos',this)">Todos</button>
-  <button class="filter-btn" onclick="filterProducts('dtf',this)">DTF</button>
-  <button class="filter-btn" onclick="filterProducts('vinilo',this)">Vinilo</button>
-  <button class="filter-btn" onclick="filterProducts('transfer',this)">Transfer</button>
-  <button class="filter-btn" onclick="filterProducts('snapback',this)">Snapback</button>
-  <button class="filter-btn" onclick="filterProducts('trucker',this)">Trucker</button>
-  <button class="filter-btn" onclick="filterProducts('bucket',this)">Bucket Hat</button>
 </div>
 
+<!-- TÉCNICAS -->
+<div class="tecnicas-bar">
+  <div class="tecnica-item">
+    <div class="tecnica-icon">🎨</div>
+    <div>
+      <h4>DTF</h4>
+      <p>Transfer directo al tejido. Degradés, fotografías y colores ilimitados sin límite de detalle.</p>
+      <span class="tecnica-tag">Full color</span>
+    </div>
+  </div>
+  <div class="tecnica-item">
+    <div class="tecnica-icon">✂️</div>
+    <div>
+      <h4>Vinilo Textil</h4>
+      <p>Vinilo termosellado de alta durabilidad. Colores sólidos y brillantes, muy resistente al uso.</p>
+      <span class="tecnica-tag">Alta durabilidad</span>
+    </div>
+  </div>
+  <div class="tecnica-item">
+    <div class="tecnica-icon">🔥</div>
+    <div>
+      <h4>Transfer</h4>
+      <p>Prensado en calor con acabado profesional. Ideal para logos, textos y diseños definidos.</p>
+      <span class="tecnica-tag">Acabado pro</span>
+    </div>
+  </div>
+</div>
+
+<!-- CATÁLOGO -->
 <section class="catalog-section">
-  <div class="catalog-grid" id="grid">
-
-
-
-
-
-    <div class="product-card reveal" data-category="vinilo trucker" onclick="openModal('mg-2')">
-      <div class="product-img">
-        <img src="gallery_gorra2.jpg" alt="Gorra trucker vinilo">
-        <div class="product-badge" style="background:var(--red);color:#fff">Vinilo</div>
-        <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-2')">Ver detalle</a>
-          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Trucker Vinilo</h3>
-        <div class="technique">Vinilo termosellado &middot; Full color</div>
-        <div class="product-colors" id="colors-mg2">
-          <div class="color-dot selected" style="background:#000" data-name="Negro" onclick="event.stopPropagation();selectColor('mg2','Negro',this)"></div>
-          <div class="color-dot" style="background:#1a3a6a" data-name="Azul marino" onclick="event.stopPropagation();selectColor('mg2','Azul marino',this)"></div>
-          <div class="color-dot" style="background:#888" data-name="Gris" onclick="event.stopPropagation();selectColor('mg2','Gris',this)"></div>
-          <div class="color-dot" style="background:#f5f0e8;border-color:#555" data-name="Blanco" onclick="event.stopPropagation();selectColor('mg2','Blanco',this)"></div>
-          <div class="color-dot" style="background:#4a0000" data-name="Bordo" onclick="event.stopPropagation();selectColor('mg2','Bordo',this)"></div>
-          <span class="color-name" id="cname-mg2">Negro</span>
-        </div>
-        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
-      </div>
+  <div class="catalog-header">
+    <h2>MODELOS</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProducts('todos',this)">Todos</button>
+      <button class="filter-btn" onclick="filterProducts('dtf',this)">DTF</button>
+      <button class="filter-btn" onclick="filterProducts('vinilo',this)">Vinilo</button>
+      <button class="filter-btn" onclick="filterProducts('transfer',this)">Transfer</button>
+      <button class="filter-btn" onclick="filterProducts('trucker',this)">Trucker</button>
+      <button class="filter-btn" onclick="filterProducts('bucket',this)">Bucket Hat</button>
     </div>
-
-    <div class="product-card reveal" data-category="transfer dtf snapback" onclick="openModal('mg-3')">
-      <div class="product-img">
-        <img src="gallery_gorra1.jpg" alt="Snapback Transfer DTF">
-        <div class="product-badge" style="background:#555;color:#f5d800">DTF</div>
-        <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-3')">Ver detalle</a>
-          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Snapback Transfer DTF</h3>
-        <div class="technique">Transfer DTF &middot; Colores ilimitados</div>
-        <div class="product-colors" id="colors-mg3">
-          <div class="color-dot selected" style="background:#000" data-name="Negro" onclick="event.stopPropagation();selectColor('mg3','Negro',this)"></div>
-          <div class="color-dot" style="background:#3a2a0a" data-name="Marron" onclick="event.stopPropagation();selectColor('mg3','Marron',this)"></div>
-          <div class="color-dot" style="background:#888" data-name="Gris" onclick="event.stopPropagation();selectColor('mg3','Gris',this)"></div>
-          <span class="color-name" id="cname-mg3">Negro</span>
-        </div>
-        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
-      </div>
-    </div>
-
-    <div class="product-card reveal" data-category="bucket dtf vinilo" onclick="openModal('mg-bucket')">
-      <div class="product-img">
-        <img src="gallery_gorra_bucket.jpg" alt="Bucket Hat personalizado">
-        <div class="product-badge" style="background:var(--yellow);color:#000">Bucket Hat</div>
-        <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-bucket')">Ver detalle</a>
-          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Bucket Hat</h3>
-        <div class="technique">DTF &middot; Vinilo termosellado</div>
-        <div class="product-colors" id="colors-mgbucket">
-          <div class="color-dot selected" style="background:#444" data-name="Gris oscuro" onclick="event.stopPropagation();selectColor('mgbucket','Gris oscuro',this)"></div>
-          <div class="color-dot" style="background:#000" data-name="Negro" onclick="event.stopPropagation();selectColor('mgbucket','Negro',this)"></div>
-          <div class="color-dot" style="background:#1a3a6a" data-name="Azul marino" onclick="event.stopPropagation();selectColor('mgbucket','Azul marino',this)"></div>
-          <div class="color-dot" style="background:#f5f0e8;border-color:#555" data-name="Blanco" onclick="event.stopPropagation();selectColor('mgbucket','Blanco',this)"></div>
-          <span class="color-name" id="cname-mgbucket">Gris oscuro</span>
-        </div>
-        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
-      </div>
-    </div>
-
-    <div class="product-card reveal" data-category="dtf trucker" onclick="openModal('mg-trucker2')">
-      <div class="product-img">
-        <img src="gallery_gorra_trucker2.jpg" alt="Gorra Trucker DTF">
-        <div class="product-badge" style="background:var(--red);color:#fff">Trucker</div>
-        <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-trucker2')">Ver detalle</a>
-          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Trucker DTF</h3>
-        <div class="technique">DTF prensado &middot; Full color</div>
-        <div class="product-colors" id="colors-mgtrucker2">
-          <div class="color-dot selected" style="background:#1a3a6a" data-name="Azul marino" onclick="event.stopPropagation();selectColor('mgtrucker2','Azul marino',this)"></div>
-          <div class="color-dot" style="background:#000" data-name="Negro" onclick="event.stopPropagation();selectColor('mgtrucker2','Negro',this)"></div>
-          <div class="color-dot" style="background:#888" data-name="Gris" onclick="event.stopPropagation();selectColor('mgtrucker2','Gris',this)"></div>
-          <div class="color-dot" style="background:#f5f0e8;border-color:#555" data-name="Blanco" onclick="event.stopPropagation();selectColor('mgtrucker2','Blanco',this)"></div>
-          <span class="color-name" id="cname-mgtrucker2">Azul marino</span>
-        </div>
-        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
-      </div>
-    </div>
-
-    
-
-    <div class="product-card reveal" data-category="vinilo snapback" onclick="openModal('mg-5')">
-      <div class="product-img">
-        <img src="img/gorra-5panel-vinilo.jpg" alt="Gorra 5 paneles">
-        <div class="product-badge" style="background:var(--red);color:#fff">5 Paneles</div>
-        <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-5')">Ver detalle</a>
-          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>5 Paneles Vinilo</h3>
-        <div class="technique">Estilo skate &middot; Vinilo o transfer</div>
-        <div class="product-colors" id="colors-mg5">
-          <div class="color-dot selected" style="background:#000" data-name="Negro" onclick="event.stopPropagation();selectColor('mg5','Negro',this)"></div>
-          <div class="color-dot" style="background:#c8b89a" data-name="Arena" onclick="event.stopPropagation();selectColor('mg5','Arena',this)"></div>
-          <div class="color-dot" style="background:#2d4a1e" data-name="Verde" onclick="event.stopPropagation();selectColor('mg5','Verde',this)"></div>
-          <span class="color-name" id="cname-mg5">Negro</span>
-        </div>
-        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
-      </div>
-    </div>
-
   </div>
-</section>
 
-<div class="section-divider reveal">
-  <h2>PULLOVERS<br><em>PERSONALIZADOS</em></h2>
-  <p>Busos con capucha estampados DTF o vinilo. Full color, cualquier diseno. Talles adulto y nino.</p>
-</div>
-
-<section class="catalog-section" style="padding-top:1.5rem;">
   <div class="catalog-grid">
-    <div class="product-card reveal" data-category="pullover dtf" onclick="openModal('mp-1')">
+
+    <!-- TRUCKER VINILO -->
+    <div class="product-card reveal" data-category="vinilo trucker" onclick="openModal('g1')">
       <div class="product-img">
-        <img src="gallery_pullover1.jpg" alt="Pullover con capucha personalizado">
-        <div class="product-badge" style="background:#555;color:#f5d800">DTF</div>
+        <img src="mockup_trucker_vinilo.jpg" alt="Trucker Vinilo">
+        <div class="product-badge">Vinilo</div>
         <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mp-1')">Ver detalle</a>
+          <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g1')">Ver detalle</a>
           <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
         </div>
       </div>
       <div class="product-info">
-        <h3>Pullover con capucha</h3>
-        <div class="technique">DTF full color &middot; Frente y espalda</div>
-        <div class="product-colors" id="colors-mp1">
-          <div class="color-dot selected" style="background:#000" data-name="Negro" onclick="event.stopPropagation();selectColor('mp1','Negro',this)"></div>
-          <div class="color-dot" style="background:#888" data-name="Gris" onclick="event.stopPropagation();selectColor('mp1','Gris',this)"></div>
-          <div class="color-dot" style="background:#1a3a6a" data-name="Azul marino" onclick="event.stopPropagation();selectColor('mp1','Azul marino',this)"></div>
-          <div class="color-dot" style="background:#4a0000" data-name="Bordo" onclick="event.stopPropagation();selectColor('mp1','Bordo',this)"></div>
-          <div class="color-dot" style="background:#f5f0e8;border-color:#555" data-name="Blanco" onclick="event.stopPropagation();selectColor('mp1','Blanco',this)"></div>
-          <span class="color-name" id="cname-mp1">Negro</span>
+        <div class="technique">Vinilo termosellado · Full color</div>
+        <h3>Trucker Vinilo</h3>
+        <div class="product-features">
+          <span class="feat-tag">Sin mínimo</span>
+          <span class="feat-tag">Trucker 5 paneles</span>
+          <span class="feat-tag">Full color</span>
+          <span class="feat-tag">Lavable</span>
         </div>
         <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
       </div>
     </div>
+
+    <!-- SNAPBACK DTF -->
+    <div class="product-card reveal" data-category="dtf transfer" onclick="openModal('g2')">
+      <div class="product-img">
+        <img src="mockup_snapback_dtf.jpg" alt="Snapback Transfer DTF">
+        <div class="product-badge">DTF</div>
+        <div class="product-overlay">
+          <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g2')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="technique">Transfer DTF · Colores ilimitados</div>
+        <h3>Snapback Transfer DTF</h3>
+        <div class="product-features">
+          <span class="feat-tag">Sin mínimo</span>
+          <span class="feat-tag">Snapback 6 paneles</span>
+          <span class="feat-tag">Degradés OK</span>
+          <span class="feat-tag">Fotografías OK</span>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <!-- BUCKET HAT -->
+    <div class="product-card reveal" data-category="dtf vinilo bucket" onclick="openModal('g3')">
+      <div class="product-img">
+        <img src="mockup_bucket.jpg" alt="Bucket Hat">
+        <div class="product-badge">Bucket Hat</div>
+        <div class="product-overlay">
+          <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g3')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="technique">DTF · Vinilo termosellado</div>
+        <h3>Bucket Hat</h3>
+        <div class="product-features">
+          <span class="feat-tag">Sin mínimo</span>
+          <span class="feat-tag">Ala corta</span>
+          <span class="feat-tag">DTF o vinilo</span>
+          <span class="feat-tag">Full color</span>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <!-- TRUCKER DTF -->
+    <div class="product-card reveal" data-category="dtf trucker" onclick="openModal('g4')">
+      <div class="product-img">
+        <img src="mockup_trucker_dtf.jpg" alt="Trucker DTF">
+        <div class="product-badge">Trucker</div>
+        <div class="product-overlay">
+          <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g4')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="technique">DTF prensado · Full color</div>
+        <h3>Trucker DTF</h3>
+        <div class="product-features">
+          <span class="feat-tag">Sin mínimo</span>
+          <span class="feat-tag">Trucker 5 paneles</span>
+          <span class="feat-tag">Full color</span>
+          <span class="feat-tag">Logos y textos</span>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <!-- 5 PANELES -->
+    <div class="product-card reveal" data-category="vinilo transfer" onclick="openModal('g5')">
+      <div class="product-img">
+        <img src="mockup_5panel.jpg" alt="5 Paneles">
+        <div class="product-badge">5 Paneles</div>
+        <div class="product-overlay">
+          <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g5')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="technique">Vinilo o Transfer · Estilo skate</div>
+        <h3>5 Paneles</h3>
+        <div class="product-features">
+          <span class="feat-tag">Sin mínimo</span>
+          <span class="feat-tag">Camp cap</span>
+          <span class="feat-tag">Vinilo o transfer</span>
+          <span class="feat-tag">Full color</span>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <!-- PACK EQUIPOS -->
+    <div class="product-card reveal" data-category="dtf vinilo transfer" onclick="openModal('g6')">
+      <div class="product-img">
+        <img src="mockup_pack.jpg" alt="Pack Equipos">
+        <div class="product-badge">Pack</div>
+        <div class="product-overlay">
+          <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g6')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="technique">DTF · Vinilo · Transfer — precio mayorista</div>
+        <h3>Pack Equipos / Eventos</h3>
+        <div class="product-features">
+          <span class="feat-tag">Desde 12 unidades</span>
+          <span class="feat-tag">Mix colores</span>
+          <span class="feat-tag">Nombres individuales</span>
+          <span class="feat-tag">Precio especial</span>
+        </div>
+        <div class="product-price">Precio especial <small>por volumen</small></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<div class="cta-banner reveal">
-  <div>
-    <h3>UNIFORMES Y<br>EQUIPOS</h3>
-    <p>Precios especiales para pedidos de 12 unidades o mas. Todos iguales o con nombres individuales.</p>
-  </div>
-  <a href="index.html#contacto" class="cta-btn">Cotizar por volumen &rarr;</a>
-</div>
-
-<!-- MODALES GORRAS -->
-<div class="modal-overlay" id="mg-2" onclick="closeModal(event,'mg-2')">
+<!-- MODALES -->
+<div class="modal-overlay" id="g1" onclick="closeModal(event,'g1')">
   <div class="modal">
-    <div class="modal-img"><img src="gallery_gorra2.jpg" alt="Trucker Vinilo"></div>
+    <div class="modal-img"><img src="mockup_trucker_vinilo.jpg" alt="Trucker Vinilo"></div>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mg-2')">X</button>
-      <div class="modal-tag">Gorra &middot; Vinilo termosellado</div>
+      <button class="modal-close" onclick="document.getElementById('g1').classList.remove('open')">✕</button>
+      <div class="modal-tag">Gorra · Vinilo termosellado</div>
       <h2>Trucker Vinilo</h2>
       <div class="modal-price">Desde $XXXX</div>
-      <p class="modal-desc">Vinilo termosellado sobre panel frontal. Full color, cualquier diseno. Resistente al uso diario.</p>
-      <div class="talle-selector">
-        <h4>Talle</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">Adulto</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Nino</button>
-        </div>
-      </div>
-      <div class="modal-color-selector">
-        <h4>Color &mdash; <span id="mcname-mg2">Negro</span></h4>
-        <div class="modal-colors">
-          <div class="modal-color-dot active" style="background:#000" data-name="Negro" onclick="selectModalColor('mg2',this)"></div>
-          <div class="modal-color-dot" style="background:#1a3a6a" data-name="Azul marino" onclick="selectModalColor('mg2',this)"></div>
-          <div class="modal-color-dot" style="background:#888" data-name="Gris" onclick="selectModalColor('mg2',this)"></div>
-          <div class="modal-color-dot" style="background:#f5f0e8;border-color:#444" data-name="Blanco" onclick="selectModalColor('mg2',this)"></div>
-          <div class="modal-color-dot" style="background:#4a0000" data-name="Bordo" onclick="selectModalColor('mg2',this)"></div>
-        </div>
-      </div>
+      <p class="modal-desc">Vinilo termosellado sobre panel frontal. Colores sólidos y brillantes, muy resistente al uso diario. Ideal para logos simples y texto.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
-        <div class="spec-row"><span>Tecnica</span><span>Vinilo termosellado</span></div>
+        <div class="spec-row"><span>Técnica</span><span>Vinilo termosellado</span></div>
         <div class="spec-row"><span>Colores</span><span>Full color ilimitado</span></div>
         <div class="spec-row"><span>Modelo</span><span>Trucker 5 paneles</span></div>
-        <div class="spec-row"><span>Talles</span><span>Adulto / Nino</span></div>
-        <div class="spec-row"><span>Minimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Talles</span><span>Adulto / Niño</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar trucker vinilo &rarr;</a>
+      <a href="index.html#contacto" class="modal-btn">Cotizar trucker vinilo →</a>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="mg-3" onclick="closeModal(event,'mg-3')">
+<div class="modal-overlay" id="g2" onclick="closeModal(event,'g2')">
   <div class="modal">
-    <div class="modal-img"><img src="gallery_gorra1.jpg" alt="Snapback DTF"></div>
+    <div class="modal-img"><img src="mockup_snapback_dtf.jpg" alt="Snapback DTF"></div>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mg-3')">X</button>
-      <div class="modal-tag">Gorra &middot; Transfer DTF</div>
+      <button class="modal-close" onclick="document.getElementById('g2').classList.remove('open')">✕</button>
+      <div class="modal-tag">Gorra · Transfer DTF</div>
       <h2>Snapback Transfer DTF</h2>
       <div class="modal-price">Desde $XXXX</div>
-      <p class="modal-desc">Transfer DTF sobre panel frontal. Degrades, fotografias y disenos complejos sin limite de colores.</p>
-      <div class="talle-selector">
-        <h4>Talle</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">Adulto</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Nino</button>
-        </div>
-      </div>
-      <div class="modal-color-selector">
-        <h4>Color &mdash; <span id="mcname-mg3">Negro</span></h4>
-        <div class="modal-colors">
-          <div class="modal-color-dot active" style="background:#000" data-name="Negro" onclick="selectModalColor('mg3',this)"></div>
-          <div class="modal-color-dot" style="background:#3a2a0a" data-name="Marron" onclick="selectModalColor('mg3',this)"></div>
-          <div class="modal-color-dot" style="background:#888" data-name="Gris" onclick="selectModalColor('mg3',this)"></div>
-        </div>
-      </div>
+      <p class="modal-desc">Transfer DTF sobre panel frontal. Degradés, fotografías y diseños complejos sin límite de colores. Alta resolución y colores vivos.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
-        <div class="spec-row"><span>Tecnica</span><span>Transfer DTF prensado</span></div>
-        <div class="spec-row"><span>Colores</span><span>Full color con degrade</span></div>
+        <div class="spec-row"><span>Técnica</span><span>Transfer DTF prensado</span></div>
+        <div class="spec-row"><span>Colores</span><span>Full color con degradé</span></div>
         <div class="spec-row"><span>Modelo</span><span>Snapback 6 paneles</span></div>
-        <div class="spec-row"><span>Talles</span><span>Adulto / Nino</span></div>
-        <div class="spec-row"><span>Minimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Talles</span><span>Adulto / Niño</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar snapback DTF &rarr;</a>
+      <a href="index.html#contacto" class="modal-btn">Cotizar snapback DTF →</a>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="mg-bucket" onclick="closeModal(event,'mg-bucket')">
+<div class="modal-overlay" id="g3" onclick="closeModal(event,'g3')">
   <div class="modal">
-    <div class="modal-img"><img src="gallery_gorra_bucket.jpg" alt="Bucket Hat"></div>
+    <div class="modal-img"><img src="mockup_bucket.jpg" alt="Bucket Hat"></div>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mg-bucket')">X</button>
-      <div class="modal-tag">Gorra &middot; Bucket Hat</div>
+      <button class="modal-close" onclick="document.getElementById('g3').classList.remove('open')">✕</button>
+      <div class="modal-tag">Gorra · Bucket Hat</div>
       <h2>Bucket Hat</h2>
       <div class="modal-price">Desde $XXXX</div>
-      <p class="modal-desc">Sombrero de pescador personalizado. Estampado DTF o vinilo en panel frontal. Popular para eventos y equipos.</p>
-      <div class="talle-selector">
-        <h4>Talle</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">Adulto</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Nino</button>
-        </div>
-      </div>
-      <div class="modal-color-selector">
-        <h4>Color &mdash; <span id="mcname-mgbucket">Gris oscuro</span></h4>
-        <div class="modal-colors">
-          <div class="modal-color-dot active" style="background:#444" data-name="Gris oscuro" onclick="selectModalColor('mgbucket',this)"></div>
-          <div class="modal-color-dot" style="background:#000" data-name="Negro" onclick="selectModalColor('mgbucket',this)"></div>
-          <div class="modal-color-dot" style="background:#1a3a6a" data-name="Azul marino" onclick="selectModalColor('mgbucket',this)"></div>
-          <div class="modal-color-dot" style="background:#f5f0e8;border-color:#444" data-name="Blanco" onclick="selectModalColor('mgbucket',this)"></div>
-        </div>
-      </div>
+      <p class="modal-desc">Sombrero de pescador personalizado. Estampado DTF o vinilo en panel frontal. Popular para eventos, equipos y uso diario.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
-        <div class="spec-row"><span>Tecnica</span><span>DTF o vinilo</span></div>
+        <div class="spec-row"><span>Técnica</span><span>DTF o vinilo</span></div>
         <div class="spec-row"><span>Colores</span><span>Full color</span></div>
         <div class="spec-row"><span>Modelo</span><span>Bucket hat ala corta</span></div>
-        <div class="spec-row"><span>Talles</span><span>Adulto / Nino</span></div>
-        <div class="spec-row"><span>Minimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Talles</span><span>Adulto / Niño</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar bucket hat &rarr;</a>
+      <a href="index.html#contacto" class="modal-btn">Cotizar bucket hat →</a>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="mg-trucker2" onclick="closeModal(event,'mg-trucker2')">
+<div class="modal-overlay" id="g4" onclick="closeModal(event,'g4')">
   <div class="modal">
-    <div class="modal-img"><img src="gallery_gorra_trucker2.jpg" alt="Trucker DTF"></div>
+    <div class="modal-img"><img src="mockup_trucker_dtf.jpg" alt="Trucker DTF"></div>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mg-trucker2')">X</button>
-      <div class="modal-tag">Gorra &middot; Trucker DTF</div>
+      <button class="modal-close" onclick="document.getElementById('g4').classList.remove('open')">✕</button>
+      <div class="modal-tag">Gorra · Trucker DTF</div>
       <h2>Trucker DTF</h2>
       <div class="modal-price">Desde $XXXX</div>
-      <p class="modal-desc">Gorra trucker con estampado DTF prensado. Ideal para logos de empresas, clubes y eventos.</p>
-      <div class="talle-selector">
-        <h4>Talle</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">Adulto</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Nino</button>
-        </div>
-      </div>
-      <div class="modal-color-selector">
-        <h4>Color &mdash; <span id="mcname-mgtrucker2">Azul marino</span></h4>
-        <div class="modal-colors">
-          <div class="modal-color-dot active" style="background:#1a3a6a" data-name="Azul marino" onclick="selectModalColor('mgtrucker2',this)"></div>
-          <div class="modal-color-dot" style="background:#000" data-name="Negro" onclick="selectModalColor('mgtrucker2',this)"></div>
-          <div class="modal-color-dot" style="background:#888" data-name="Gris" onclick="selectModalColor('mgtrucker2',this)"></div>
-          <div class="modal-color-dot" style="background:#f5f0e8;border-color:#444" data-name="Blanco" onclick="selectModalColor('mgtrucker2',this)"></div>
-        </div>
-      </div>
+      <p class="modal-desc">Gorra trucker con estampado DTF prensado. Ideal para logos de empresas, clubes y eventos. Colores perfectos y alta durabilidad.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
-        <div class="spec-row"><span>Tecnica</span><span>Transfer DTF prensado</span></div>
+        <div class="spec-row"><span>Técnica</span><span>Transfer DTF prensado</span></div>
         <div class="spec-row"><span>Colores</span><span>Full color ilimitado</span></div>
         <div class="spec-row"><span>Modelo</span><span>Trucker 5 paneles</span></div>
-        <div class="spec-row"><span>Talles</span><span>Adulto / Nino</span></div>
-        <div class="spec-row"><span>Minimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Talles</span><span>Adulto / Niño</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar trucker DTF &rarr;</a>
+      <a href="index.html#contacto" class="modal-btn">Cotizar trucker DTF →</a>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="mg-5" onclick="closeModal(event,'mg-5')">
+<div class="modal-overlay" id="g5" onclick="closeModal(event,'g5')">
   <div class="modal">
-    <div class="modal-img"><img src="img/gorra-5panel-vinilo.jpg" alt="5 paneles"></div>
+    <div class="modal-img"><img src="mockup_5panel.jpg" alt="5 Paneles"></div>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mg-5')">X</button>
-      <div class="modal-tag">Gorra &middot; 5 Paneles</div>
-      <h2>5 Paneles Vinilo</h2>
+      <button class="modal-close" onclick="document.getElementById('g5').classList.remove('open')">✕</button>
+      <div class="modal-tag">Gorra · 5 Paneles</div>
+      <h2>5 Paneles</h2>
       <div class="modal-price">Desde $XXXX</div>
-      <p class="modal-desc">Gorra de 5 paneles estilo skate/surf. Vinilo o transfer en el panel central.</p>
-      <div class="talle-selector">
-        <h4>Talle</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">Adulto</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Nino</button>
-        </div>
-      </div>
-      <div class="modal-color-selector">
-        <h4>Color &mdash; <span id="mcname-mg5">Negro</span></h4>
-        <div class="modal-colors">
-          <div class="modal-color-dot active" style="background:#000" data-name="Negro" onclick="selectModalColor('mg5',this)"></div>
-          <div class="modal-color-dot" style="background:#c8b89a" data-name="Arena" onclick="selectModalColor('mg5',this)"></div>
-          <div class="modal-color-dot" style="background:#2d4a1e" data-name="Verde" onclick="selectModalColor('mg5',this)"></div>
-        </div>
-      </div>
+      <p class="modal-desc">Gorra de 5 paneles estilo skate/surf. Vinilo o transfer en el panel central. Diseño limpio y moderno para cualquier marca.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Técnica</span><span>Vinilo o transfer DTF</span></div>
         <div class="spec-row"><span>Modelo</span><span>5 paneles camp cap</span></div>
-        <div class="spec-row"><span>Tecnica</span><span>Vinilo o transfer DTF</span></div>
-        <div class="spec-row"><span>Talles</span><span>Adulto / Nino</span></div>
-        <div class="spec-row"><span>Minimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Talles</span><span>Adulto / Niño</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
+        <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar 5 paneles &rarr;</a>
+      <a href="index.html#contacto" class="modal-btn">Cotizar 5 paneles →</a>
     </div>
   </div>
 </div>
 
-<div class="modal-overlay" id="mg-6" onclick="closeModal(event,'mg-6')">
+<div class="modal-overlay" id="g6" onclick="closeModal(event,'g6')">
   <div class="modal">
-    <div class="modal-img"><img src="gallery_gorras_pack.jpg" alt="Pack gorras equipos"></div>
+    <div class="modal-img"><img src="mockup_pack.jpg" alt="Pack Equipos"></div>
     <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mg-6')">X</button>
-      <div class="modal-tag">Pack &middot; Equipos y eventos</div>
+      <button class="modal-close" onclick="document.getElementById('g6').classList.remove('open')">✕</button>
+      <div class="modal-tag">Pack · Equipos y eventos</div>
       <h2>Pack Equipos / Eventos</h2>
       <div class="modal-price">Precio especial</div>
-      <p class="modal-desc">Pedidos de 12 unidades o mas con precio mayorista. Podés mezclar colores, talles y agregar nombres individuales.</p>
-      <div class="talle-selector">
-        <h4>Talle</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">Adulto</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Nino</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Mix talles</button>
-        </div>
-      </div>
+      <p class="modal-desc">Pedidos de 12 unidades o más con precio mayorista. Podés mezclar colores, talles y agregar nombres individuales en cada gorra.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
-        <div class="spec-row"><span>Minimo</span><span>12 unidades</span></div>
-        <div class="spec-row"><span>Tecnica</span><span>DTF o vinilo</span></div>
-        <div class="spec-row"><span>Personalizacion</span><span>Nombre + numero opcional</span></div>
-        <div class="spec-row"><span>Talles</span><span>Adulto / Nino / Mix</span></div>
-        <div class="spec-row"><span>Produccion</span><span>7-10 dias habiles</span></div>
+        <div class="spec-row"><span>Mínimo</span><span>12 unidades</span></div>
+        <div class="spec-row"><span>Técnica</span><span>DTF o vinilo</span></div>
+        <div class="spec-row"><span>Personalización</span><span>Nombre + número opcional</span></div>
+        <div class="spec-row"><span>Talles</span><span>Adulto / Niño / Mix</span></div>
+        <div class="spec-row"><span>Producción</span><span>7–10 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar pack equipos &rarr;</a>
-    </div>
-  </div>
-</div>
-
-<!-- MODAL PULLOVER -->
-<div class="modal-overlay" id="mp-1" onclick="closeModal(event,'mp-1')">
-  <div class="modal">
-    <div class="modal-img"><img src="gallery_pullover1.jpg" alt="Pullover personalizado"></div>
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mp-1')">X</button>
-      <div class="modal-tag">Pullover &middot; DTF full color</div>
-      <h2>Pullover con capucha</h2>
-      <div class="modal-price">Desde $XXXX</div>
-      <p class="modal-desc">Buso con capucha estampado DTF full color en frente y/o espalda. Cualquier diseno, sin limite de colores.</p>
-      <div class="talle-selector">
-        <h4>Talle adulto</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">S</button>
-          <button class="talle-btn" onclick="selectTalle(this)">M</button>
-          <button class="talle-btn" onclick="selectTalle(this)">L</button>
-          <button class="talle-btn" onclick="selectTalle(this)">XL</button>
-          <button class="talle-btn" onclick="selectTalle(this)">XXL</button>
-        </div>
-      </div>
-      <div class="talle-selector">
-        <h4>Talle nino</h4>
-        <div class="talle-btns">
-          <button class="talle-btn" onclick="selectTalle(this)">4</button>
-          <button class="talle-btn" onclick="selectTalle(this)">6</button>
-          <button class="talle-btn" onclick="selectTalle(this)">8</button>
-          <button class="talle-btn" onclick="selectTalle(this)">10</button>
-          <button class="talle-btn" onclick="selectTalle(this)">12</button>
-        </div>
-      </div>
-      <div class="modal-color-selector">
-        <h4>Color &mdash; <span id="mcname-mp1">Negro</span></h4>
-        <div class="modal-colors">
-          <div class="modal-color-dot active" style="background:#000" data-name="Negro" onclick="selectModalColor('mp1',this)"></div>
-          <div class="modal-color-dot" style="background:#888" data-name="Gris" onclick="selectModalColor('mp1',this)"></div>
-          <div class="modal-color-dot" style="background:#1a3a6a" data-name="Azul marino" onclick="selectModalColor('mp1',this)"></div>
-          <div class="modal-color-dot" style="background:#4a0000" data-name="Bordo" onclick="selectModalColor('mp1',this)"></div>
-          <div class="modal-color-dot" style="background:#f5f0e8;border-color:#444" data-name="Blanco" onclick="selectModalColor('mp1',this)"></div>
-        </div>
-      </div>
-      <div class="modal-specs">
-        <h4>Especificaciones</h4>
-        <div class="spec-row"><span>Tecnica</span><span>DTF full color</span></div>
-        <div class="spec-row"><span>Zona</span><span>Frente, espalda o ambas</span></div>
-        <div class="spec-row"><span>Talles adulto</span><span>S / M / L / XL / XXL</span></div>
-        <div class="spec-row"><span>Talles nino</span><span>4 / 6 / 8 / 10 / 12</span></div>
-        <div class="spec-row"><span>Minimo</span><span>1 unidad</span></div>
-      </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar pullover &rarr;</a>
+      <a href="index.html#contacto" class="modal-btn">Cotizar pack equipos →</a>
     </div>
   </div>
 </div>
 
 <footer>
-  <p>&copy; 2025 PERSONALIZATE &mdash; Villa Manzano, Cinco Saltos, Rio Negro.</p>
+  <p>© 2025 PERSONALIZATE — Villa Manzano, Cinco Saltos, Río Negro.</p>
   <div class="footer-links">
     <a href="index.html">Inicio</a>
     <a href="remeras.html">Remeras</a>
@@ -596,46 +479,17 @@
 
 <script>
   const reveals=document.querySelectorAll('.reveal');
-  const observer=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);observer.unobserve(e.target);}});},{threshold:.1});
+  const observer=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*100);observer.unobserve(e.target);}});},{threshold:.1});
   reveals.forEach(el=>observer.observe(el));
-
   function filterProducts(cat,btn){
     document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
     document.querySelectorAll('.product-card').forEach(card=>{
-      const cats=card.dataset.category||'';
-      card.style.display=(cat==='todos'||cats.includes(cat))?'block':'none';
+      card.style.display=(cat==='todos'||card.dataset.category.includes(cat))?'block':'none';
     });
   }
-
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(e,id){if(e.target.classList.contains('modal-overlay')){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}}
-  function closeById(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(m=>{m.classList.remove('open');document.body.style.overflow='';})}});
-
-  function selectColor(id,name,dot){
-    document.querySelectorAll('#colors-'+id+' .color-dot').forEach(d=>d.classList.remove('selected'));
-    dot.classList.add('selected');
-    const el=document.getElementById('cname-'+id);
-    if(el) el.textContent=name;
-  }
-
-  function selectTalle(btn){
-    const group=btn.closest('.talle-btns');
-    group.querySelectorAll('.talle-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
-  function selectModalColor(id,dot){
-    const name=dot.dataset.name;
-    const container=dot.closest('.modal-colors');
-    container.querySelectorAll('.modal-color-dot').forEach(d=>d.classList.remove('active'));
-    dot.classList.add('active');
-    const el=document.getElementById('mcname-'+id);
-    if(el) el.textContent=name;
-  }
 </script>
-
-
 </body>
 </html>

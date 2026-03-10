@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pullovers — PERSONALIZATE</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,500;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--black:#0a0a0a;--white:#f5f0e8;--yellow:#f5d800;--red:#e8291c;--gray:#1a1a1a;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;background:var(--black);border-bottom:1px solid #222;}
+  .logo{font-family:'Fredoka One',sans-serif;font-size:2rem;letter-spacing:.1em;color:var(--yellow);text-decoration:none;display:flex;align-items:center;gap:.5rem;}
+  .logo img{height:42px;width:42px;object-fit:cover;border-radius:50%;}
+  nav ul{list-style:none;display:flex;gap:2.5rem;}
+  nav a{color:var(--white);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;}
+  nav a:hover,nav a.active{color:var(--yellow);}
+  .nav-cta{background:var(--yellow);color:var(--black)!important;padding:.55rem 1.4rem;font-weight:700!important;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+  .nav-cta:hover{background:var(--red)!important;color:var(--white)!important;}
+  .page-hero{padding:140px 4rem 5rem;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid #1a1a1a;position:relative;overflow:hidden;}
+  .page-hero::before{content:'PULLOVERS';position:absolute;right:-1rem;top:50%;transform:translateY(-50%);font-family:'Fredoka One',sans-serif;font-size:12rem;color:rgba(255,255,255,.03);pointer-events:none;white-space:nowrap;}
+  .breadcrumb{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:1rem;}
+  .breadcrumb a{color:#555;text-decoration:none;}.breadcrumb a:hover{color:var(--yellow);}.breadcrumb span{color:var(--yellow);}
+  .page-hero h1{font-family:'Fredoka One',sans-serif;font-size:clamp(4rem,7vw,7rem);line-height:.9;}
+  .page-hero h1 em{color:var(--yellow);font-style:normal;display:block;}
+  .page-hero-desc{max-width:360px;text-align:right;}
+  .page-hero-desc p{color:#888;font-size:.9rem;line-height:1.7;margin-bottom:1.5rem;}
+  .hero-btn{display:inline-block;padding:.8rem 1.8rem;font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);background:var(--yellow);color:var(--black);transition:background .2s;}
+  .hero-btn:hover{background:var(--red);color:var(--white);}
+  .tecnicas-bar{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#1a1a1a;border-bottom:1px solid #1a1a1a;}
+  .tecnica-item{background:var(--black);padding:2rem;display:flex;align-items:flex-start;gap:1.2rem;}
+  .tecnica-icon{font-size:2rem;flex-shrink:0;}
+  .tecnica-item h4{font-family:'Fredoka One',sans-serif;font-size:1.3rem;letter-spacing:.05em;margin-bottom:.3rem;}
+  .tecnica-item p{font-size:.78rem;color:#666;line-height:1.6;}
+  .tecnica-tag{display:inline-block;margin-top:.6rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;background:rgba(245,216,0,.1);color:var(--yellow);padding:.2rem .5rem;border:1px solid rgba(245,216,0,.2);}
+  .filters{padding:2rem 4rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;border-bottom:1px solid #1a1a1a;}
+  .filter-label{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-right:.5rem;}
+  .filter-btn{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;border:1px solid #2a2a2a;background:transparent;color:#888;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;}
+  .filter-btn:hover,.filter-btn.active{border-color:var(--yellow);color:var(--yellow);background:rgba(245,216,0,.05);}
+  .catalog-section{padding:4rem;}
+  .catalog-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5px;background:#1a1a1a;}
+  .product-card{background:var(--black);position:relative;overflow:hidden;cursor:pointer;transition:background .3s;}
+  .product-card:hover{background:#0f0f0f;}
+  .product-img{width:100%;aspect-ratio:4/3;background:var(--gray);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s cubic-bezier(.16,1,.3,1);}
+  .product-card:hover .product-img img{transform:scale(1.05);}
+  .product-badge{position:absolute;top:1rem;left:1rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;background:var(--yellow);color:var(--black);padding:.25rem .8rem;font-weight:700;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+  .product-overlay{position:absolute;inset:0;background:rgba(0,0,0,.82);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;opacity:0;transition:opacity .3s;}
+  .product-card:hover .product-overlay{opacity:1;}
+  .overlay-btn{padding:.8rem 2.2rem;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:.2s;}
+  .overlay-btn-primary{background:var(--yellow);color:var(--black);}.overlay-btn-primary:hover{background:var(--red);color:var(--white);}
+  .overlay-btn-secondary{background:transparent;color:var(--white);border:1px solid #555;clip-path:none;}.overlay-btn-secondary:hover{border-color:var(--yellow);color:var(--yellow);}
+  .product-info{padding:2rem 2rem 2.5rem;}
+  .product-info h3{font-family:'Fredoka One',sans-serif;font-size:1.8rem;letter-spacing:.05em;margin-bottom:.4rem;}
+  .product-info .technique{font-size:.78rem;color:#666;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;}
+  .product-colors{display:flex;gap:.5rem;margin-bottom:1rem;align-items:center;}
+  .colors-label{font-size:.65rem;color:#444;letter-spacing:.1em;text-transform:uppercase;margin-right:.3rem;}
+  .color-dot{width:18px;height:18px;border-radius:50%;border:1px solid #333;cursor:pointer;transition:transform .2s;}.color-dot:hover{transform:scale(1.3);}
+  .color-name{font-size:.7rem;color:#888;letter-spacing:.1em;text-transform:uppercase;}
+  .product-features{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem;}
+  .feat-tag{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#555;border:1px solid #222;padding:.25rem .6rem;}
+  .product-price{font-family:'Fredoka One',sans-serif;font-size:1.5rem;color:var(--yellow);}
+  .product-price small{font-family:'DM Sans',sans-serif;font-size:.7rem;color:#555;font-weight:400;letter-spacing:.1em;text-transform:uppercase;margin-left:.4rem;}
+  /* MODAL */
+  .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+  .modal-overlay.open{opacity:1;pointer-events:all;}
+  .modal{background:var(--gray);max-width:920px;width:92%;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;transform:scale(.95);transition:transform .3s;position:relative;}
+  .modal-overlay.open .modal{transform:scale(1);}
+  .modal-img{background:var(--black);display:flex;align-items:center;justify-content:center;min-height:420px;position:relative;overflow:hidden;}
+  .modal-img img{width:100%;height:100%;object-fit:cover;}
+  .modal-content{padding:3rem 2.5rem;overflow-y:auto;}
+  .modal-close{position:absolute;top:1rem;right:1rem;background:rgba(0,0,0,.5);border:none;color:var(--white);font-size:1.2rem;cursor:pointer;padding:.6rem .9rem;z-index:2;}.modal-close:hover{background:var(--red);}
+  .modal-tag{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red);font-weight:700;margin-bottom:.8rem;}
+  .modal-content h2{font-family:'Fredoka One',sans-serif;font-size:2.5rem;letter-spacing:.05em;margin-bottom:.5rem;}
+  .modal-price{font-family:'Fredoka One',sans-serif;font-size:2rem;color:var(--yellow);margin-bottom:1rem;}
+  .modal-desc{color:#888;font-size:.9rem;line-height:1.7;margin-bottom:1.5rem;}
+  .spec-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;}
+  .spec-table td{padding:.6rem 0;border-bottom:1px solid #222;font-size:.82rem;}
+  .spec-table td:first-child{color:#555;width:45%;letter-spacing:.08em;text-transform:uppercase;font-size:.72rem;}
+  .spec-table td:last-child{color:var(--white);font-weight:500;}
+  .modal-sizes{margin-bottom:1.5rem;}
+  .modal-sizes h4{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.7rem;}
+  .size-grid{display:flex;gap:.4rem;flex-wrap:wrap;}
+  .size-btn{padding:.4rem .9rem;border:1px solid #333;background:transparent;color:#888;font-size:.75rem;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;}
+  .size-btn:hover,.size-btn.sel{border-color:var(--yellow);color:var(--yellow);background:rgba(245,216,0,.06);}
+  .modal-colors{margin-bottom:1.5rem;}
+  .modal-colors h4{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.7rem;}
+  .modal-color-dots{display:flex;gap:.6rem;flex-wrap:wrap;}
+  .modal-color-dot{width:24px;height:24px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:.2s;}
+  .modal-color-dot:hover,.modal-color-dot.sel{border-color:var(--yellow);transform:scale(1.15);}
+  .modal-color-name{font-size:.72rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-top:.4rem;}
+  .cta-btn{display:block;width:100%;padding:1rem;background:var(--yellow);color:var(--black);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;text-align:center;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:background .2s;}
+  .cta-btn:hover{background:var(--red);color:var(--white);}
+  .section-cta{background:var(--gray);padding:5rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+  .section-cta h2{font-family:'Fredoka One',sans-serif;font-size:3rem;letter-spacing:.05em;}
+  .section-cta h2 em{color:var(--yellow);font-style:normal;}
+  .section-cta p{color:#666;font-size:.9rem;margin-top:.5rem;}
+  footer{padding:3rem 4rem;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+  footer p{font-size:.78rem;color:#333;}
+  .footer-links{display:flex;gap:2rem;}
+  .footer-links a{font-size:.75rem;color:#444;text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}
+  .footer-links a:hover{color:var(--yellow);}
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.visible{opacity:1;transform:none;}
+  @media(max-width:768px){
+    nav{padding:1rem 1.2rem;}nav ul{gap:1.2rem;}
+    .page-hero{padding:110px 1.5rem 3rem;flex-direction:column;gap:2rem;}
+    .page-hero-desc{text-align:left;max-width:100%;}
+    .tecnicas-bar{grid-template-columns:1fr;}
+    .filters{padding:1.5rem;}
+    .catalog-section{padding:2rem 1.5rem;}
+    .catalog-grid{grid-template-columns:1fr;}
+    .section-cta{padding:3rem 1.5rem;}
+    footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo"><img src="gallery_remera1.jpg" alt="PERSONALIZATE" onerror="this.style.display='none'">PERSONALIZATE</a>
+  <ul>
+    <li><a href="remeras.html">Remeras</a></li>
+    <li><a href="stickers.html">Stickers</a></li>
+    <li><a href="gorras.html">Gorras</a></li>
+    <li><a href="pullovers.html" class="active">Pullovers</a></li>
+    <li><a href="index.html#contacto" class="nav-cta">Cotizar</a></li>
+  </ul>
+</nav>
+
+<section class="page-hero">
+  <div>
+    <div class="breadcrumb"><a href="index.html">Inicio</a> → <span>Pullovers</span></div>
+    <h1>PULLOVERS<em>PERSONALIZADOS</em></h1>
+  </div>
+  <div class="page-hero-desc">
+    <p>Busos con capucha estampados DTF full color. Cualquier diseño, frente y/o espalda. Talles adulto y niño desde una sola unidad.</p>
+    <a href="index.html#contacto" class="hero-btn">Pedir cotización</a>
+  </div>
+</section>
+
+<div class="tecnicas-bar">
+  <div class="tecnica-item">
+    <div class="tecnica-icon">🎨</div>
+    <div>
+      <h4>DTF Full Color</h4>
+      <p>Transferencia directa al tejido. Cualquier diseño, foto o degrade sin límite de colores.</p>
+      <span class="tecnica-tag">Recomendado</span>
+    </div>
+  </div>
+  <div class="tecnica-item">
+    <div class="tecnica-icon">👕</div>
+    <div>
+      <h4>Frente y Espalda</h4>
+      <p>Podés estampar en el frente, la espalda o ambas zonas. Todo en un solo pedido.</p>
+      <span class="tecnica-tag">Disponible</span>
+    </div>
+  </div>
+  <div class="tecnica-item">
+    <div class="tecnica-icon">📦</div>
+    <div>
+      <h4>Desde 1 Unidad</h4>
+      <p>Sin mínimo de pedido. Precios especiales por volumen desde 10 unidades.</p>
+      <span class="tecnica-tag">Sin mínimo</span>
+    </div>
+  </div>
+</div>
+
+<div class="filters">
+  <span class="filter-label">Filtrar por:</span>
+  <button class="filter-btn active" onclick="filterCards('todos',this)">Todos</button>
+  <button class="filter-btn" onclick="filterCards('dtf',this)">DTF</button>
+  <button class="filter-btn" onclick="filterCards('frente',this)">Frente</button>
+  <button class="filter-btn" onclick="filterCards('espalda',this)">Espalda</button>
+</div>
+
+<section class="catalog-section">
+  <div class="catalog-grid" id="grid">
+
+    <div class="product-card reveal" data-category="dtf frente espalda" onclick="openModal('p1')">
+      <div class="product-img">
+        <img src="mockup_pullover.jpg" alt="Pullover con capucha DTF">
+        <div class="product-badge">DTF</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('p1')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Pullover con Capucha</h3>
+        <div class="technique">DTF full color · Frente y espalda</div>
+        <div class="product-colors">
+          <span class="colors-label">Color —</span>
+          <span class="color-dot" style="background:#1a1a1a" onclick="event.stopPropagation();setColor('p1-color','Negro',this)" title="Negro"></span>
+          <span class="color-dot" style="background:#f5f0e8;border-color:#555" onclick="event.stopPropagation();setColor('p1-color','Blanco',this)" title="Blanco"></span>
+          <span class="color-dot" style="background:#555" onclick="event.stopPropagation();setColor('p1-color','Gris',this)" title="Gris"></span>
+          <span class="color-dot" style="background:#1a3a6a" onclick="event.stopPropagation();setColor('p1-color','Azul',this)" title="Azul"></span>
+          <span class="color-name" id="p1-color">Negro</span>
+        </div>
+        <div class="product-features">
+          <span class="feat-tag">Full color</span>
+          <span class="feat-tag">Frente</span>
+          <span class="feat-tag">Espalda</span>
+          <span class="feat-tag">Adulto / Niño</span>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="dtf frente" onclick="openModal('p2')">
+      <div class="product-img">
+        <img src="mockup_pullover.jpg" alt="Pullover estampado frente">
+        <div class="product-badge">DTF</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('p2')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Pullover Solo Frente</h3>
+        <div class="technique">DTF full color · Solo frente</div>
+        <div class="product-colors">
+          <span class="colors-label">Color —</span>
+          <span class="color-dot" style="background:#1a1a1a" onclick="event.stopPropagation();setColor('p2-color','Negro',this)" title="Negro"></span>
+          <span class="color-dot" style="background:#f5f0e8;border-color:#555" onclick="event.stopPropagation();setColor('p2-color','Blanco',this)" title="Blanco"></span>
+          <span class="color-dot" style="background:#555" onclick="event.stopPropagation();setColor('p2-color','Gris',this)" title="Gris"></span>
+          <span class="color-name" id="p2-color">Negro</span>
+        </div>
+        <div class="product-features">
+          <span class="feat-tag">Full color</span>
+          <span class="feat-tag">Solo frente</span>
+          <span class="feat-tag">Precio menor</span>
+        </div>
+        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
+      </div>
+    </div>
+
+    <div class="product-card reveal" data-category="dtf espalda" onclick="openModal('p3')">
+      <div class="product-img">
+        <img src="mockup_pullover.jpg" alt="Pullover pack equipos">
+        <div class="product-badge" style="background:#e8291c;color:#fff">PACK</div>
+        <div class="product-overlay">
+          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('p3')">Ver detalle</a>
+          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary">Cotizar</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <h3>Pack Equipos</h3>
+        <div class="technique">DTF · Desde 10 unidades · Precio especial</div>
+        <div class="product-colors">
+          <span class="colors-label">Color —</span>
+          <span class="color-dot" style="background:#1a1a1a" onclick="event.stopPropagation();setColor('p3-color','Negro',this)" title="Negro"></span>
+          <span class="color-dot" style="background:#f5f0e8;border-color:#555" onclick="event.stopPropagation();setColor('p3-color','Blanco',this)" title="Blanco"></span>
+          <span class="color-dot" style="background:#555" onclick="event.stopPropagation();setColor('p3-color','Gris',this)" title="Gris"></span>
+          <span class="color-dot" style="background:#1a3a6a" onclick="event.stopPropagation();setColor('p3-color','Azul',this)" title="Azul"></span>
+          <span class="color-name" id="p3-color">Negro</span>
+        </div>
+        <div class="product-features">
+          <span class="feat-tag">Precio mayorista</span>
+          <span class="feat-tag">Desde 10 uds</span>
+          <span class="feat-tag">Nombres individuales</span>
+        </div>
+        <div class="product-price">Precio especial <small>por volumen</small></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-cta">
+  <div>
+    <h2>¿QUERÉS UN<em>DISEÑO PROPIO?</em></h2>
+    <p>Lo creamos sin costo extra. Mandanos tu idea por WhatsApp.</p>
+  </div>
+  <a href="index.html#contacto" class="hero-btn" style="white-space:nowrap">💬 Pedir cotización</a>
+</section>
+
+<!-- MODALES -->
+<div class="modal-overlay" id="p1" onclick="closeModal(event,'p1')">
+  <div class="modal">
+    <div class="modal-img"><img src="mockup_pullover.jpg" alt="Pullover con capucha"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('p1').classList.remove('open')">✕</button>
+      <div class="modal-tag">Pullover · DTF full color</div>
+      <h2>Pullover con Capucha</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc">Buso con capucha estampado DTF full color. Frente y/o espalda. Cualquier diseño, foto o degrade sin límite de colores.</p>
+      <div class="modal-sizes">
+        <h4>Talle adulto</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">S</button><button class="size-btn">M</button><button class="size-btn">L</button><button class="size-btn">XL</button><button class="size-btn">XXL</button>
+        </div>
+      </div>
+      <div class="modal-sizes">
+        <h4>Talle niño</h4>
+        <div class="size-grid">
+          <button class="size-btn">4</button><button class="size-btn">6</button><button class="size-btn">8</button><button class="size-btn">10</button><button class="size-btn">12</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#f5f0e8;border:2px solid #555" title="Blanco"></span>
+          <span class="modal-color-dot" style="background:#555" title="Gris"></span>
+          <span class="modal-color-dot" style="background:#1a3a6a" title="Azul"></span>
+        </div>
+      </div>
+      <table class="spec-table">
+        <tr><td>Técnica</td><td>DTF full color</td></tr>
+        <tr><td>Zona</td><td>Frente, espalda o ambas</td></tr>
+        <tr><td>Colores</td><td>Full color ilimitado</td></tr>
+        <tr><td>Talles adulto</td><td>S / M / L / XL / XXL</td></tr>
+        <tr><td>Talles niño</td><td>4 / 6 / 8 / 10 / 12</td></tr>
+        <tr><td>Mínimo</td><td>1 unidad</td></tr>
+      </table>
+      <a href="index.html#contacto" class="cta-btn">Cotizar pullover →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="p2" onclick="closeModal(event,'p2')">
+  <div class="modal">
+    <div class="modal-img"><img src="mockup_pullover.jpg" alt="Pullover solo frente"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('p2').classList.remove('open')">✕</button>
+      <div class="modal-tag">Pullover · Solo frente</div>
+      <h2>Pullover Solo Frente</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc">Buso con capucha con estampado DTF únicamente en el frente. Opción más económica para logos y diseños pequeños.</p>
+      <div class="modal-sizes">
+        <h4>Talle adulto</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">S</button><button class="size-btn">M</button><button class="size-btn">L</button><button class="size-btn">XL</button><button class="size-btn">XXL</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#f5f0e8;border:2px solid #555" title="Blanco"></span>
+          <span class="modal-color-dot" style="background:#555" title="Gris"></span>
+        </div>
+      </div>
+      <table class="spec-table">
+        <tr><td>Técnica</td><td>DTF full color</td></tr>
+        <tr><td>Zona</td><td>Frente</td></tr>
+        <tr><td>Colores</td><td>Full color ilimitado</td></tr>
+        <tr><td>Talles</td><td>S / M / L / XL / XXL</td></tr>
+        <tr><td>Mínimo</td><td>1 unidad</td></tr>
+      </table>
+      <a href="index.html#contacto" class="cta-btn">Cotizar →</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="p3" onclick="closeModal(event,'p3')">
+  <div class="modal">
+    <div class="modal-img"><img src="mockup_pullover.jpg" alt="Pack equipos pullovers"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('p3').classList.remove('open')">✕</button>
+      <div class="modal-tag">Pullover · Pack equipos</div>
+      <h2>Pack Equipos</h2>
+      <div class="modal-price">Precio especial</div>
+      <p class="modal-desc">Pedidos de 10 unidades o más con precio mayorista. Podés mezclar talles, colores y agregar nombres o números individuales.</p>
+      <div class="modal-sizes">
+        <h4>Mix de talles</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">Adulto</button><button class="size-btn">Niño</button><button class="size-btn">Mix</button>
+        </div>
+      </div>
+      <table class="spec-table">
+        <tr><td>Mínimo</td><td>10 unidades</td></tr>
+        <tr><td>Técnica</td><td>DTF full color</td></tr>
+        <tr><td>Personalización</td><td>Nombre + número opcional</td></tr>
+        <tr><td>Zona</td><td>Frente, espalda o ambas</td></tr>
+        <tr><td>Producción</td><td>7-10 días hábiles</td></tr>
+      </table>
+      <a href="index.html#contacto" class="cta-btn">Cotizar pack equipos →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 PERSONALIZATE — Villa Manzano, Cinco Saltos, Río Negro.</p>
+  <div class="footer-links">
+    <a href="index.html">Inicio</a>
+    <a href="remeras.html">Remeras</a>
+    <a href="stickers.html">Stickers</a>
+    <a href="gorras.html">Gorras</a>
+    <a href="index.html#contacto">Contacto</a>
+  </div>
+</footer>
+
+<script>
+function openModal(id){ document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(e,id){ if(e.target===e.currentTarget){ document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; } }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ document.querySelectorAll('.modal-overlay.open').forEach(m=>{m.classList.remove('open');document.body.style.overflow='';}); } });
+function setColor(elId, name, dot){
+  document.getElementById(elId).textContent = name;
+  const siblings = dot.parentElement.querySelectorAll('.color-dot');
+  siblings.forEach(d=>d.style.outline='none');
+  dot.style.outline = '2px solid #f5d800';
+  dot.style.outlineOffset = '2px';
+}
+document.querySelectorAll('.size-btn').forEach(btn=>{
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    const group=this.closest('.size-grid');
+    group.querySelectorAll('.size-btn').forEach(b=>b.classList.remove('sel'));
+    this.classList.add('sel');
+  });
+});
+document.querySelectorAll('.modal-color-dot').forEach(dot=>{
+  dot.addEventListener('click',function(e){
+    e.stopPropagation();
+    const group=this.closest('.modal-color-dots');
+    group.querySelectorAll('.modal-color-dot').forEach(d=>d.classList.remove('sel'));
+    this.classList.add('sel');
+  });
+});
+function filterCards(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(card=>{
+    const cats = card.dataset.category || '';
+    card.style.display = (cat==='todos'||cats.includes(cat)) ? '' : 'none';
+  });
+}
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); observer.unobserve(e.target); } });
+},{threshold:0.06});
+reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
