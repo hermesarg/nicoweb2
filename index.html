@@ -497,8 +497,8 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
       <button class="cat-btn" onclick="filterCat('otro',this)">Otros</button>
     </div>
   </div>
-
-  <div class="cat-grid" id="catalogoGrid"></div>
+  <div class="cat-grid" id="catalogoGrid">
+  </div>
 </section>
 
 <!-- CONTACTO -->
@@ -673,22 +673,7 @@ function sendWA(){
   window.open(`https://wa.me/542995174801?text=${encodeURIComponent(text)}`,'_blank');
 }
 </script>
-  <script src="productos.js"></script>
 
-<script>
-function renderCatalogo(){
-  const grid = document.getElementById('catalogoGrid');
-
-  grid.innerHTML = productos.map(p => `
-    <div class="cat-item reveal" data-cat="${p.categoria}">
-      <img src="${p.imagen}" alt="${p.alt}" loading="lazy">
-      <div class="cat-item-tag ${p.tagClass}">${p.tag}</div>
-      <div class="cat-item-label">${p.nombre}</div>
-    </div>
-  `).join('');
-}
-
-renderCatalogo();
-</script>
+<script src="productos.js"></script>
 </body>
 </html>
