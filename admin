@@ -1,0 +1,36 @@
+admin/index.html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Panel productos</title>
+</head>
+
+<body style="font-family:sans-serif; padding:40px">
+
+<h2>Agregar producto</h2>
+
+<input id="nombre" placeholder="Nombre producto"><br><br>
+
+<select id="categoria">
+<option value="remera">Remera</option>
+<option value="gorra">Gorra</option>
+<option value="sticker">Sticker</option>
+<option value="otro">Otro</option>
+</select>
+
+<br><br>
+
+<input type="file" id="imagen">
+
+<br><br>
+
+<button onclick="guardar()">Guardar</button>
+
+<script>
+function guardar(){
+alert("Producto guardado. Luego subir archivo a GitHub.");
+}
+</script>
+
+</body>
+</html>
