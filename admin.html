@@ -5,234 +5,226 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin — PERSONALIZATE</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-height:100vh;}
-  
-  /* LOGIN */
-  #login-screen{position:fixed;inset:0;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999;}
-  .login-box{background:#111;border:1px solid #ff2d9b;padding:2.5rem;width:340px;text-align:center;}
-  .login-box h2{font-size:1.6rem;color:#ff2d9b;margin-bottom:.3rem;letter-spacing:.1em;}
-  .login-box p{color:#666;font-size:.8rem;margin-bottom:2rem;}
-  .login-box input{width:100%;padding:.75rem 1rem;background:#1a1a1a;border:1px solid #333;color:#fff;font-size:.9rem;margin-bottom:1rem;outline:none;}
-  .login-box input:focus{border-color:#ff2d9b;}
-  .login-box button{width:100%;padding:.85rem;background:#ff2d9b;color:#fff;border:none;font-size:.95rem;font-weight:700;cursor:pointer;letter-spacing:.1em;}
-  .login-box button:hover{background:#e0007a;}
-  .login-error{color:#ff4444;font-size:.8rem;margin-top:.5rem;display:none;}
-  
-  /* ADMIN LAYOUT */
-  #admin-app{display:none;}
-  .admin-nav{background:#111;border-bottom:1px solid #222;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;}
-  .admin-logo{font-size:1.1rem;font-weight:700;color:#ff2d9b;letter-spacing:.1em;}
-  .admin-logo span{color:#ffd700;}
-  .nav-tabs{display:flex;gap:.5rem;}
-  .nav-tab{padding:.5rem 1.2rem;background:transparent;border:1px solid #333;color:#888;cursor:pointer;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;transition:.2s;}
-  .nav-tab:hover,.nav-tab.active{border-color:#ff2d9b;color:#ff2d9b;background:rgba(255,45,155,.08);}
-  .btn-logout{padding:.4rem 1rem;background:transparent;border:1px solid #444;color:#666;cursor:pointer;font-size:.75rem;}
-  .btn-logout:hover{border-color:#ff4444;color:#ff4444;}
-  
-  .admin-content{padding:2rem;max-width:1100px;margin:0 auto;}
-  
-  /* PANELS */
-  .panel{display:none;}
-  .panel.active{display:block;}
-  .panel-title{font-size:1.4rem;font-weight:700;margin-bottom:1.5rem;color:#fff;}
-  .panel-title span{color:#ff2d9b;}
-  
-  /* STATS */
-  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem;}
-  .stat-card{background:#111;border:1px solid #222;padding:1.5rem;text-align:center;}
-  .stat-card .num{font-size:2.5rem;font-weight:700;color:#ff2d9b;}
-  .stat-card .label{font-size:.75rem;color:#666;text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem;}
-  
-  /* UPLOAD ZONE */
-  .upload-section{background:#111;border:1px solid #222;padding:1.5rem;margin-bottom:1.5rem;}
-  .upload-section h3{font-size:.9rem;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:1rem;}
-  .drop-zone{border:2px dashed #333;padding:2.5rem;text-align:center;cursor:pointer;transition:.2s;position:relative;}
-  .drop-zone:hover,.drop-zone.drag-over{border-color:#ff2d9b;background:rgba(255,45,155,.05);}
-  .drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;}
-  .drop-zone p{color:#555;font-size:.85rem;}
-  .drop-zone p strong{color:#ff2d9b;}
-  .drop-zone .icon{font-size:2.5rem;margin-bottom:.5rem;}
-  
-  .upload-form{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;}
-  .form-group{display:flex;flex-direction:column;gap:.4rem;}
-  .form-group label{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#666;}
-  .form-group input,.form-group select{background:#1a1a1a;border:1px solid #333;color:#fff;padding:.6rem .8rem;font-size:.85rem;outline:none;}
-  .form-group input:focus,.form-group select:focus{border-color:#ff2d9b;}
-  .form-group select option{background:#1a1a1a;}
-  .btn-upload{grid-column:1/-1;padding:.8rem;background:#ff2d9b;color:#fff;border:none;font-weight:700;font-size:.9rem;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;}
-  .btn-upload:hover{background:#e0007a;}
-  .btn-upload:disabled{background:#444;cursor:not-allowed;}
-  
-  /* PREVIEW */
-  .preview-box{margin-top:1rem;display:none;}
-  .preview-box img{max-width:200px;max-height:200px;object-fit:cover;border:2px solid #333;}
-  .preview-info{font-size:.8rem;color:#666;margin-top:.3rem;}
-  
-  /* GALLERY MANAGER */
-  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;}
-  .gallery-item{background:#111;border:1px solid #222;overflow:hidden;position:relative;}
-  .gallery-item img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
-  .gallery-item-info{padding:.7rem;}
-  .gallery-item-info .item-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;}
-  .gallery-item-info .item-cat{font-size:.65rem;color:#666;margin-top:.2rem;}
-  .gallery-item-actions{display:flex;gap:.4rem;padding:.5rem .7rem;border-top:1px solid #1a1a1a;}
-  .btn-sm{padding:.3rem .7rem;font-size:.65rem;font-weight:700;border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.08em;}
-  .btn-del{background:#ff444420;color:#ff4444;border:1px solid #ff444440;}
-  .btn-del:hover{background:#ff4444;color:#fff;}
-  .btn-edit{background:#ff2d9b20;color:#ff2d9b;border:1px solid #ff2d9b40;}
-  .badge-cat{position:absolute;top:.5rem;left:.5rem;font-size:.55rem;font-weight:900;text-transform:uppercase;padding:.18rem .55rem;border-radius:50px;}
-  .badge-remera{background:rgba(255,45,155,.9);}
-  .badge-gorra{background:rgba(40,180,40,.9);}
-  .badge-sticker{background:rgba(0,180,240,.9);}
-  .badge-otro{background:rgba(160,0,220,.9);}
-  
-  /* TOAST */
-  .toast{position:fixed;bottom:2rem;right:2rem;background:#111;border:1px solid #ff2d9b;color:#fff;padding:1rem 1.5rem;font-size:.85rem;z-index:9999;transform:translateY(100px);opacity:0;transition:.3s;}
-  .toast.show{transform:none;opacity:1;}
-  .toast.success{border-color:#39ff14;color:#39ff14;}
-  .toast.error{border-color:#ff4444;color:#ff4444;}
-  
-  /* NOTE BOX */
-  .note-box{background:#1a1a0a;border:1px solid #ffd70040;padding:1rem 1.2rem;margin-bottom:1.5rem;font-size:.8rem;color:#aaa;line-height:1.6;}
-  .note-box strong{color:#ffd700;}
-
-  /* CODE EXPORT */
-  .code-block{background:#0d0d0d;border:1px solid #222;padding:1rem;font-family:monospace;font-size:.75rem;color:#8bc34a;white-space:pre-wrap;overflow-x:auto;max-height:300px;overflow-y:auto;margin-top:.5rem;}
-  .btn-copy{padding:.5rem 1.2rem;background:#333;color:#fff;border:none;cursor:pointer;font-size:.75rem;margin-top:.5rem;}
-  .btn-copy:hover{background:#555;}
-
-  @media(max-width:700px){
-    .upload-form{grid-template-columns:1fr;}
-    .nav-tabs{gap:.3rem;}
-    .nav-tab{padding:.4rem .7rem;font-size:.7rem;}
-    .admin-content{padding:1rem;}
-  }
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-height:100vh;}
+#login-screen{position:fixed;inset:0;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999;}
+.login-box{background:#111;border:1px solid #ff2d9b;padding:2.5rem;width:340px;text-align:center;}
+.login-box h2{font-size:1.6rem;color:#ff2d9b;margin-bottom:.3rem;letter-spacing:.1em;}
+.login-box p{color:#555;font-size:.8rem;margin-bottom:2rem;}
+.login-box input{width:100%;padding:.75rem 1rem;background:#1a1a1a;border:1px solid #333;color:#fff;font-size:.9rem;margin-bottom:1rem;outline:none;}
+.login-box input:focus{border-color:#ff2d9b;}
+.login-box button{width:100%;padding:.85rem;background:#ff2d9b;color:#fff;border:none;font-size:.95rem;font-weight:700;cursor:pointer;}
+.login-box button:hover{background:#c8006e;}
+.err-msg{color:#ff4444;font-size:.78rem;margin-top:.5rem;display:none;}
+#admin-app{display:none;}
+.topbar{background:#111;border-bottom:1px solid #1e1e1e;padding:0 1.2rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100;gap:.5rem;}
+.a-logo{font-size:.95rem;font-weight:700;color:#ff2d9b;letter-spacing:.1em;white-space:nowrap;}
+.a-logo b{color:#ffd700;}
+.tabs{display:flex;gap:.25rem;overflow-x:auto;}
+.t{padding:.4rem .85rem;background:transparent;border:1px solid #2a2a2a;color:#555;cursor:pointer;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;transition:.15s;}
+.t:hover,.t.on{border-color:#ff2d9b;color:#ff2d9b;background:rgba(255,45,155,.07);}
+.exit-btn{padding:.35rem .8rem;background:transparent;border:1px solid #333;color:#555;cursor:pointer;font-size:.7rem;white-space:nowrap;}
+.exit-btn:hover{border-color:#ff4444;color:#ff4444;}
+.wrap{padding:1.4rem;max-width:960px;margin:0 auto;}
+.panel{display:none;}.panel.on{display:block;}
+.ptitle{font-size:1.25rem;font-weight:700;margin-bottom:1.2rem;} .ptitle em{color:#ff2d9b;font-style:normal;}
+.card{background:#111;border:1px solid #1e1e1e;padding:1.2rem;margin-bottom:1rem;}
+.card h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:#444;margin-bottom:.8rem;}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:.6rem;margin-bottom:1rem;}
+.stat{background:#111;border:1px solid #1e1e1e;padding:1rem;text-align:center;}
+.stat .n{font-size:2rem;font-weight:700;color:#ff2d9b;}
+.stat .l{font-size:.62rem;color:#444;text-transform:uppercase;letter-spacing:.1em;}
+.gstatus{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;padding:.35rem .8rem;border-radius:3px;margin-bottom:.9rem;}
+.gstatus.ok{background:rgba(57,255,20,.07);border:1px solid rgba(57,255,20,.25);color:#39ff14;}
+.gstatus.no{background:rgba(255,68,68,.07);border:1px solid rgba(255,68,68,.25);color:#ff4444;}
+.fg{margin-bottom:.8rem;}
+.fg label{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:#444;margin-bottom:.35rem;}
+.fg input,.fg select{width:100%;background:#161616;border:1px solid #252525;color:#fff;padding:.58rem .8rem;font-size:.83rem;outline:none;}
+.fg input:focus,.fg select:focus{border-color:#ff2d9b;}
+.fg small{display:block;font-size:.66rem;color:#333;margin-top:.25rem;line-height:1.5;}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+.btn{padding:.62rem 1.2rem;border:none;font-weight:700;font-size:.8rem;cursor:pointer;letter-spacing:.07em;text-transform:uppercase;}
+.bp{background:#ff2d9b;color:#fff;}.bp:hover{background:#c8006e;}
+.bp:disabled{background:#2a2a2a;color:#444;cursor:not-allowed;}
+.bs{background:#161616;border:1px solid #2a2a2a;color:#666;}.bs:hover{border-color:#ff2d9b;color:#ff2d9b;}
+.dz{border:2px dashed #222;padding:1.8rem;text-align:center;cursor:pointer;position:relative;transition:.2s;}
+.dz:hover,.dz.drag{border-color:#ff2d9b;background:rgba(255,45,155,.04);}
+.dz input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.dz .dz-icon{font-size:2rem;margin-bottom:.4rem;}
+.dz p{color:#333;font-size:.8rem;}
+.prev{display:none;align-items:center;gap:.9rem;margin-top:.8rem;padding:.7rem;background:#0d0d0d;border:1px solid #1a1a1a;}
+.prev img{width:66px;height:66px;object-fit:cover;border-radius:3px;}
+.prev .pi{flex:1;font-size:.78rem;color:#666;}
+.prev .pi strong{color:#ccc;display:block;margin-bottom:.15rem;}
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:.7rem;}
+.gi{background:#111;border:1px solid #1a1a1a;overflow:hidden;position:relative;}
+.gi img{width:100%;aspect-ratio:1;object-fit:cover;display:block;}
+.gi-body{padding:.55rem .65rem;}
+.gi-name{font-size:.7rem;font-weight:700;color:#ccc;margin-bottom:.18rem;}
+.gi-cat{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;}
+.cr{color:#ff2d9b;}.cg{color:#39ff14;}.cs{color:#00e5ff;}.co{color:#bf00ff;}
+.gi-acts{display:flex;gap:.25rem;padding:.35rem .55rem;border-top:1px solid #141414;}
+.be{background:rgba(255,45,155,.08);border:1px solid rgba(255,45,155,.2);color:#ff2d9b;font-size:.63rem;font-weight:700;cursor:pointer;padding:.25rem .6rem;letter-spacing:.05em;}
+.be:hover{background:#ff2d9b;color:#fff;}
+.bd{background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.2);color:#ff4444;font-size:.63rem;font-weight:700;cursor:pointer;padding:.25rem .6rem;}
+.bd:hover{background:#ff4444;color:#fff;}
+.badge-new{position:absolute;top:.35rem;right:.35rem;background:#ffd700;color:#000;font-size:.48rem;font-weight:900;padding:.1rem .35rem;border-radius:2px;}
+.pubstatus{padding:.9rem 1.1rem;border-radius:3px;font-size:.82rem;line-height:1.7;margin-bottom:.8rem;}
+.ps-idle{background:#111;border:1px solid #1e1e1e;color:#444;}
+.ps-running{background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.25);color:#ffd700;}
+.ps-ok{background:rgba(57,255,20,.05);border:1px solid rgba(57,255,20,.25);color:#39ff14;}
+.ps-err{background:rgba(255,68,68,.05);border:1px solid rgba(255,68,68,.25);color:#ff4444;}
+.note{background:#0d0d08;border-left:3px solid #ffd700;padding:.75rem 1rem;font-size:.76rem;color:#666;margin-bottom:1rem;line-height:1.65;}
+.note strong{color:#ffd700;}
+.toast{position:fixed;bottom:1.2rem;right:1.2rem;background:#111;border:1px solid #ff2d9b;color:#fff;padding:.8rem 1.2rem;font-size:.8rem;z-index:9999;transform:translateY(60px);opacity:0;transition:.25s;max-width:260px;}
+.toast.show{transform:none;opacity:1;}
+.toast.tok{border-color:#39ff14;color:#39ff14;}
+.toast.terr{border-color:#ff4444;color:#ff4444;}
+@media(max-width:580px){.gr{grid-template-columns:1fr;}.topbar{flex-wrap:wrap;height:auto;padding:.5rem .8rem;}.tabs{width:100%;}}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
     <h2>PERSONALIZATE</h2>
     <p>Panel de administración</p>
-    <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')doLogin()">
-    <button onclick="doLogin()">ENTRAR</button>
-    <div class="login-error" id="login-error">Contraseña incorrecta</div>
+    <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')login()">
+    <button onclick="login()">ENTRAR</button>
+    <div class="err-msg" id="perr">Contraseña incorrecta</div>
   </div>
 </div>
 
-<!-- ADMIN APP -->
 <div id="admin-app">
-  <nav class="admin-nav">
-    <div class="admin-logo">PERSONALI<span>ZATE</span> <span style="font-size:.7rem;color:#555;font-weight:400;">ADMIN</span></div>
-    <div class="nav-tabs">
-      <button class="nav-tab active" onclick="switchTab('dashboard',this)">Dashboard</button>
-      <button class="nav-tab" onclick="switchTab('upload',this)">Subir imagen</button>
-      <button class="nav-tab" onclick="switchTab('galeria',this)">Galería</button>
-      <button class="nav-tab" onclick="switchTab('codigo',this)">Exportar</button>
+  <div class="topbar">
+    <div class="a-logo">PERSONALI<b>ZATE</b></div>
+    <div class="tabs">
+      <button class="t on" onclick="goTab('home',this)">Inicio</button>
+      <button class="t" onclick="goTab('upload',this)">Subir foto</button>
+      <button class="t" onclick="goTab('gallery',this)">Galería</button>
+      <button class="t" onclick="goTab('ghconfig',this)">GitHub</button>
     </div>
-    <button class="btn-logout" onclick="doLogout()">Salir</button>
-  </nav>
+    <button class="exit-btn" onclick="logout()">Salir</button>
+  </div>
 
-  <div class="admin-content">
+  <div class="wrap">
 
-    <!-- DASHBOARD -->
-    <div class="panel active" id="panel-dashboard">
-      <div class="panel-title">Dashboard <span>·</span> Estado del sitio</div>
-      <div class="stats-grid">
-        <div class="stat-card"><div class="num" id="stat-total">0</div><div class="label">Imágenes totales</div></div>
-        <div class="stat-card"><div class="num" id="stat-remeras">0</div><div class="label">Remeras</div></div>
-        <div class="stat-card"><div class="num" id="stat-gorras">0</div><div class="label">Gorras</div></div>
-        <div class="stat-card"><div class="num" id="stat-stickers">0</div><div class="label">Stickers</div></div>
-        <div class="stat-card"><div class="num" id="stat-otros">0</div><div class="label">Otros</div></div>
+    <!-- HOME -->
+    <div class="panel on" id="panel-home">
+      <div class="ptitle">Bienvenido al <em>Admin</em></div>
+      <div id="ghbar" class="gstatus no">⚠ GitHub no configurado</div>
+      <div class="stats">
+        <div class="stat"><div class="n" id="st">0</div><div class="l">Total</div></div>
+        <div class="stat"><div class="n cr" id="sr">0</div><div class="l">Remeras</div></div>
+        <div class="stat"><div class="n cg" id="sg">0</div><div class="l">Gorras</div></div>
+        <div class="stat"><div class="n cs" id="ss">0</div><div class="l">Stickers</div></div>
+        <div class="stat"><div class="n co" id="so">0</div><div class="l">Otros</div></div>
       </div>
-      <div class="note-box">
-        <strong>⚠️ Cómo funciona este admin:</strong><br>
-        Este panel te permite preparar y gestionar las imágenes del catálogo localmente. Cuando agregás o eliminás una imagen,
-        se genera el código HTML listo para copiar. Después solo tenés que:<br>
-        1. Subir las imágenes nuevas a GitHub (Add file → Upload files)<br>
-        2. Ir a la pestaña <strong>Exportar</strong> y copiar el HTML generado al index.html<br><br>
-        <strong>💡 Tip:</strong> Guardá este archivo admin.html en tu computadora para usarlo siempre.
-      </div>
-      <div class="upload-section">
-        <h3>Acceso rápido al sitio</h3>
-        <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:.5rem;">
-          <a href="index.html" target="_blank" style="padding:.6rem 1.2rem;background:#1a1a1a;border:1px solid #333;color:#888;text-decoration:none;font-size:.8rem;">Ver sitio completo →</a>
-          <a href="remeras.html" target="_blank" style="padding:.6rem 1.2rem;background:#1a1a1a;border:1px solid #333;color:#888;text-decoration:none;font-size:.8rem;">Remeras →</a>
-          <a href="gorras.html" target="_blank" style="padding:.6rem 1.2rem;background:#1a1a1a;border:1px solid #333;color:#888;text-decoration:none;font-size:.8rem;">Gorras →</a>
-          <a href="stickers.html" target="_blank" style="padding:.6rem 1.2rem;background:#1a1a1a;border:1px solid #333;color:#888;text-decoration:none;font-size:.8rem;">Stickers →</a>
+      <div class="card">
+        <h4>Links rápidos</h4>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <a href="index.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Sitio →</a>
+          <a href="remeras.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Remeras →</a>
+          <a href="gorras.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Gorras →</a>
+          <a href="stickers.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Stickers →</a>
         </div>
+      </div>
+      <div class="card">
+        <h4>Cambiar contraseña</h4>
+        <div class="gr">
+          <div class="fg"><label>Contraseña actual</label><input type="password" id="po" placeholder="••••••••"></div>
+          <div class="fg"><label>Nueva contraseña</label><input type="password" id="pn" placeholder="Mínimo 6 caracteres"></div>
+        </div>
+        <button class="btn bp" onclick="changePass()" style="width:100%">Cambiar contraseña</button>
       </div>
     </div>
 
     <!-- UPLOAD -->
     <div class="panel" id="panel-upload">
-      <div class="panel-title">Subir <span>nueva imagen</span></div>
-      <div class="upload-section">
-        <h3>Seleccionar imagen</h3>
-        <div class="drop-zone" id="drop-zone">
-          <input type="file" id="file-input" accept="image/*" onchange="handleFile(this.files[0])">
-          <div class="icon">📸</div>
-          <p><strong>Arrastrá una foto</strong> o hacé clic para seleccionar</p>
-          <p style="font-size:.72rem;margin-top:.3rem;">JPG, PNG, WEBP — máx. 5MB</p>
+      <div class="ptitle">Subir <em>nueva foto</em></div>
+      <div class="card">
+        <h4>Seleccionar imagen</h4>
+        <div class="dz" id="dz">
+          <input type="file" id="fi" accept="image/*" onchange="onFile(this.files[0])">
+          <div class="dz-icon">📸</div>
+          <p><strong style="color:#ff2d9b">Arrastrá o tocá</strong> para seleccionar</p>
+          <p>JPG, PNG, WEBP — máx. 5 MB</p>
         </div>
-        <div class="preview-box" id="preview-box">
-          <img id="preview-img" src="" alt="Preview">
-          <div class="preview-info" id="preview-info"></div>
+        <div class="prev" id="prev">
+          <img id="pimg" src="" alt="">
+          <div class="pi"><strong id="pname">—</strong><span id="psize">—</span></div>
         </div>
       </div>
-      <div class="upload-section">
-        <h3>Datos de la imagen</h3>
-        <div class="upload-form">
-          <div class="form-group">
-            <label>Descripción / Nombre</label>
-            <input type="text" id="img-label" placeholder="Ej: Remera Boca DTF">
-          </div>
-          <div class="form-group">
-            <label>Categoría</label>
-            <select id="img-cat">
+      <div class="card">
+        <h4>Datos</h4>
+        <div class="gr">
+          <div class="fg"><label>Descripción</label><input type="text" id="ilabel" placeholder="Ej: Remera DTF personalizada"></div>
+          <div class="fg"><label>Categoría</label>
+            <select id="icat">
               <option value="remera">Remera</option>
               <option value="gorra">Gorra</option>
               <option value="sticker">Sticker</option>
               <option value="otro">Otro</option>
             </select>
           </div>
-          <button class="btn-upload" id="btn-add" onclick="addToGallery()" disabled>
-            ➕ Agregar al catálogo
-          </button>
         </div>
+        <button class="btn bp" id="btnadd" onclick="addItem()" disabled style="width:100%">➕ Agregar al catálogo</button>
+      </div>
+      <div class="card" id="pubbox" style="display:none">
+        <h4>Publicar en el sitio</h4>
+        <div class="pubstatus ps-idle" id="pubst">Listo para publicar los cambios al sitio.</div>
+        <button class="btn bp" id="btnpub" onclick="publish()" style="width:100%;margin-top:.6rem">🚀 Publicar ahora</button>
+        <p style="font-size:.68rem;color:#333;margin-top:.5rem;text-align:center">Requiere GitHub Token — configuralo en la pestaña GitHub</p>
       </div>
     </div>
 
-    <!-- GALERIA -->
-    <div class="panel" id="panel-galeria">
-      <div class="panel-title">Galería <span>· gestionar imágenes</span></div>
-      <div class="note-box" style="margin-bottom:1rem;">
-        Acá ves todas las imágenes del catálogo. Podés eliminarlas o editarlas. Los cambios se guardan localmente — 
-        acordate de exportar el HTML y subirlo a GitHub.
+    <!-- GALLERY -->
+    <div class="panel" id="panel-gallery">
+      <div class="ptitle">Galería <em>· gestionar</em></div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.9rem;">
+        <button class="btn bs" style="font-size:.68rem;padding:.32rem .7rem;" onclick="gfilt('todos')">Todos</button>
+        <button class="btn bs" style="font-size:.68rem;padding:.32rem .7rem;" onclick="gfilt('remera')">Remeras</button>
+        <button class="btn bs" style="font-size:.68rem;padding:.32rem .7rem;" onclick="gfilt('gorra')">Gorras</button>
+        <button class="btn bs" style="font-size:.68rem;padding:.32rem .7rem;" onclick="gfilt('sticker')">Stickers</button>
+        <button class="btn bs" style="font-size:.68rem;padding:.32rem .7rem;" onclick="gfilt('otro')">Otros</button>
       </div>
-      <div class="gallery-grid" id="gallery-grid"></div>
+      <div class="ggrid" id="ggrid"></div>
+      <div style="margin-top:1rem;display:flex;gap:.6rem;flex-wrap:wrap;">
+        <button class="btn bp" onclick="publish()">🚀 Publicar cambios</button>
+      </div>
     </div>
 
-    <!-- EXPORTAR -->
-    <div class="panel" id="panel-codigo">
-      <div class="panel-title">Exportar <span>· código HTML</span></div>
-      <div class="note-box">
-        <strong>Pasos para publicar cambios:</strong><br>
-        1. Copiá el código de abajo<br>
-        2. Andá a <strong>github.com/hermesarg/nicoweb2</strong> → clic en <strong>index.html</strong> → ícono lápiz ✏️<br>
-        3. Buscá la sección del catálogo (Ctrl+F: "cat-item") y reemplazala con este código<br>
-        4. Commit changes → el sitio se actualiza en 2 min<br>
-        5. Subí también las imágenes nuevas: <strong>Add file → Upload files</strong>
+    <!-- GITHUB CONFIG -->
+    <div class="panel" id="panel-ghconfig">
+      <div class="ptitle">Configuración <em>GitHub</em></div>
+      <div class="note">
+        <strong>¿Para qué sirve esto?</strong><br>
+        Con el token configurado, al hacer clic en "Publicar" el catálogo se actualiza automáticamente en el sitio — sin tocar código.<br><br>
+        <strong>Cómo obtener el token (5 minutos):</strong><br>
+        1. Andá a <a href="https://github.com/settings/tokens/new" target="_blank" style="color:#ff2d9b">github.com/settings/tokens/new</a><br>
+        2. En "Note": <em>personalizate admin</em><br>
+        3. En "Expiration": elegí <strong>No expiration</strong><br>
+        4. Marcá solo el grupo <strong>repo</strong> (todos los permisos de repo)<br>
+        5. Clic "Generate token" → copiá el token que aparece<br>
+        6. Pegalo abajo y guardá<br><br>
+        <strong>Para dar acceso a otra persona:</strong> simplemente compartís el link del admin y la contraseña. Cada uno configura su propio token de GitHub en su navegador.
       </div>
-      <h3 style="font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:#666;margin-bottom:.5rem;">HTML del catálogo generado</h3>
-      <div class="code-block" id="export-code"><!-- Cargando... --></div>
-      <button class="btn-copy" onclick="copyCode()">📋 Copiar código</button>
-      <div style="margin-top:2rem;">
-        <h3 style="font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:#666;margin-bottom:.5rem;">Imágenes nuevas para subir a GitHub</h3>
-        <div id="new-images-list" style="font-size:.8rem;color:#aaa;line-height:2;">Ninguna imagen nueva pendiente.</div>
+      <div class="card">
+        <h4>Datos del repositorio</h4>
+        <div class="gr">
+          <div class="fg"><label>Usuario GitHub</label><input type="text" id="ghu" placeholder="hermesarg"></div>
+          <div class="fg"><label>Repositorio</label><input type="text" id="ghr" placeholder="nicoweb2"></div>
+        </div>
+        <div class="fg">
+          <label>Personal Access Token</label>
+          <input type="password" id="ght" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+          <small>Se guarda solo en este navegador. No se comparte con nadie.</small>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
+          <button class="btn bp" onclick="saveGH()">Guardar</button>
+          <button class="btn bs" onclick="testGH()">Probar conexión</button>
+        </div>
+        <div id="ghtest" style="margin-top:.6rem;font-size:.76rem;min-height:1rem;"></div>
       </div>
     </div>
 
@@ -242,228 +234,240 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ── CONTRASEÑA ──
-const PASS = 'personalizate2025';
-
-function doLogin(){
-  const pwd = document.getElementById('pwd-input').value;
-  if(pwd === PASS){
+// AUTH
+const PK='admin_pass';
+const getP=()=>localStorage.getItem(PK)||'personalizate2025';
+function login(){
+  if(document.getElementById('pwd').value===getP()){
     document.getElementById('login-screen').style.display='none';
     document.getElementById('admin-app').style.display='block';
-    initAdmin();
+    init();
   } else {
-    document.getElementById('login-error').style.display='block';
-    document.getElementById('pwd-input').value='';
-    document.getElementById('pwd-input').focus();
+    document.getElementById('perr').style.display='block';
+    document.getElementById('pwd').value='';
   }
 }
-function doLogout(){
+function logout(){
   document.getElementById('login-screen').style.display='flex';
   document.getElementById('admin-app').style.display='none';
-  document.getElementById('pwd-input').value='';
+  document.getElementById('pwd').value='';
+}
+function changePass(){
+  const o=document.getElementById('po').value,n=document.getElementById('pn').value;
+  if(o!==getP()){toast('Contraseña actual incorrecta','terr');return;}
+  if(n.length<6){toast('Mínimo 6 caracteres','terr');return;}
+  localStorage.setItem(PK,n);
+  document.getElementById('po').value='';document.getElementById('pn').value='';
+  toast('Contraseña cambiada ✓','tok');
 }
 
-// ── TABS ──
-function switchTab(name, btn){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
-  btn.classList.add('active');
-  if(name==='galeria') renderGallery();
-  if(name==='codigo') renderExport();
-  if(name==='dashboard') updateStats();
+// TABS
+function goTab(name,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.t').forEach(b=>b.classList.remove('on'));
+  document.getElementById('panel-'+name).classList.add('on');
+  if(btn)btn.classList.add('on');
+  if(name==='gallery')renderGallery();
+  if(name==='ghconfig')loadGH();
+  if(name==='home')updateStats();
 }
 
-// ── DATA STORAGE (localStorage) ──
-function getItems(){
-  try{ return JSON.parse(localStorage.getItem('admin_items')||'[]'); }
-  catch(e){ return []; }
+// DATA
+const IK='catalog_items';
+const getItems=()=>{try{return JSON.parse(localStorage.getItem(IK)||'[]');}catch{return[];}};
+const saveItems=a=>localStorage.setItem(IK,JSON.stringify(a));
+const DEFAULTS=[
+  {id:'r1',file:'gallery_remera2.jpg',label:'Aji picante DTF',cat:'remera'},
+  {id:'r2',file:'gallery_remera5.jpg',label:'La Chorineta',cat:'remera'},
+  {id:'r3',file:'gallery_remera6.jpg',label:'Maradona — DIOS',cat:'remera'},
+  {id:'r4',file:'gallery_remera7.jpg',label:'Carros Food Truck',cat:'remera'},
+  {id:'r5',file:'gallery_bolsas.jpg',label:'Maradona espalda DTF',cat:'remera'},
+  {id:'r6',file:'gallery_gorras_pack.jpg',label:'Los Pollos Hermanos',cat:'remera'},
+  {id:'r7',file:'gallery_gorra2.jpg',label:'Power Clean',cat:'remera'},
+  {id:'g1',file:'gallery_gorra1.jpg',label:'Pack Fuerza Rionegrina',cat:'gorra'},
+  {id:'g2',file:'gallery_pkg2.jpg',label:'Fuerza Federal DTF',cat:'gorra'},
+  {id:'g3',file:'gallery_sticker1.jpg',label:'Sangre Negra Trucker',cat:'gorra'},
+  {id:'g4',file:'gallery_gorra_bucket.jpg',label:'Bucket Hat Sangre Negra',cat:'gorra'},
+  {id:'g5',file:'gallery_gorra_trucker2.jpg',label:'Trucker DTF INCRO',cat:'gorra'},
+  {id:'s1',file:'gallery_remera3.jpg',label:'BG Servicio Tecnico',cat:'sticker'},
+  {id:'o1',file:'gallery_remera4.jpg',label:'Bolsas personalizadas',cat:'otro'},
+  {id:'o2',file:'gallery_pullover1.jpg',label:'Pullover Sangre Negra',cat:'otro'},
+];
+function init(){
+  if(!getItems().length)saveItems(DEFAULTS);
+  updateStats();updateGHBar();loadGH();
 }
-function saveItems(arr){
-  localStorage.setItem('admin_items', JSON.stringify(arr));
-}
-
-// Pre-cargar las imágenes existentes si es primera vez
-function initAdmin(){
-  let items = getItems();
-  if(items.length === 0){
-    items = [
-      {id:'r1',file:'gallery_remera2.jpg',label:'Aji picante DTF',cat:'remera',ts:Date.now()},
-      {id:'r2',file:'gallery_remera5.jpg',label:'La Chorineta',cat:'remera',ts:Date.now()},
-      {id:'r3',file:'gallery_remera6.jpg',label:'Maradona — DIOS',cat:'remera',ts:Date.now()},
-      {id:'r4',file:'gallery_remera7.jpg',label:'Carros Food Truck',cat:'remera',ts:Date.now()},
-      {id:'r5',file:'gallery_bolsas.jpg',label:'Maradona espalda DTF',cat:'remera',ts:Date.now()},
-      {id:'r6',file:'gallery_gorras_pack.jpg',label:'Los Pollos Hermanos',cat:'remera',ts:Date.now()},
-      {id:'r7',file:'gallery_gorra2.jpg',label:'Power Clean',cat:'remera',ts:Date.now()},
-      {id:'g1',file:'gallery_gorra1.jpg',label:'Pack Fuerza Rionegrina',cat:'gorra',ts:Date.now()},
-      {id:'g2',file:'gallery_pkg2.jpg',label:'Fuerza Federal DTF',cat:'gorra',ts:Date.now()},
-      {id:'g3',file:'gallery_sticker1.jpg',label:'Sangre Negra Trucker',cat:'gorra',ts:Date.now()},
-      {id:'g4',file:'gallery_gorra_bucket.jpg',label:'Bucket Hat Sangre Negra',cat:'gorra',ts:Date.now()},
-      {id:'g5',file:'gallery_gorra_trucker2.jpg',label:'Trucker DTF INCRO',cat:'gorra',ts:Date.now()},
-      {id:'s1',file:'gallery_remera3.jpg',label:'BG Servicio Tecnico',cat:'sticker',ts:Date.now()},
-      {id:'o1',file:'gallery_remera4.jpg',label:'Bolsas personalizadas',cat:'otro',ts:Date.now()},
-      {id:'o2',file:'gallery_pullover1.jpg',label:'Pullover Sangre Negra',cat:'otro',ts:Date.now()},
-    ];
-    saveItems(items);
-  }
-  updateStats();
-}
-
 function updateStats(){
-  const items = getItems();
-  document.getElementById('stat-total').textContent = items.length;
-  document.getElementById('stat-remeras').textContent = items.filter(i=>i.cat==='remera').length;
-  document.getElementById('stat-gorras').textContent = items.filter(i=>i.cat==='gorra').length;
-  document.getElementById('stat-stickers').textContent = items.filter(i=>i.cat==='sticker').length;
-  document.getElementById('stat-otros').textContent = items.filter(i=>i.cat==='otro').length;
+  const a=getItems();
+  document.getElementById('st').textContent=a.length;
+  document.getElementById('sr').textContent=a.filter(i=>i.cat==='remera').length;
+  document.getElementById('sg').textContent=a.filter(i=>i.cat==='gorra').length;
+  document.getElementById('ss').textContent=a.filter(i=>i.cat==='sticker').length;
+  document.getElementById('so').textContent=a.filter(i=>i.cat==='otro').length;
 }
 
-// ── FILE UPLOAD ──
-let currentFile = null;
-let currentDataURL = null;
-
-const dropZone = document.getElementById('drop-zone');
-dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.classList.add('drag-over');});
-dropZone.addEventListener('dragleave',()=>dropZone.classList.remove('drag-over'));
-dropZone.addEventListener('drop',e=>{
-  e.preventDefault();dropZone.classList.remove('drag-over');
-  if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
-});
-
-function handleFile(file){
-  if(!file) return;
-  if(file.size > 5*1024*1024){ showToast('La imagen es muy grande (máx 5MB)','error'); return; }
-  currentFile = file;
-  const reader = new FileReader();
-  reader.onload = e => {
-    currentDataURL = e.target.result;
-    document.getElementById('preview-img').src = currentDataURL;
-    document.getElementById('preview-info').textContent = file.name + ' — ' + (file.size/1024).toFixed(0) + ' KB';
-    document.getElementById('preview-box').style.display='block';
-    document.getElementById('btn-add').disabled = false;
-    document.getElementById('img-label').value = file.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
-  };
-  reader.readAsDataURL(file);
+// FILE
+let CF=null,CU=null;
+const dz=document.getElementById('dz');
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
+dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');if(e.dataTransfer.files[0])onFile(e.dataTransfer.files[0]);});
+function onFile(f){
+  if(!f)return;
+  if(f.size>5*1024*1024){toast('Imagen muy grande (máx 5MB)','terr');return;}
+  CF=f;const r=new FileReader();
+  r.onload=e=>{
+    CU=e.target.result;
+    document.getElementById('pimg').src=CU;
+    document.getElementById('pname').textContent=f.name;
+    document.getElementById('psize').textContent=(f.size/1024).toFixed(0)+' KB';
+    document.getElementById('prev').style.display='flex';
+    document.getElementById('btnadd').disabled=false;
+    document.getElementById('ilabel').value=f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+  };r.readAsDataURL(f);
+}
+function addItem(){
+  if(!CF){toast('Elegí una imagen primero','terr');return;}
+  const label=document.getElementById('ilabel').value.trim()||CF.name;
+  const cat=document.getElementById('icat').value;
+  const ext=CF.name.match(/\.[^.]+$/)?.[0]||'.jpg';
+  const fname='foto_'+Date.now()+ext;
+  const items=getItems();
+  items.push({id:'c'+Date.now(),file:fname,label,cat,dataURL:CU,isNew:true,ts:Date.now()});
+  saveItems(items);updateStats();
+  document.getElementById('pubbox').style.display='block';
+  toast('Foto agregada ✓','tok');
+  CF=null;CU=null;
+  document.getElementById('prev').style.display='none';
+  document.getElementById('btnadd').disabled=true;
+  document.getElementById('ilabel').value='';
+  document.getElementById('fi').value='';
 }
 
-function addToGallery(){
-  if(!currentFile){ showToast('Seleccioná una imagen primero','error'); return; }
-  const label = document.getElementById('img-label').value.trim() || currentFile.name;
-  const cat = document.getElementById('img-cat').value;
-  const safeName = 'custom_' + Date.now() + '_' + currentFile.name.replace(/[^a-z0-9_.]/gi,'_');
-  
-  const item = { id:'c'+Date.now(), file: safeName, label, cat, ts: Date.now(), dataURL: currentDataURL, isNew: true };
-  const items = getItems();
-  items.push(item);
-  saveItems(items);
-  
-  showToast('✅ Imagen agregada al catálogo. Acordate de subirla a GitHub.','success');
-  updateStats();
-  
-  // Reset
-  currentFile = null;
-  currentDataURL = null;
-  document.getElementById('preview-box').style.display='none';
-  document.getElementById('btn-add').disabled=true;
-  document.getElementById('img-label').value='';
-  document.getElementById('file-input').value='';
-}
-
-// ── GALLERY RENDER ──
-const catColors = {remera:'#ff2d9b',gorra:'#39ff14',sticker:'#00e5ff',otro:'#bf00ff'};
-
+// GALLERY
+let GF='todos';
+function gfilt(c){GF=c;renderGallery();}
 function renderGallery(){
-  const items = getItems();
-  const grid = document.getElementById('gallery-grid');
-  if(!items.length){ grid.innerHTML='<p style="color:#555">No hay imágenes todavía.</p>'; return; }
-  
-  grid.innerHTML = items.map(item => `
-    <div class="gallery-item" id="gi-${item.id}">
-      <img src="${item.dataURL || item.file}" alt="${item.label}" 
-           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'160\\' height=\\'160\\' viewBox=\\'0 0 160 160\\'%3E%3Crect fill=\\'%231a1a1a\\' width=\\'160\\' height=\\'160\\'/%3E%3Ctext fill=\\'%23333\\' x=\\'50%25\\' y=\\'50%25\\' text-anchor=\\'middle\\' dy=\\'.3em\\' font-size=\\'12\\'%3E${item.file}%3C/text%3E%3C/svg%3E'">
-      <span class="badge-cat badge-${item.cat}" style="position:absolute;top:.5rem;left:.5rem;font-size:.5rem;font-weight:900;text-transform:uppercase;padding:.15rem .5rem;border-radius:50px;background:${catColors[item.cat]}cc;color:${item.cat==='gorra'?'#000':'#fff'}">${item.cat}</span>
-      ${item.isNew ? '<span style="position:absolute;top:.5rem;right:.5rem;background:#ffd700;color:#000;font-size:.5rem;font-weight:900;padding:.15rem .4rem;">NUEVO</span>' : ''}
-      <div class="gallery-item-info">
-        <div class="item-label">${item.label}</div>
-        <div class="item-cat" style="color:${catColors[item.cat]}">${item.cat}</div>
+  let items=getItems();
+  if(GF!=='todos')items=items.filter(i=>i.cat===GF);
+  const g=document.getElementById('ggrid');
+  if(!items.length){g.innerHTML='<p style="color:#2a2a2a;font-size:.8rem">Sin imágenes.</p>';return;}
+  g.innerHTML=items.map(item=>`
+    <div class="gi">
+      <img src="${item.dataURL||item.file}" alt="${item.label}"
+        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%230d0d0d%22 width=%22150%22 height=%22150%22/%3E%3Ctext fill=%22%23222%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2210%22%3E${item.file}%3C/text%3E%3C/svg%3E'">
+      ${item.isNew?'<div class="badge-new">NUEVO</div>':''}
+      <div class="gi-body">
+        <div class="gi-name">${item.label}</div>
+        <div class="gi-cat c${item.cat.charAt(0)}">${item.cat}</div>
       </div>
-      <div class="gallery-item-actions">
-        <button class="btn-sm btn-edit" onclick="editItem('${item.id}')">✏️ Editar</button>
-        <button class="btn-sm btn-del" onclick="deleteItem('${item.id}')">🗑️ Borrar</button>
+      <div class="gi-acts">
+        <button class="be" onclick="editItem('${item.id}')">✏️ Editar</button>
+        <button class="bd" onclick="delItem('${item.id}')">🗑️</button>
       </div>
-    </div>
-  `).join('');
+    </div>`).join('');
 }
-
-function deleteItem(id){
-  if(!confirm('¿Eliminar esta imagen del catálogo?')) return;
-  let items = getItems().filter(i=>i.id!==id);
-  saveItems(items);
-  renderGallery();
-  updateStats();
-  showToast('Imagen eliminada','success');
+function delItem(id){
+  if(!confirm('¿Eliminar esta imagen?'))return;
+  saveItems(getItems().filter(i=>i.id!==id));
+  renderGallery();updateStats();toast('Eliminada','tok');
 }
-
 function editItem(id){
-  const items = getItems();
-  const item = items.find(i=>i.id===id);
-  if(!item) return;
-  const newLabel = prompt('Nuevo nombre:', item.label);
-  if(!newLabel) return;
-  const cats = ['remera','gorra','sticker','otro'];
-  const newCat = prompt('Categoría (remera/gorra/sticker/otro):', item.cat);
-  if(!cats.includes(newCat)) return;
-  item.label = newLabel;
-  item.cat = newCat;
-  saveItems(items);
-  renderGallery();
-  updateStats();
-  showToast('Imagen actualizada','success');
+  const items=getItems(),item=items.find(i=>i.id===id);if(!item)return;
+  const nl=prompt('Descripción:',item.label);if(!nl)return;
+  const nc=prompt('Categoría (remera/gorra/sticker/otro):',item.cat);
+  if(['remera','gorra','sticker','otro'].includes(nc))item.cat=nc;
+  item.label=nl;saveItems(items);renderGallery();updateStats();toast('Actualizado ✓','tok');
 }
 
-// ── EXPORT ──
-function renderExport(){
-  const items = getItems();
-  const tagColor = {remera:'',gorra:'green',sticker:'cyan',otro:'purple'};
-  const pulloverStyle = ' style="background:rgba(100,0,200,.9)"';
-  
-  const lines = items.map(item => {
-    const tc = item.cat==='otro' && item.label.toLowerCase().includes('pullover') 
-      ? `<div class="cat-item-tag"${pulloverStyle}>Pullover</div>`
-      : `<div class="cat-item-tag${item.cat==='gorra'?' green':item.cat==='sticker'?' cyan':item.cat==='otro'?' purple':''}">${item.cat.charAt(0).toUpperCase()+item.cat.slice(1)}</div>`;
-    return `    <div class="cat-item reveal" data-cat="${item.cat}"><img src="${item.file}" alt="${item.label}" loading="lazy">${tc}<div class="cat-item-label">${item.label}</div></div>`;
-  });
-  
-  const code = lines.join('\n');
-  document.getElementById('export-code').textContent = code;
-  
-  // New images list
-  const newItems = items.filter(i=>i.isNew);
-  const newList = document.getElementById('new-images-list');
-  if(!newItems.length){
-    newList.textContent = 'Ninguna imagen nueva pendiente.';
-  } else {
-    newList.innerHTML = newItems.map(i=>`
-      <div style="display:flex;align-items:center;gap:.5rem;">
-        <span style="color:#ff2d9b">●</span> 
-        <strong style="color:#fff">${i.file}</strong>
-        <span style="color:#555">— ${i.label}</span>
-        <a href="${i.dataURL}" download="${i.file}" style="padding:.2rem .6rem;background:#1a1a1a;border:1px solid #333;color:#aaa;text-decoration:none;font-size:.7rem;">⬇️ Descargar</a>
-      </div>
-    `).join('');
+// GITHUB
+function loadGH(){
+  document.getElementById('ghu').value=localStorage.getItem('gh_u')||'hermesarg';
+  document.getElementById('ghr').value=localStorage.getItem('gh_r')||'nicoweb2';
+  document.getElementById('ght').value=localStorage.getItem('gh_t')||'';
+}
+function saveGH(){
+  localStorage.setItem('gh_u',document.getElementById('ghu').value.trim());
+  localStorage.setItem('gh_r',document.getElementById('ghr').value.trim());
+  localStorage.setItem('gh_t',document.getElementById('ght').value.trim());
+  updateGHBar();toast('Guardado ✓','tok');
+}
+function updateGHBar(){
+  const b=document.getElementById('ghbar'),has=!!localStorage.getItem('gh_t');
+  b.className='gstatus '+(has?'ok':'no');
+  b.textContent=has?'✓ GitHub conectado — publicación automática activa':'⚠ GitHub no configurado — configuralo en la pestaña GitHub';
+}
+async function testGH(){
+  const u=localStorage.getItem('gh_u')||'hermesarg',r=localStorage.getItem('gh_r')||'nicoweb2',t=localStorage.getItem('gh_t');
+  const el=document.getElementById('ghtest');
+  if(!t){el.textContent='⚠ No hay token guardado.';el.style.color='#ff4444';return;}
+  el.textContent='Probando...';el.style.color='#ffd700';
+  try{
+    const res=await fetch(`https://api.github.com/repos/${u}/${r}`,{headers:{Authorization:`token ${t}`,Accept:'application/vnd.github.v3+json'}});
+    const d=await res.json();
+    if(res.ok){el.textContent=`✓ Conectado — ${d.full_name}`;el.style.color='#39ff14';}
+    else{el.textContent=`✗ ${d.message}`;el.style.color='#ff4444';}
+  }catch(e){el.textContent='✗ Error de red';el.style.color='#ff4444';}
+}
+
+// PUBLISH
+async function publish(){
+  const u=localStorage.getItem('gh_u')||'hermesarg',r=localStorage.getItem('gh_r')||'nicoweb2',t=localStorage.getItem('gh_t');
+  const st=document.getElementById('pubst');
+  const btn=document.getElementById('btnpub');
+  function log(msg,cls){if(st){st.className='pubstatus '+cls;st.innerHTML=msg;}}
+  if(!t){toast('Configurá el GitHub Token primero','terr');goTab('ghconfig',document.querySelectorAll('.t')[3]);return;}
+  if(btn)btn.disabled=true;
+  const items=getItems();
+  const newOnes=items.filter(i=>i.isNew&&i.dataURL);
+  log(`📤 Subiendo ${newOnes.length} imagen(es) nueva(s)...`,'ps-running');
+  for(const item of newOnes){
+    try{
+      const b64=item.dataURL.split(',')[1];
+      const ck=await fetch(`https://api.github.com/repos/${u}/${r}/contents/${item.file}`,{headers:{Authorization:`token ${t}`,Accept:'application/vnd.github.v3+json'}});
+      const body={message:`Admin: imagen ${item.file}`,content:b64};
+      if(ck.ok){const ex=await ck.json();body.sha=ex.sha;}
+      const res=await fetch(`https://api.github.com/repos/${u}/${r}/contents/${item.file}`,
+        {method:'PUT',headers:{Authorization:`token ${t}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+      if(!res.ok){const e=await res.json();throw new Error(e.message);}
+      item.isNew=false;delete item.dataURL;
+    }catch(e){log(`✗ Error: ${e.message}`,'ps-err');if(btn)btn.disabled=false;return;}
   }
+  saveItems(items);
+  log('📝 Actualizando catálogo...','ps-running');
+  const catMap={remera:'',gorra:'green',sticker:'cyan',otro:'purple'};
+  const tagMap={remera:'Remera',gorra:'Gorra',sticker:'Sticker',otro:'Otro'};
+  const js=`// PERSONALIZATE — generado por Admin ${new Date().toLocaleString('es-AR')}
+const PRODUCTOS=[
+${items.map(p=>{const isPull=p.label.toLowerCase().includes('pullover');return`  {img:"${p.file}",label:"${p.label}",cat:"${p.cat}",tag:"${isPull?'Pullover':tagMap[p.cat]}",color:"${isPull?'purple':catMap[p.cat]}"},`;}).join('\n')}
+];
+function renderCatalogo(){
+  const grid=document.getElementById('catalogoGrid');
+  if(!grid)return;
+  grid.innerHTML=PRODUCTOS.map(p=>\`<div class="cat-item reveal" data-cat="\${p.cat}"><img src="\${p.img}" alt="\${p.label}" loading="lazy"><div class="cat-item-tag\${p.color?' '+p.color:''}">\${p.tag}</div><div class="cat-item-label">\${p.label}</div></div>\`).join('');
+  const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});},{threshold:.06});
+  grid.querySelectorAll('.cat-item.reveal').forEach(el=>obs.observe(el));
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',renderCatalogo);}else{renderCatalogo();}
+`;
+  try{
+    const b64=btoa(unescape(encodeURIComponent(js)));
+    const ck=await fetch(`https://api.github.com/repos/${u}/${r}/contents/productos.js`,{headers:{Authorization:`token ${t}`,Accept:'application/vnd.github.v3+json'}});
+    const body={message:'Admin: actualizar catálogo',content:b64};
+    if(ck.ok){const ex=await ck.json();body.sha=ex.sha;}
+    const res=await fetch(`https://api.github.com/repos/${u}/${r}/contents/productos.js`,
+      {method:'PUT',headers:{Authorization:`token ${t}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!res.ok){const e=await res.json();throw new Error(e.message);}
+  }catch(e){log(`✗ Error: ${e.message}`,'ps-err');if(btn)btn.disabled=false;return;}
+  log(`🎉 <strong>¡Publicado!</strong> El sitio se actualiza en 1-2 min.<br><a href="https://${u}.github.io/${r}" target="_blank" style="color:#39ff14">Ver sitio →</a>`,'ps-ok');
+  if(btn)btn.disabled=false;
+  toast('¡Publicado! ✓','tok');
 }
 
-function copyCode(){
-  const code = document.getElementById('export-code').textContent;
-  navigator.clipboard.writeText(code).then(()=>showToast('✅ Código copiado al portapapeles','success'));
-}
-
-// ── TOAST ──
-function showToast(msg, type=''){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show ' + type;
+// TOAST
+function toast(msg,cls=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast show '+cls;
   setTimeout(()=>t.className='toast',3000);
 }
 </script>

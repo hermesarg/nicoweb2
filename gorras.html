@@ -114,7 +114,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="logo">PERSONALIZATE</a>
+  <a href="index.html" class="logo"><img src="gallery_remera1.jpg" alt="PERSONALIZATE" style="height:44px;width:44px;object-fit:cover;border-radius:50%;vertical-align:middle;margin-right:6px;" onerror="this.style.display='none'"><span>PERSONALIZATE</span></a>
   <ul>
     <li><a href="remeras.html">Remeras</a></li>
     <li><a href="stickers.html">Stickers</a></li>
@@ -148,26 +148,7 @@
 <section class="catalog-section">
   <div class="catalog-grid" id="grid">
 
-    <div class="product-card reveal" data-category="dtf vinilo transfer trucker" onclick="openModal('mg-lisa')">
-      <div class="product-img" id="img-gorra-lisa">
-        <img id="mockup-gorra" src="mockup_gorra_negra.jpg" alt="Gorra personalizada">
-        <div class="product-badge">Tu diseño</div>
-        <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-lisa')">Ver detalle</a>
-          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Gorra Personalizada</h3>
-        <div class="technique">DTF · Vinilo · Transfer — tu logo</div>
-        <div class="product-colors">
-          <div class="color-dot selected" style="background:#111" onclick="event.stopPropagation();cambiarGorra('mockup_gorra_negra.jpg',this)"></div>
-          <div class="color-dot" style="background:#eee;border:1px solid #888" onclick="event.stopPropagation();cambiarGorra('mockup_gorra_blanca.jpg',this)"></div>
-          <div class="color-dot" style="background:#1e3a8a" onclick="event.stopPropagation();cambiarGorra('mockup_gorra_azul.jpg',this)"></div>
-        </div>
-        <div class="product-price">Desde $XXXX <small>/ unidad</small></div>
-      </div>
-    </div>
+
 
 
 
@@ -263,28 +244,7 @@
       </div>
     </div>
 
-    <div class="product-card reveal" data-category="dtf vinilo transfer" onclick="openModal('mg-6')">
-      <div class="product-img">
-        <img src="gallery_gorras_pack.jpg" alt="Pack gorras equipos">
-        <div class="product-badge" style="background:#f5d800;color:#000">Pack Equipo</div>
-        <div class="product-overlay">
-          <a href="#" class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('mg-6')">Ver detalle</a>
-          <a href="index.html#contacto" class="overlay-btn overlay-btn-secondary" onclick="event.stopPropagation()">Cotizar</a>
-        </div>
-      </div>
-      <div class="product-info">
-        <h3>Pack Equipos / Eventos</h3>
-        <div class="technique">Precio mayorista &middot; Desde 12 unidades</div>
-        <div class="product-colors" id="colors-mg6">
-          <div class="color-dot selected" style="background:#000" data-name="Negro" onclick="event.stopPropagation();selectColor('mg6','Negro',this)"></div>
-          <div class="color-dot" style="background:#1a1a4a" data-name="Azul" onclick="event.stopPropagation();selectColor('mg6','Azul',this)"></div>
-          <div class="color-dot" style="background:#4a0000" data-name="Bordo" onclick="event.stopPropagation();selectColor('mg6','Bordo',this)"></div>
-          <div class="color-dot" style="background:#888" data-name="Gris" onclick="event.stopPropagation();selectColor('mg6','Gris',this)"></div>
-          <span class="color-name" id="cname-mg6">Negro</span>
-        </div>
-        <div class="product-price">Precio especial <small>por volumen</small></div>
-      </div>
-    </div>
+    
 
     <div class="product-card reveal" data-category="vinilo snapback" onclick="openModal('mg-5')">
       <div class="product-img">
@@ -676,53 +636,6 @@
   }
 </script>
 
-<div class="modal-overlay" id="mg-lisa" onclick="closeModal(event,'mg-lisa')">
-  <div class="modal">
-    <div class="modal-img"><img id="modal-img-gorra" src="mockup_gorra_negra.jpg" alt="Gorra personalizada"></div>
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeById('mg-lisa')">✕</button>
-      <div class="modal-tag">Gorra · Personalizada</div>
-      <h2>Gorra Personalizada</h2>
-      <div class="modal-price">Desde $XXXX</div>
-      <p class="modal-desc">Cualquier modelo de gorra con tu logo o diseño. DTF, vinilo o transfer. Full color desde 1 unidad.</p>
-      <div style="margin-bottom:1.2rem;">
-        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Color</h4>
-        <div style="display:flex;gap:.5rem;">
-          <div onclick="cambiarGorraModal('mockup_gorra_negra.jpg',this)" style="width:24px;height:24px;border-radius:50%;background:#111;border:2px solid #f5d800;cursor:pointer;"></div>
-          <div onclick="cambiarGorraModal('mockup_gorra_blanca.jpg',this)" style="width:24px;height:24px;border-radius:50%;background:#eee;border:2px solid #333;cursor:pointer;"></div>
-          <div onclick="cambiarGorraModal('mockup_gorra_azul.jpg',this)" style="width:24px;height:24px;border-radius:50%;background:#1e3a8a;border:2px solid #333;cursor:pointer;"></div>
-        </div>
-      </div>
-      <div class="talle-selector">
-        <h4>Talle</h4>
-        <div class="talle-btns">
-          <button class="talle-btn active" onclick="selectTalle(this)">Adulto</button>
-          <button class="talle-btn" onclick="selectTalle(this)">Nino</button>
-        </div>
-      </div>
-      <div class="modal-specs">
-        <h4>Especificaciones</h4>
-        <div class="spec-row"><span>Tecnica</span><span>DTF / Vinilo / Transfer</span></div>
-        <div class="spec-row"><span>Modelos</span><span>Trucker / Snapback / Bucket</span></div>
-        <div class="spec-row"><span>Talles</span><span>Adulto / Nino</span></div>
-        <div class="spec-row"><span>Minimo</span><span>1 unidad</span></div>
-      </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar gorra &rarr;</a>
-    </div>
-  </div>
-</div>
-<script>
-function cambiarGorra(src,dot){
-  document.getElementById('mockup-gorra').src=src;
-  document.querySelectorAll('#img-gorra-lisa .color-dot').forEach(d=>d.classList.remove('selected'));
-  dot.classList.add('selected');
-}
-function cambiarGorraModal(src,dot){
-  document.getElementById('modal-img-gorra').src=src;
-  dot.closest('div').querySelectorAll('div[onclick]').forEach(d=>d.style.borderColor='#333');
-  dot.style.borderColor='#f5d800';
-}
-</script>
 
 </body>
 </html>
