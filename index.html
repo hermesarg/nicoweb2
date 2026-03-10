@@ -619,12 +619,20 @@ function toggleMascot(){
   mOpen=!mOpen;
   document.getElementById('mascotBubble').classList.toggle('open',mOpen);
   document.getElementById('mascotHint').style.display=mOpen?'none':'block';
+  if(!mOpen) document.getElementById('mascotBubble').scrollTop=0;
+}
+```
+
+Y buscá también el listener de click en el documento:
+```
+if(mOpen&&!e.target.closest('#mascotContainer')){
 }
 document.addEventListener('click',e=>{
   if(mOpen&&!e.target.closest('#mascotContainer')){
     mOpen=false;
     document.getElementById('mascotBubble').classList.remove('open');
     document.getElementById('mascotHint').style.display='block';
+    document.getElementById('mascotBubble').scrollTop=0;
   }
 });
 
