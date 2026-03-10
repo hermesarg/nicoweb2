@@ -411,5 +411,47 @@
   function closeModal(e,id){if(e.target.classList.contains('modal-overlay')){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}}
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.modal-overlay.open').forEach(m=>{m.classList.remove('open');document.body.style.overflow='';});}});
 </script>
+
+<div class="modal-overlay" id="ms-holo" onclick="closeModal(event,'ms-holo')">
+  <div class="modal">
+    <div class="modal-img"><img src="mockup_sticker_holo.jpg" alt="Sticker holografico"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('ms-holo').classList.remove('open');document.body.style.overflow=''">✕</button>
+      <div class="modal-tag">Sticker &middot; Holografico</div>
+      <h2>Sticker Holografico</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc">Vinilo holografico con efecto arcoiris nacarado. Cada angulo refleja colores distintos. Resistente al agua y al sol.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Material</span><span>Vinilo holografico premium</span></div>
+        <div class="spec-row"><span>Acabado</span><span>Efecto arcoiris / nacarado</span></div>
+        <div class="spec-row"><span>Resistencia</span><span>Agua, sol, rayado</span></div>
+        <div class="spec-row"><span>Minimo</span><span>10 unidades</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar holografico &rarr;</a>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" id="ms-rect" onclick="closeModal(event,'ms-rect')">
+  <div class="modal">
+    <div class="modal-img"><img src="mockup_sticker_rect.jpg" alt="Sticker rectangular"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('ms-rect').classList.remove('open');document.body.style.overflow=''">✕</button>
+      <div class="modal-tag">Sticker &middot; Rectangular</div>
+      <h2>Sticker Rectangular</h2>
+      <div class="modal-price">Desde $XXXX</div>
+      <p class="modal-desc">Sticker rectangular full color en vinilo premium. Ideal para packaging, marcas y promocion. Resistente al agua y rayado.</p>
+      <div class="modal-specs">
+        <h4>Especificaciones</h4>
+        <div class="spec-row"><span>Material</span><span>Vinilo adhesivo premium</span></div>
+        <div class="spec-row"><span>Colores</span><span>Full color</span></div>
+        <div class="spec-row"><span>Acabado</span><span>Brillante o mate</span></div>
+        <div class="spec-row"><span>Minimo</span><span>10 unidades</span></div>
+      </div>
+      <a href="index.html#contacto" class="modal-btn">Cotizar rectangular &rarr;</a>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
