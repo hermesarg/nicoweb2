@@ -1,4 +1,4 @@
-// PERSONALIZATE — generado por Admin 11/3/2026, 10:17:57
+// PERSONALIZATE — generado por Admin 11/3/2026, 10:20:28
 const PRODUCTOS=[
   {img:"gallery_remera2.jpg",label:"Aji picante DTF",cat:"remera",tag:"Remera",color:""},
   {img:"gallery_remera5.jpg",label:"La Chorineta",cat:"remera",tag:"Remera",color:""},
