@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hermesarg.github.io/nicoweb2/sitemap.xml
