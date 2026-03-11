@@ -50,9 +50,9 @@
   .product-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:#111;}
   .product-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
   .product-card:hover .product-img img{transform:scale(1.04);}
-  .img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;color:#333;}
-  .img-placeholder span{font-size:3.5rem;}
-  .img-placeholder p{font-size:.75rem;color:#333;text-align:center;line-height:1.5;}
+  .img-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;color:#2a2a2a;text-align:center;padding:2rem;width:100%;height:100%;position:absolute;inset:0;}
+  .img-placeholder span{font-size:5rem;}
+  .img-placeholder p{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:#222;line-height:1.6;}
   .img-placeholder strong{color:#444;}
   .product-badge{position:absolute;top:1rem;left:1rem;background:var(--yellow);color:var(--black);font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:.3rem .7rem;}
   .product-overlay{position:absolute;inset:0;background:rgba(0,0,0,.7);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;opacity:0;transition:opacity .2s;}
@@ -192,7 +192,10 @@
     <!-- TRUCKER VINILO -->
     <div class="product-card reveal" data-category="vinilo trucker" onclick="openModal('g1')">
       <div class="product-img">
-        <img src="mockup_trucker_vinilo.jpg" alt="Trucker Vinilo">
+        <div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/trucker-vinilo.jpg</strong></p>
+        </div>
         <div class="product-badge">Vinilo</div>
         <div class="product-overlay">
           <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g1')">Ver detalle</a>
@@ -215,7 +218,10 @@
     <!-- SNAPBACK DTF -->
     <div class="product-card reveal" data-category="dtf transfer" onclick="openModal('g2')">
       <div class="product-img">
-        <img src="mockup_snapback_dtf.jpg" alt="Snapback Transfer DTF">
+        <div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/snapback-dtf.jpg</strong></p>
+        </div>
         <div class="product-badge">DTF</div>
         <div class="product-overlay">
           <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g2')">Ver detalle</a>
@@ -238,7 +244,7 @@
     <!-- BUCKET HAT -->
     <div class="product-card reveal" data-category="dtf vinilo bucket" onclick="openModal('g3')">
       <div class="product-img">
-        <img src="mockup_bucket.jpg" alt="Bucket Hat">
+        <div class="img-placeholder"><span>🧢</span><p>Bucket Hat</p></div>
         <div class="product-badge">Bucket Hat</div>
         <div class="product-overlay">
           <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g3')">Ver detalle</a>
@@ -261,7 +267,10 @@
     <!-- TRUCKER DTF -->
     <div class="product-card reveal" data-category="dtf trucker" onclick="openModal('g4')">
       <div class="product-img">
-        <img src="mockup_trucker_dtf.jpg" alt="Trucker DTF">
+        <div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/trucker-dtf.jpg</strong></p>
+        </div>
         <div class="product-badge">Trucker</div>
         <div class="product-overlay">
           <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g4')">Ver detalle</a>
@@ -284,7 +293,10 @@
     <!-- 5 PANELES -->
     <div class="product-card reveal" data-category="vinilo transfer" onclick="openModal('g5')">
       <div class="product-img">
-        <img src="mockup_5panel.jpg" alt="5 Paneles">
+        <div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/5panel.jpg</strong></p>
+        </div>
         <div class="product-badge">5 Paneles</div>
         <div class="product-overlay">
           <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g5')">Ver detalle</a>
@@ -307,7 +319,7 @@
     <!-- PACK EQUIPOS -->
     <div class="product-card reveal" data-category="dtf vinilo transfer" onclick="openModal('g6')">
       <div class="product-img">
-        <img src="mockup_pack.jpg" alt="Pack Equipos">
+        <div class="img-placeholder"><span>🧢</span><p>Pack Equipos</p></div>
         <div class="product-badge">Pack</div>
         <div class="product-overlay">
           <a class="overlay-btn overlay-btn-primary" onclick="event.stopPropagation();openModal('g6')">Ver detalle</a>
@@ -333,7 +345,10 @@
 <!-- MODALES -->
 <div class="modal-overlay" id="g1" onclick="closeModal(event,'g1')">
   <div class="modal">
-    <div class="modal-img"><img src="mockup_trucker_vinilo.jpg" alt="Trucker Vinilo"></div>
+    <div class="modal-img"><div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/trucker-vinilo.jpg</strong></p>
+        </div></div>
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('g1').classList.remove('open')">✕</button>
       <div class="modal-tag">Gorra · Vinilo termosellado</div>
@@ -356,7 +371,10 @@
 
 <div class="modal-overlay" id="g2" onclick="closeModal(event,'g2')">
   <div class="modal">
-    <div class="modal-img"><img src="mockup_snapback_dtf.jpg" alt="Snapback DTF"></div>
+    <div class="modal-img"><div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/snapback-dtf.jpg</strong></p>
+        </div></div>
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('g2').classList.remove('open')">✕</button>
       <div class="modal-tag">Gorra · Transfer DTF</div>
@@ -379,7 +397,7 @@
 
 <div class="modal-overlay" id="g3" onclick="closeModal(event,'g3')">
   <div class="modal">
-    <div class="modal-img"><img src="mockup_bucket.jpg" alt="Bucket Hat"></div>
+    <div class="modal-img"><div class="img-placeholder"><span>🧢</span><p>Bucket Hat</p></div></div>
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('g3').classList.remove('open')">✕</button>
       <div class="modal-tag">Gorra · Bucket Hat</div>
@@ -402,7 +420,10 @@
 
 <div class="modal-overlay" id="g4" onclick="closeModal(event,'g4')">
   <div class="modal">
-    <div class="modal-img"><img src="mockup_trucker_dtf.jpg" alt="Trucker DTF"></div>
+    <div class="modal-img"><div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/trucker-dtf.jpg</strong></p>
+        </div></div>
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('g4').classList.remove('open')">✕</button>
       <div class="modal-tag">Gorra · Trucker DTF</div>
@@ -425,7 +446,10 @@
 
 <div class="modal-overlay" id="g5" onclick="closeModal(event,'g5')">
   <div class="modal">
-    <div class="modal-img"><img src="mockup_5panel.jpg" alt="5 Paneles"></div>
+    <div class="modal-img"><div class="img-placeholder">
+          <span>🧢</span>
+          <p>Reemplazá con tu foto<br><strong>img/5panel.jpg</strong></p>
+        </div></div>
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('g5').classList.remove('open')">✕</button>
       <div class="modal-tag">Gorra · 5 Paneles</div>
@@ -447,7 +471,7 @@
 
 <div class="modal-overlay" id="g6" onclick="closeModal(event,'g6')">
   <div class="modal">
-    <div class="modal-img"><img src="mockup_pack.jpg" alt="Pack Equipos"></div>
+    <div class="modal-img"><div class="img-placeholder"><span>🧢</span><p>Pack Equipos</p></div></div>
     <div class="modal-content">
       <button class="modal-close" onclick="document.getElementById('g6').classList.remove('open')">✕</button>
       <div class="modal-tag">Pack · Equipos y eventos</div>
