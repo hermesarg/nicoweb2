@@ -1,4 +1,4 @@
-// PERSONALIZATE — generado por Admin 11/3/2026, 10:20:28
+// PERSONALIZATE — generado por Admin 6/4/2026, 09:10:09
 const PRODUCTOS=[
   {img:"gallery_remera2.jpg",label:"Aji picante DTF",cat:"remera",tag:"Remera",color:""},
   {img:"gallery_remera5.jpg",label:"La Chorineta",cat:"remera",tag:"Remera",color:""},
@@ -15,7 +15,10 @@ const PRODUCTOS=[
   {img:"gallery_remera3.jpg",label:"BG Servicio Tecnico",cat:"sticker",tag:"Sticker",color:"cyan"},
   {img:"gallery_remera4.jpg",label:"Bolsas personalizadas",cat:"otro",tag:"Otro",color:"purple"},
   {img:"gallery_pullover1.jpg",label:"Pullover Sangre Negra",cat:"otro",tag:"Pullover",color:"purple"},
-  {img:"foto_1773234862492.png",label:"Deportivo rincón",cat:"gorra",tag:"Gorra",color:"green"},
+  {img:"foto_1775477341753.jfif",label:"sticker lenceria",cat:"sticker",tag:"Sticker",color:"cyan"},
+  {img:"foto_1775477354923.jfif",label:"sticker taller mecanico",cat:"sticker",tag:"Sticker",color:"cyan"},
+  {img:"foto_1775477376095.jfif",label:"remera taller mecanico",cat:"remera",tag:"Remera",color:""},
+  {img:"foto_1775477393774.jfif",label:"gorra deportivo rincon",cat:"gorra",tag:"Gorra",color:"green"},
 ];
 function renderCatalogo(){
   const grid=document.getElementById('catalogoGrid');
