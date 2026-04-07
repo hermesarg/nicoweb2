@@ -1,36 +1,13 @@
-admin/index.html
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="es">
 <head>
-<title>Panel productos</title>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url=admin.html">
+  <title>Admin - Personalizate</title>
+  <link rel="canonical" href="admin.html">
 </head>
-
-<body style="font-family:sans-serif; padding:40px">
-
-<h2>Agregar producto</h2>
-
-<input id="nombre" placeholder="Nombre producto"><br><br>
-
-<select id="categoria">
-<option value="remera">Remera</option>
-<option value="gorra">Gorra</option>
-<option value="sticker">Sticker</option>
-<option value="otro">Otro</option>
-</select>
-
-<br><br>
-
-<input type="file" id="imagen">
-
-<br><br>
-
-<button onclick="guardar()">Guardar</button>
-
-<script>
-function guardar(){
-alert("Producto guardado. Luego subir archivo a GitHub.");
-}
-</script>
-
+<body>
+  <p><a href="admin.html">Abrir panel de administración</a></p>
 </body>
 </html>

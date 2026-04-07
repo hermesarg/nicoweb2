@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Admin — PERSONALIZATE</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -123,10 +124,10 @@ body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-heig
       <div class="card">
         <h4>Links rápidos</h4>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
-          <a href="index.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Sitio →</a>
-          <a href="remeras.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Remeras →</a>
-          <a href="gorras.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Gorras →</a>
-          <a href="stickers.html" target="_blank" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Stickers →</a>
+          <a href="index.html" target="_blank" rel="noopener noreferrer" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Sitio →</a>
+          <a href="remeras.html" target="_blank" rel="noopener noreferrer" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Remeras →</a>
+          <a href="gorras.html" target="_blank" rel="noopener noreferrer" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Gorras →</a>
+          <a href="stickers.html" target="_blank" rel="noopener noreferrer" class="btn bs" style="text-decoration:none;font-size:.72rem;padding:.4rem .85rem;">Stickers →</a>
         </div>
       </div>
       <div class="card">
@@ -201,7 +202,7 @@ body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-heig
         <strong>¿Para qué sirve esto?</strong><br>
         Con el token configurado, al hacer clic en "Publicar" el catálogo se actualiza automáticamente en el sitio — sin tocar código.<br><br>
         <strong>Cómo obtener el token (5 minutos):</strong><br>
-        1. Andá a <a href="https://github.com/settings/tokens/new" target="_blank" style="color:#ff2d9b">github.com/settings/tokens/new</a><br>
+        1. Andá a <a href="https://github.com/settings/tokens/new" target="_blank" rel="noopener noreferrer" style="color:#ff2d9b">github.com/settings/tokens/new</a><br>
         2. En "Note": <em>personalizate admin</em><br>
         3. En "Expiration": elegí <strong>No expiration</strong><br>
         4. Marcá solo el grupo <strong>repo</strong> (todos los permisos de repo)<br>
@@ -351,21 +352,58 @@ function renderGallery(){
   let items=getItems();
   if(GF!=='todos')items=items.filter(i=>i.cat===GF);
   const g=document.getElementById('ggrid');
-  if(!items.length){g.innerHTML='<p style="color:#2a2a2a;font-size:.8rem">Sin imágenes.</p>';return;}
-  g.innerHTML=items.map(item=>`
-    <div class="gi">
-      <img src="${item.dataURL||item.file}" alt="${item.label}"
-        onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%230d0d0d%22 width=%22150%22 height=%22150%22/%3E%3Ctext fill=%22%23222%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2210%22%3E${item.file}%3C/text%3E%3C/svg%3E'">
-      ${item.isNew?'<div class="badge-new">NUEVO</div>':''}
-      <div class="gi-body">
-        <div class="gi-name">${item.label}</div>
-        <div class="gi-cat c${item.cat.charAt(0)}">${item.cat}</div>
-      </div>
-      <div class="gi-acts">
-        <button class="be" onclick="editItem('${item.id}')">✏️ Editar</button>
-        <button class="bd" onclick="delItem('${item.id}')">🗑️</button>
-      </div>
-    </div>`).join('');
+  g.replaceChildren();
+  if(!items.length){
+    const empty=document.createElement('p');
+    empty.style.cssText='color:#2a2a2a;font-size:.8rem';
+    empty.textContent='Sin imágenes.';
+    g.appendChild(empty);
+    return;
+  }
+  items.forEach(item=>{
+    const card=document.createElement('div');
+    card.className='gi';
+
+    const img=document.createElement('img');
+    img.src=item.dataURL||item.file;
+    img.alt=item.label||'Imagen del catálogo';
+    img.onerror=function(){this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%230d0d0d%22 width=%22150%22 height=%22150%22/%3E%3Ctext fill=%22%23222%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2210%22%3EImagen%3C/text%3E%3C/svg%3E';};
+    card.appendChild(img);
+
+    if(item.isNew){
+      const badge=document.createElement('div');
+      badge.className='badge-new';
+      badge.textContent='NUEVO';
+      card.appendChild(badge);
+    }
+
+    const body=document.createElement('div');
+    body.className='gi-body';
+    const name=document.createElement('div');
+    name.className='gi-name';
+    name.textContent=item.label||'Sin descripción';
+    const cat=document.createElement('div');
+    cat.className='gi-cat c'+String(item.cat||'otro').charAt(0);
+    cat.textContent=item.cat||'otro';
+    body.append(name,cat);
+
+    const acts=document.createElement('div');
+    acts.className='gi-acts';
+    const edit=document.createElement('button');
+    edit.className='be';
+    edit.type='button';
+    edit.textContent='✏️ Editar';
+    edit.addEventListener('click',()=>editItem(item.id));
+    const del=document.createElement('button');
+    del.className='bd';
+    del.type='button';
+    del.textContent='🗑️';
+    del.addEventListener('click',()=>delItem(item.id));
+    acts.append(edit,del);
+
+    card.append(body,acts);
+    g.appendChild(card);
+  });
 }
 function delItem(id){
   if(!confirm('¿Eliminar esta imagen?'))return;
@@ -387,9 +425,13 @@ function loadGH(){
   document.getElementById('ght').value=localStorage.getItem('gh_t')||'';
 }
 function saveGH(){
-  localStorage.setItem('gh_u',document.getElementById('ghu').value.trim());
-  localStorage.setItem('gh_r',document.getElementById('ghr').value.trim());
-  localStorage.setItem('gh_t',document.getElementById('ght').value.trim());
+  const u=document.getElementById('ghu').value.trim();
+  const r=document.getElementById('ghr').value.trim();
+  const t=document.getElementById('ght').value.trim();
+  if(!/^[A-Za-z0-9-]+$/.test(u)||!/^[A-Za-z0-9._-]+$/.test(r)){toast('Usuario o repo inválido','terr');return;}
+  localStorage.setItem('gh_u',u);
+  localStorage.setItem('gh_r',r);
+  localStorage.setItem('gh_t',t);
   updateGHBar();toast('Guardado ✓','tok');
 }
 function updateGHBar(){
@@ -415,7 +457,7 @@ async function publish(){
   const u=localStorage.getItem('gh_u')||'hermesarg',r=localStorage.getItem('gh_r')||'nicoweb2',t=localStorage.getItem('gh_t');
   const st=document.getElementById('pubst');
   const btn=document.getElementById('btnpub');
-  function log(msg,cls){if(st){st.className='pubstatus '+cls;st.innerHTML=msg;}}
+  function log(msg,cls){if(st){st.className='pubstatus '+cls;st.textContent=msg;}}
   if(!t){toast('Configurá el GitHub Token primero','terr');goTab('ghconfig',document.querySelectorAll('.t')[3]);return;}
   if(btn)btn.disabled=true;
   const items=getItems();
@@ -437,14 +479,31 @@ async function publish(){
   log('📝 Actualizando catálogo...','ps-running');
   const catMap={remera:'',gorra:'green',sticker:'cyan',otro:'purple'};
   const tagMap={remera:'Remera',gorra:'Gorra',sticker:'Sticker',otro:'Otro'};
+  const catalog=items.map(p=>{const isPull=(p.label||'').toLowerCase().includes('pullover');return{img:p.file,label:p.label,cat:p.cat,tag:isPull?'Pullover':tagMap[p.cat],color:isPull?'purple':catMap[p.cat]};});
   const js=`// PERSONALIZATE — generado por Admin ${new Date().toLocaleString('es-AR')}
-const PRODUCTOS=[
-${items.map(p=>{const isPull=p.label.toLowerCase().includes('pullover');return`  {img:"${p.file}",label:"${p.label}",cat:"${p.cat}",tag:"${isPull?'Pullover':tagMap[p.cat]}",color:"${isPull?'purple':catMap[p.cat]}"},`;}).join('\n')}
-];
+const PRODUCTOS=${JSON.stringify(catalog,null,2)};
 function renderCatalogo(){
   const grid=document.getElementById('catalogoGrid');
   if(!grid)return;
-  grid.innerHTML=PRODUCTOS.map(p=>\`<div class="cat-item reveal" data-cat="\${p.cat}"><img src="\${p.img}" alt="\${p.label}" loading="lazy"><div class="cat-item-tag\${p.color?' '+p.color:''}">\${p.tag}</div><div class="cat-item-label">\${p.label}</div></div>\`).join('');
+  grid.replaceChildren();
+  PRODUCTOS.forEach(p=>{
+    const item=document.createElement('div');
+    item.className='cat-item reveal';
+    item.dataset.cat=p.cat;
+    const img=document.createElement('img');
+    img.src=p.img;
+    img.alt=p.label;
+    img.loading='lazy';
+    img.decoding='async';
+    const tag=document.createElement('div');
+    tag.className='cat-item-tag'+(p.color?' '+p.color:'');
+    tag.textContent=p.tag;
+    const label=document.createElement('div');
+    label.className='cat-item-label';
+    label.textContent=p.label;
+    item.append(img,tag,label);
+    grid.appendChild(item);
+  });
   const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});},{threshold:.06});
   grid.querySelectorAll('.cat-item.reveal').forEach(el=>obs.observe(el));
 }
@@ -459,7 +518,7 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
       {method:'PUT',headers:{Authorization:`token ${t}`,Accept:'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
     if(!res.ok){const e=await res.json();throw new Error(e.message);}
   }catch(e){log(`✗ Error: ${e.message}`,'ps-err');if(btn)btn.disabled=false;return;}
-  log(`🎉 <strong>¡Publicado!</strong> El sitio se actualiza en 1-2 min.<br><a href="https://${u}.github.io/${r}" target="_blank" style="color:#39ff14">Ver sitio →</a>`,'ps-ok');
+  log(`🎉 ¡Publicado! El sitio se actualiza en 1-2 min. Ver sitio: https://${u}.github.io/${r}`,'ps-ok');
   if(btn)btn.disabled=false;
   toast('¡Publicado! ✓','tok');
 }

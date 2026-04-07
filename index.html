@@ -32,7 +32,10 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#ff2d9b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -301,6 +304,7 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
   .steps-grid{grid-template-columns:1fr;}
 }
 </style>
+<link rel="stylesheet" href="design-polish.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -385,7 +389,7 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
     <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20consultar%20sobre%20descuentos%20por%20cantidad" target="_blank" class="bubble-link"><span class="bl-icon">💰</span>Descuentos cantidad<span class="bl-arrow">→</span></a>
     <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20hacer%20un%20pedido" target="_blank" class="bubble-cta">💬 Cotizar por WhatsApp</a>
   </div>
-  <img src="mascota.png" alt="Personalizate" class="mascot-img" id="mascotImg" onclick="toggleMascot()">
+  <img src="mascota.png" alt="Mascota de Personalizate" class="mascot-img" id="mascotImg" loading="lazy" decoding="async">
   <div class="mascot-hint" id="mascotHint">¡Tocame!</div>
 </div>
 
@@ -531,8 +535,8 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
     <div class="contact-right reveal">
       <form id="contactForm" class="contact-form">
         <div class="form-row">
-          <div class="fg"><label>Nombre</label><input type="text" id="f_nombre" placeholder="Tu nombre" required></div>
-          <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" id="f_tel" placeholder="+54 299 XXX XXXX"></div>
+          <div class="fg"><label>Nombre</label><input type="text" id="f_nombre" placeholder="Tu nombre" autocomplete="name" maxlength="70" required></div>
+          <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" id="f_tel" placeholder="+54 299 XXX XXXX" autocomplete="tel" inputmode="tel" maxlength="30"></div>
         </div>
         <div class="form-row">
           <div class="fg"><label>Producto</label>
@@ -556,9 +560,9 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
         </div>
         <div class="fg" id="otraBox" style="display:none;">
           <label>Especificá la cantidad</label>
-          <input type="text" id="f_otra" placeholder="Ej: 300 remeras + 150 gorras">
+          <input type="text" id="f_otra" placeholder="Ej: 300 remeras + 150 gorras" maxlength="80">
         </div>
-        <div class="fg"><label>Tu idea o consulta</label><textarea id="f_msg" placeholder="Contanos qué querés imprimir, colores, medidas..." required></textarea></div>
+        <div class="fg"><label>Tu idea o consulta</label><textarea id="f_msg" placeholder="Contanos qué querés imprimir, colores, medidas..." maxlength="700" required></textarea></div>
         <div class="fg">
 
         </div>
@@ -675,6 +679,16 @@ function sendWA(){
     alert('Por favor completá Nombre, Producto y tu consulta antes de enviar.');
     return;
   }
+  if(cantSel==='otro'&&!otraCant){
+    alert('Por favor especificá la cantidad.');
+    document.getElementById('f_otra').focus();
+    return;
+  }
+  if(tel&&!/^[0-9+\s().-]{6,30}$/.test(tel)){
+    alert('Revisá el teléfono: usá solo números, espacios, +, guiones o paréntesis.');
+    document.getElementById('f_tel').focus();
+    return;
+  }
   
   
   const text=
@@ -686,10 +700,11 @@ function sendWA(){
     `💬 *Consulta:* ${msg}`+
     `\n\n📎 _Si tenés un diseño, envialo como imagen en este mismo chat._\n_Enviado desde personalizate.com_`;
   
-  window.open(`https://wa.me/542995174801?text=${encodeURIComponent(text)}`,'_blank');
+  window.open(`https://wa.me/542995174801?text=${encodeURIComponent(text)}`,'_blank','noopener,noreferrer');
 }
 </script>
 
+<script src="site.js"></script>
 <script src="productos.js"></script>
   <script src="lightbox.js"></script>
 </body>

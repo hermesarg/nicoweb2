@@ -23,7 +23,29 @@ const PRODUCTOS=[
 function renderCatalogo(){
   const grid=document.getElementById('catalogoGrid');
   if(!grid)return;
-  grid.innerHTML=PRODUCTOS.map(p=>`<div class="cat-item reveal" data-cat="${p.cat}"><img src="${p.img}" alt="${p.label}" loading="lazy"><div class="cat-item-tag${p.color?' '+p.color:''}">${p.tag}</div><div class="cat-item-label">${p.label}</div></div>`).join('');
+  grid.replaceChildren();
+  PRODUCTOS.forEach(p=>{
+    const item=document.createElement('div');
+    item.className='cat-item reveal';
+    item.dataset.cat=p.cat;
+
+    const img=document.createElement('img');
+    img.src=p.img;
+    img.alt=p.label;
+    img.loading='lazy';
+    img.decoding='async';
+
+    const tag=document.createElement('div');
+    tag.className='cat-item-tag'+(p.color?' '+p.color:'');
+    tag.textContent=p.tag;
+
+    const label=document.createElement('div');
+    label.className='cat-item-label';
+    label.textContent=p.label;
+
+    item.append(img,tag,label);
+    grid.appendChild(item);
+  });
   const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target);}});},{threshold:.06});
   grid.querySelectorAll('.cat-item.reveal').forEach(el=>obs.observe(el));
 }
