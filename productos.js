@@ -20,6 +20,27 @@ const PRODUCTOS=[
   {img:"foto_1775477376095.jfif",label:"remera taller mecanico",cat:"remera",tag:"Remera",color:""},
   {img:"foto_1775477393774.jfif",label:"gorra deportivo rincon",cat:"gorra",tag:"Gorra",color:"green"},
 ];
+const PRODUCTO_DIMS={
+  "gallery_remera2.jpg":[720,1280],
+  "gallery_remera5.jpg":[576,1280],
+  "gallery_remera6.jpg":[1060,1280],
+  "gallery_remera7.jpg":[720,1280],
+  "gallery_bolsas.jpg":[1018,1280],
+  "gallery_gorras_pack.jpg":[576,1280],
+  "gallery_gorra2.jpg":[720,1280],
+  "gallery_gorra1.jpg":[1024,1536],
+  "gallery_pkg2.jpg":[960,1280],
+  "gallery_sticker1.jpg":[960,1280],
+  "gallery_gorra_bucket.jpg":[540,1200],
+  "gallery_gorra_trucker2.jpg":[540,1200],
+  "gallery_remera3.jpg":[960,1280],
+  "gallery_remera4.jpg":[1600,1574],
+  "gallery_pullover1.jpg":[960,1200],
+  "foto_1775477341753.jfif":[1200,1600],
+  "foto_1775477354923.jfif":[720,1280],
+  "foto_1775477376095.jfif":[1280,881],
+  "foto_1775477393774.jfif":[720,1280]
+};
 function renderCatalogo(){
   const grid=document.getElementById('catalogoGrid');
   if(!grid)return;
@@ -34,6 +55,8 @@ function renderCatalogo(){
     img.alt=p.label;
     img.loading='lazy';
     img.decoding='async';
+    const dims=PRODUCTO_DIMS[p.img];
+    if(dims){img.width=dims[0];img.height=dims[1];}
 
     const tag=document.createElement('div');
     tag.className='cat-item-tag'+(p.color?' '+p.color:'');

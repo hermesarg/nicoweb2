@@ -148,20 +148,65 @@
       cursor: zoom-in !important;
     }
     @media (max-width: 640px) {
-      #lb-overlay { grid-template-rows: auto 1fr auto; }
+      #lb-overlay {
+        width: 100vw;
+        height: 100dvh;
+        min-height: 100dvh;
+        overflow: hidden;
+        grid-template-rows: 1fr;
+      }
+      #lb-toolbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: max(.7rem, env(safe-area-inset-top)) max(.7rem, env(safe-area-inset-right)) .7rem max(.7rem, env(safe-area-inset-left));
+      }
+      #lb-title {
+        padding-right: 58px;
+      }
       #lb-close {
-        min-width: 104px;
+        position: fixed;
+        top: max(.7rem, env(safe-area-inset-top));
+        right: max(.7rem, env(safe-area-inset-right));
+        z-index: 4;
+        min-width: 44px;
+        width: 44px;
         height: 44px;
+        padding: 0;
         background: rgba(255,45,155,.88);
         border-color: rgba(255,45,155,.95);
+        font-size: 0;
+      }
+      #lb-close::before {
+        content: 'X';
+        font-size: 1rem;
+        line-height: 1;
+      }
+      #lb-wrap {
+        width: 100vw;
+        height: 100dvh;
+        min-height: 100dvh;
+        padding: calc(62px + env(safe-area-inset-top)) 9px calc(74px + env(safe-area-inset-bottom));
+        margin: 0;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
       }
       #lb-img {
-        max-width: calc(100vw - 18px);
-        max-height: calc(100svh - 150px);
+        max-width: 100%;
+        max-height: 100%;
+        margin: auto;
         border-radius: 4px;
       }
       #lb-footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 3;
         align-items: flex-end;
+        padding: .75rem max(.9rem, env(safe-area-inset-right)) max(.9rem, env(safe-area-inset-bottom)) max(.9rem, env(safe-area-inset-left));
       }
       #lb-hint {
         max-width: 58vw;
@@ -178,22 +223,48 @@
   const overlay = document.createElement('div');
   overlay.id = 'lb-overlay';
   overlay.setAttribute('aria-hidden', 'true');
-  overlay.innerHTML = `
-    <div id="lb-toolbar">
-      <div id="lb-title">Vista de imagen</div>
-      <button id="lb-close" type="button" aria-label="Cerrar visor">Volver ✕</button>
-    </div>
-    <div id="lb-wrap">
-      <img id="lb-img" src="" alt="">
-    </div>
-    <div id="lb-footer">
-      <div id="lb-hint">Pellizcá o doble tap para acercar</div>
-      <div id="lb-zoom-btns" aria-label="Controles de zoom">
-        <button id="lb-zout" type="button" aria-label="Alejar">−</button>
-        <button id="lb-zin" type="button" aria-label="Acercar">+</button>
-      </div>
-    </div>
-  `;
+  const toolbar = document.createElement('div');
+  toolbar.id = 'lb-toolbar';
+  const titleNode = document.createElement('div');
+  titleNode.id = 'lb-title';
+  titleNode.textContent = 'Vista de imagen';
+  const closeNode = document.createElement('button');
+  closeNode.id = 'lb-close';
+  closeNode.type = 'button';
+  closeNode.setAttribute('aria-label', 'Cerrar visor');
+  closeNode.textContent = 'Volver X';
+  toolbar.append(titleNode, closeNode);
+
+  const wrapNode = document.createElement('div');
+  wrapNode.id = 'lb-wrap';
+  const imgNode = document.createElement('img');
+  imgNode.id = 'lb-img';
+  imgNode.src = '';
+  imgNode.alt = '';
+  wrapNode.appendChild(imgNode);
+
+  const footer = document.createElement('div');
+  footer.id = 'lb-footer';
+  const hintNode = document.createElement('div');
+  hintNode.id = 'lb-hint';
+  hintNode.textContent = 'Pellizca o doble tap para acercar';
+  const zoomBtns = document.createElement('div');
+  zoomBtns.id = 'lb-zoom-btns';
+  zoomBtns.setAttribute('aria-label', 'Controles de zoom');
+  const zoutNode = document.createElement('button');
+  zoutNode.id = 'lb-zout';
+  zoutNode.type = 'button';
+  zoutNode.setAttribute('aria-label', 'Alejar');
+  zoutNode.textContent = '-';
+  const zinNode = document.createElement('button');
+  zinNode.id = 'lb-zin';
+  zinNode.type = 'button';
+  zinNode.setAttribute('aria-label', 'Acercar');
+  zinNode.textContent = '+';
+  zoomBtns.append(zoutNode, zinNode);
+  footer.append(hintNode, zoomBtns);
+
+  overlay.append(toolbar, wrapNode, footer);
   document.body.appendChild(overlay);
 
   const img = document.getElementById('lb-img');
@@ -247,9 +318,10 @@
     const rect = img.getBoundingClientRect();
     const baseWidth = rect.width / scale;
     const baseHeight = rect.height / scale;
-    const view = viewportSize();
+    const wrapRect = wrap.getBoundingClientRect();
+    const view = wrapRect.width && wrapRect.height ? {width: wrapRect.width, height: wrapRect.height} : viewportSize();
     const maxTx = Math.max(0, (baseWidth * scale - view.width + 32) / 2);
-    const maxTy = Math.max(0, (baseHeight * scale - view.height + 150) / 2);
+    const maxTy = Math.max(0, (baseHeight * scale - view.height + 32) / 2);
     tx = clamp(tx, -maxTx, maxTx);
     ty = clamp(ty, -maxTy, maxTy);
   }
@@ -331,7 +403,7 @@
   zoomOutBtn.addEventListener('click', ()=>setZoom(scale / 1.5, null, null, true));
 
   overlay.addEventListener('click', e=>{
-    if(e.target === wrap && scale === 1) closeLightbox();
+    if((e.target === wrap || e.target === overlay) && scale === 1) closeLightbox();
   });
 
   document.addEventListener('keydown', e=>{
@@ -467,6 +539,13 @@
     clampTranslate();
     applyTransform(false);
   });
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize', ()=>{
+      if(!overlay.classList.contains('open')) return;
+      clampTranslate();
+      applyTransform(false);
+    });
+  }
 
   function attachToImages(){
     document.querySelectorAll(

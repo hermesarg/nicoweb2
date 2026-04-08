@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https:; media-src 'self'; connect-src 'self' https://api.github.com; form-action 'self'">
 <meta name="robots" content="noindex, nofollow">
 <title>Admin — PERSONALIZATE</title>
 <style>
@@ -90,7 +91,7 @@ body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-heig
   <div class="login-box">
     <h2>PERSONALIZATE</h2>
     <p>Panel de administración</p>
-    <input type="password" id="pwd" placeholder="Contraseña" onkeydown="if(event.key==='Enter')login()">
+    <input type="password" id="pwd" placeholder="Contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
     <button onclick="login()">ENTRAR</button>
     <div class="err-msg" id="perr">Contraseña incorrecta</div>
   </div>
@@ -133,8 +134,8 @@ body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-heig
       <div class="card">
         <h4>Cambiar contraseña</h4>
         <div class="gr">
-          <div class="fg"><label>Contraseña actual</label><input type="password" id="po" placeholder="••••••••"></div>
-          <div class="fg"><label>Nueva contraseña</label><input type="password" id="pn" placeholder="Mínimo 6 caracteres"></div>
+          <div class="fg"><label>Contraseña actual</label><input type="password" id="po" placeholder="••••••••" autocomplete="current-password"></div>
+          <div class="fg"><label>Nueva contraseña</label><input type="password" id="pn" placeholder="Mínimo 6 caracteres" autocomplete="new-password" minlength="6" maxlength="80"></div>
         </div>
         <button class="btn bp" onclick="changePass()" style="width:100%">Cambiar contraseña</button>
       </div>
@@ -159,7 +160,7 @@ body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-heig
       <div class="card">
         <h4>Datos</h4>
         <div class="gr">
-          <div class="fg"><label>Descripción</label><input type="text" id="ilabel" placeholder="Ej: Remera DTF personalizada"></div>
+          <div class="fg"><label>Descripción</label><input type="text" id="ilabel" placeholder="Ej: Remera DTF personalizada" maxlength="90"></div>
           <div class="fg"><label>Categoría</label>
             <select id="icat">
               <option value="remera">Remera</option>
@@ -213,12 +214,12 @@ body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-heig
       <div class="card">
         <h4>Datos del repositorio</h4>
         <div class="gr">
-          <div class="fg"><label>Usuario GitHub</label><input type="text" id="ghu" placeholder="hermesarg"></div>
-          <div class="fg"><label>Repositorio</label><input type="text" id="ghr" placeholder="nicoweb2"></div>
+          <div class="fg"><label>Usuario GitHub</label><input type="text" id="ghu" placeholder="hermesarg" autocomplete="off" spellcheck="false" maxlength="39"></div>
+          <div class="fg"><label>Repositorio</label><input type="text" id="ghr" placeholder="nicoweb2" autocomplete="off" spellcheck="false" maxlength="100"></div>
         </div>
         <div class="fg">
           <label>Personal Access Token</label>
-          <input type="password" id="ght" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx">
+          <input type="password" id="ght" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off" spellcheck="false" maxlength="255">
           <small>Se guarda solo en este navegador. No se comparte con nadie.</small>
         </div>
         <div style="display:flex;gap:.6rem;flex-wrap:wrap;">
@@ -238,6 +239,17 @@ body{background:#0a0a0a;color:#f0f0f0;font-family:'Segoe UI',sans-serif;min-heig
 // AUTH
 const PK='admin_pass';
 const getP=()=>localStorage.getItem(PK)||'personalizate2025';
+const VALID_CATS=['remera','gorra','sticker','otro'];
+const VALID_IMAGE_EXTS=['.jpg','.jpeg','.png','.webp','.gif','.jfif'];
+function cleanText(value,max=90){
+  return String(value||'').replace(/[\u0000-\u001f\u007f<>]/g,' ').replace(/\s+/g,' ').trim().slice(0,max);
+}
+function validCat(cat){
+  return VALID_CATS.includes(cat)?cat:'otro';
+}
+function safeFileName(name){
+  return /^[A-Za-z0-9._-]+\.(jpe?g|png|webp|gif|jfif)$/i.test(String(name||''))?name:null;
+}
 function login(){
   if(document.getElementById('pwd').value===getP()){
     document.getElementById('login-screen').style.display='none';
@@ -277,6 +289,13 @@ function goTab(name,btn){
 const IK='catalog_items';
 const getItems=()=>{try{return JSON.parse(localStorage.getItem(IK)||'[]');}catch{return[];}};
 const saveItems=a=>localStorage.setItem(IK,JSON.stringify(a));
+const DEFAULT_DIMS={
+  "gallery_remera2.jpg":[720,1280],"gallery_remera5.jpg":[576,1280],"gallery_remera6.jpg":[1060,1280],"gallery_remera7.jpg":[720,1280],
+  "gallery_bolsas.jpg":[1018,1280],"gallery_gorras_pack.jpg":[576,1280],"gallery_gorra2.jpg":[720,1280],"gallery_gorra1.jpg":[1024,1536],
+  "gallery_pkg2.jpg":[960,1280],"gallery_sticker1.jpg":[960,1280],"gallery_gorra_bucket.jpg":[540,1200],"gallery_gorra_trucker2.jpg":[540,1200],
+  "gallery_remera3.jpg":[960,1280],"gallery_remera4.jpg":[1600,1574],"gallery_pullover1.jpg":[960,1200],
+  "foto_1775477341753.jfif":[1200,1600],"foto_1775477354923.jfif":[720,1280],"foto_1775477376095.jfif":[1280,881],"foto_1775477393774.jfif":[720,1280]
+};
 const DEFAULTS=[
   {id:'r1',file:'gallery_remera2.jpg',label:'Aji picante DTF',cat:'remera'},
   {id:'r2',file:'gallery_remera5.jpg',label:'La Chorineta',cat:'remera'},
@@ -308,37 +327,47 @@ function updateStats(){
 }
 
 // FILE
-let CF=null,CU=null;
+let CF=null,CU=null,CW=0,CH=0;
 const dz=document.getElementById('dz');
 dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
 dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
 dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');if(e.dataTransfer.files[0])onFile(e.dataTransfer.files[0]);});
 function onFile(f){
   if(!f)return;
+  const ext=(f.name.match(/\.[^.]+$/)?.[0]||'').toLowerCase();
+  if(!VALID_IMAGE_EXTS.includes(ext)||!/^image\/(jpeg|png|webp|gif|pjpeg)$/.test(f.type||'')){
+    toast('Formato inválido. Usá JPG, PNG, WEBP, GIF o JFIF.','terr');
+    return;
+  }
   if(f.size>5*1024*1024){toast('Imagen muy grande (máx 5MB)','terr');return;}
   CF=f;const r=new FileReader();
   r.onload=e=>{
     CU=e.target.result;
+    CW=0;CH=0;
+    const probe=new Image();
+    probe.onload=()=>{CW=probe.naturalWidth;CH=probe.naturalHeight;};
+    probe.src=CU;
     document.getElementById('pimg').src=CU;
-    document.getElementById('pname').textContent=f.name;
+    document.getElementById('pname').textContent=cleanText(f.name,120);
     document.getElementById('psize').textContent=(f.size/1024).toFixed(0)+' KB';
     document.getElementById('prev').style.display='flex';
     document.getElementById('btnadd').disabled=false;
-    document.getElementById('ilabel').value=f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+    document.getElementById('ilabel').value=cleanText(f.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' '),90);
   };r.readAsDataURL(f);
 }
 function addItem(){
   if(!CF){toast('Elegí una imagen primero','terr');return;}
-  const label=document.getElementById('ilabel').value.trim()||CF.name;
-  const cat=document.getElementById('icat').value;
-  const ext=CF.name.match(/\.[^.]+$/)?.[0]||'.jpg';
+  const label=cleanText(document.getElementById('ilabel').value,90)||cleanText(CF.name,90);
+  const cat=validCat(document.getElementById('icat').value);
+  const ext=(CF.name.match(/\.[^.]+$/)?.[0]||'.jpg').toLowerCase();
+  if(!VALID_IMAGE_EXTS.includes(ext)){toast('Extensión inválida','terr');return;}
   const fname='foto_'+Date.now()+ext;
   const items=getItems();
-  items.push({id:'c'+Date.now(),file:fname,label,cat,dataURL:CU,isNew:true,ts:Date.now()});
+  items.push({id:'c'+Date.now(),file:fname,label,cat,dataURL:CU,isNew:true,ts:Date.now(),width:CW||undefined,height:CH||undefined});
   saveItems(items);updateStats();
   document.getElementById('pubbox').style.display='block';
   toast('Foto agregada ✓','tok');
-  CF=null;CU=null;
+  CF=null;CU=null;CW=0;CH=0;
   document.getElementById('prev').style.display='none';
   document.getElementById('btnadd').disabled=true;
   document.getElementById('ilabel').value='';
@@ -412,9 +441,9 @@ function delItem(id){
 }
 function editItem(id){
   const items=getItems(),item=items.find(i=>i.id===id);if(!item)return;
-  const nl=prompt('Descripción:',item.label);if(!nl)return;
-  const nc=prompt('Categoría (remera/gorra/sticker/otro):',item.cat);
-  if(['remera','gorra','sticker','otro'].includes(nc))item.cat=nc;
+  const nl=cleanText(prompt('Descripción:',item.label),90);if(!nl)return;
+  const nc=cleanText(prompt('Categoría (remera/gorra/sticker/otro):',item.cat),20);
+  if(VALID_CATS.includes(nc))item.cat=nc;
   item.label=nl;saveItems(items);renderGallery();updateStats();toast('Actualizado ✓','tok');
 }
 
@@ -429,6 +458,7 @@ function saveGH(){
   const r=document.getElementById('ghr').value.trim();
   const t=document.getElementById('ght').value.trim();
   if(!/^[A-Za-z0-9-]+$/.test(u)||!/^[A-Za-z0-9._-]+$/.test(r)){toast('Usuario o repo inválido','terr');return;}
+  if(t&&(!/^[A-Za-z0-9_:-]+$/.test(t)||t.length<20)){toast('Token con formato inválido','terr');return;}
   localStorage.setItem('gh_u',u);
   localStorage.setItem('gh_r',r);
   localStorage.setItem('gh_t',t);
@@ -465,6 +495,11 @@ async function publish(){
   log(`📤 Subiendo ${newOnes.length} imagen(es) nueva(s)...`,'ps-running');
   for(const item of newOnes){
     try{
+      const fname=safeFileName(item.file);
+      if(!fname||!/^data:image\/(?:jpeg|png|webp|gif|pjpeg);base64,/.test(item.dataURL||'')){throw new Error('Imagen local inválida');}
+      item.file=fname;
+      item.cat=validCat(item.cat);
+      item.label=cleanText(item.label,90)||'Imagen del catálogo';
       const b64=item.dataURL.split(',')[1];
       const ck=await fetch(`https://api.github.com/repos/${u}/${r}/contents/${item.file}`,{headers:{Authorization:`token ${t}`,Accept:'application/vnd.github.v3+json'}});
       const body={message:`Admin: imagen ${item.file}`,content:b64};
@@ -479,7 +514,14 @@ async function publish(){
   log('📝 Actualizando catálogo...','ps-running');
   const catMap={remera:'',gorra:'green',sticker:'cyan',otro:'purple'};
   const tagMap={remera:'Remera',gorra:'Gorra',sticker:'Sticker',otro:'Otro'};
-  const catalog=items.map(p=>{const isPull=(p.label||'').toLowerCase().includes('pullover');return{img:p.file,label:p.label,cat:p.cat,tag:isPull?'Pullover':tagMap[p.cat],color:isPull?'purple':catMap[p.cat]};});
+  const catalog=items.map(p=>{
+    const file=safeFileName(p.file);
+    if(!file)return null;
+    const isPull=(p.label||'').toLowerCase().includes('pullover');
+    const dims=DEFAULT_DIMS[p.file]||[];
+    const cat=validCat(p.cat);
+    return{img:file,label:cleanText(p.label,90)||'Imagen del catálogo',cat,tag:isPull?'Pullover':tagMap[cat],color:isPull?'purple':catMap[cat],width:p.width||dims[0],height:p.height||dims[1]};
+  }).filter(Boolean);
   const js=`// PERSONALIZATE — generado por Admin ${new Date().toLocaleString('es-AR')}
 const PRODUCTOS=${JSON.stringify(catalog,null,2)};
 function renderCatalogo(){
@@ -495,6 +537,7 @@ function renderCatalogo(){
     img.alt=p.label;
     img.loading='lazy';
     img.decoding='async';
+    if(p.width&&p.height){img.width=p.width;img.height=p.height;}
     const tag=document.createElement('div');
     tag.className='cat-item-tag'+(p.color?' '+p.color:'');
     tag.textContent=p.tag;
