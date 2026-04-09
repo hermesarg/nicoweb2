@@ -154,6 +154,7 @@
         min-height: 100dvh;
         overflow: hidden;
         grid-template-rows: 1fr;
+        background: rgba(18,14,12,.88);
       }
       #lb-toolbar {
         position: fixed;
@@ -161,8 +162,11 @@
         left: 0;
         right: 0;
         padding: max(.7rem, env(safe-area-inset-top)) max(.7rem, env(safe-area-inset-right)) .7rem max(.7rem, env(safe-area-inset-left));
+        min-height: 0;
+        background: linear-gradient(180deg, rgba(18,14,12,.30), rgba(18,14,12,0));
       }
       #lb-title {
+        display: none;
         padding-right: 58px;
       }
       #lb-close {
@@ -177,6 +181,7 @@
         background: rgba(255,45,155,.88);
         border-color: rgba(255,45,155,.95);
         font-size: 0;
+        box-shadow: 0 10px 22px rgba(0,0,0,.28);
       }
       #lb-close::before {
         content: 'X';
@@ -187,17 +192,20 @@
         width: 100vw;
         height: 100dvh;
         min-height: 100dvh;
-        padding: calc(62px + env(safe-area-inset-top)) 9px calc(74px + env(safe-area-inset-bottom));
+        padding: calc(88px + env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom));
         margin: 0;
         box-sizing: border-box;
         align-items: center;
         justify-content: center;
       }
       #lb-img {
-        max-width: 100%;
-        max-height: 100%;
+        max-width: min(100%, 92vw);
+        max-height: min(100%, 72dvh);
         margin: auto;
-        border-radius: 4px;
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,.10);
+        background: rgba(255,255,255,.04);
+        box-shadow: 0 22px 42px rgba(0,0,0,.34);
       }
       #lb-footer {
         position: fixed;
@@ -206,7 +214,8 @@
         bottom: 0;
         z-index: 3;
         align-items: flex-end;
-        padding: .75rem max(.9rem, env(safe-area-inset-right)) max(.9rem, env(safe-area-inset-bottom)) max(.9rem, env(safe-area-inset-left));
+        padding: .65rem max(.9rem, env(safe-area-inset-right)) max(.9rem, env(safe-area-inset-bottom)) max(.9rem, env(safe-area-inset-left));
+        background: linear-gradient(0deg, rgba(18,14,12,.48), rgba(18,14,12,0));
       }
       #lb-hint {
         max-width: 58vw;
