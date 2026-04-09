@@ -520,25 +520,30 @@ footer{
 
 .mascot-img{
   filter:
-    drop-shadow(0 0 1px rgba(18,14,11,.48))
-    drop-shadow(0 0 10px rgba(18,14,11,.16))
-    drop-shadow(0 14px 24px rgba(22,16,12,.34))
-    drop-shadow(0 0 12px rgba(217,170,52,.24))
-    contrast(1.2)
-    saturate(.96)
-    brightness(.9)!important;
+    drop-shadow(0 0 2px rgba(18,14,11,.62))
+    drop-shadow(0 0 12px rgba(18,14,11,.24))
+    drop-shadow(0 18px 30px rgba(22,16,12,.42))
+    drop-shadow(0 0 12px rgba(217,170,52,.22))
+    contrast(1.22)
+    saturate(.97)
+    brightness(.88)!important;
 }
 
 .mascot-img:hover,
 .mascot-img:active{
   filter:
-    drop-shadow(0 0 1px rgba(18,14,11,.54))
-    drop-shadow(0 0 14px rgba(18,14,11,.2))
-    drop-shadow(0 18px 30px rgba(22,16,12,.38))
-    drop-shadow(0 0 18px rgba(217,170,52,.32))
-    contrast(1.22)
-    saturate(.98)
-    brightness(.92)!important;
+    drop-shadow(0 0 2px rgba(18,14,11,.68))
+    drop-shadow(0 0 16px rgba(18,14,11,.28))
+    drop-shadow(0 22px 36px rgba(22,16,12,.48))
+    drop-shadow(0 0 18px rgba(217,170,52,.30))
+    contrast(1.24)
+    saturate(.99)
+    brightness(.9)!important;
+}
+
+.mascot-hint{
+  color:var(--polish-text)!important;
+  opacity:.66;
 }
 
 .mascot-bubble{
