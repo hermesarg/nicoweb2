@@ -387,11 +387,14 @@ li,
 }
 
 .contact-right{
-  padding:clamp(1.6rem,3vw,2.3rem)!important;
-  padding-left:clamp(1.95rem,4vw,2.85rem)!important;
+  box-sizing:border-box!important;
+  padding:clamp(2rem,3.6vw,2.75rem)!important;
+  padding-left:clamp(2.4rem,5vw,3.35rem)!important;
 }
 
 .contact-form{
+  margin:0!important;
+  padding:0!important;
   gap:1.15rem!important;
 }
 
@@ -415,11 +418,18 @@ li,
 }
 
 .contact-form label{
-  margin-bottom:.15rem!important;
+  margin-bottom:.2rem!important;
+  padding-left:.08rem!important;
 }
 
 .contact-form .form-submit{
-  margin-top:.25rem!important;
+  margin-top:.4rem!important;
+}
+
+#cotizacion{
+  display:block;
+  position:relative;
+  scroll-margin-top:108px;
 }
 
 .contact-form input::placeholder,
@@ -483,33 +493,52 @@ footer{
 .mascot-container::before{
   content:'';
   position:absolute;
-  inset:auto 10px 10px 10px;
-  height:62%;
+  inset:auto 12px 8px 12px;
+  height:60%;
   border-radius:999px;
-  background:radial-gradient(circle at 50% 55%, rgba(217,170,52,.28), rgba(217,170,52,.12) 38%, rgba(22,16,12,.14) 62%, transparent 78%);
-  filter:blur(16px);
-  opacity:.9;
+  background:radial-gradient(circle at 50% 55%, rgba(217,170,52,.30), rgba(217,170,52,.14) 34%, rgba(22,16,12,.12) 60%, transparent 78%);
+  filter:blur(18px);
+  opacity:.82;
+  pointer-events:none;
+  z-index:-1;
+}
+
+.mascot-container::after{
+  content:'';
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:2px;
+  height:18px;
+  border-radius:999px;
+  background:rgba(22,16,12,.18);
+  filter:blur(10px);
+  opacity:.72;
   pointer-events:none;
   z-index:-1;
 }
 
 .mascot-img{
   filter:
-    drop-shadow(0 12px 22px rgba(22,16,12,.34))
-    drop-shadow(0 0 12px rgba(217,170,52,.26))
-    contrast(1.18)
-    saturate(.95)
-    brightness(.89)!important;
+    drop-shadow(0 0 1px rgba(18,14,11,.48))
+    drop-shadow(0 0 10px rgba(18,14,11,.16))
+    drop-shadow(0 14px 24px rgba(22,16,12,.34))
+    drop-shadow(0 0 12px rgba(217,170,52,.24))
+    contrast(1.2)
+    saturate(.96)
+    brightness(.9)!important;
 }
 
 .mascot-img:hover,
 .mascot-img:active{
   filter:
-    drop-shadow(0 16px 28px rgba(22,16,12,.38))
-    drop-shadow(0 0 18px rgba(217,170,52,.34))
-    contrast(1.2)
-    saturate(.97)
-    brightness(.91)!important;
+    drop-shadow(0 0 1px rgba(18,14,11,.54))
+    drop-shadow(0 0 14px rgba(18,14,11,.2))
+    drop-shadow(0 18px 30px rgba(22,16,12,.38))
+    drop-shadow(0 0 18px rgba(217,170,52,.32))
+    contrast(1.22)
+    saturate(.98)
+    brightness(.92)!important;
 }
 
 .mascot-bubble{
