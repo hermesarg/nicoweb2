@@ -150,6 +150,34 @@ nav a.active,
   color:var(--polish-muted)!important;
 }
 
+p,
+label,
+small,
+li,
+.form-note,
+.promo-item,
+.ci span:last-child,
+.stat-lab,
+.bubble-link,
+.bubble-title,
+.bubble-cta,
+.bl-arrow,
+.stag,
+.svc-link,
+.spec-row span,
+.modal-specs h4,
+.contact-info,
+.footer-brand p,
+.footer-bottom p{
+  color:var(--polish-text-soft)!important;
+}
+
+.bubble-link:hover,
+.bubble-cta:hover,
+.svc-link:hover{
+  color:var(--polish-accent-pink)!important;
+}
+
 .hero-title,
 .sec-title,
 .page-hero h1,
@@ -414,6 +442,27 @@ footer{
 .socials .soc,
 .footer-links a{
   color:var(--polish-text-soft)!important;
+}
+
+.mascot-img{
+  filter:drop-shadow(0 10px 22px rgba(72,54,39,.16)) contrast(1.07) saturate(.94) brightness(.98)!important;
+}
+
+.mascot-img:hover,
+.mascot-img:active{
+  filter:drop-shadow(0 14px 28px rgba(72,54,39,.18)) contrast(1.08) saturate(.96) brightness(.99)!important;
+}
+
+.mascot-bubble{
+  background:rgba(255,251,246,.96)!important;
+  border-color:rgba(72,54,39,.12)!important;
+  box-shadow:0 18px 40px rgba(72,54,39,.14)!important;
+}
+
+.mascot-bubble::after{
+  background:rgba(255,251,246,.96)!important;
+  border-right-color:rgba(72,54,39,.12)!important;
+  border-bottom-color:rgba(72,54,39,.12)!important;
 }
 
 @media (min-width:1100px){
