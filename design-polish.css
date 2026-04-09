@@ -1,25 +1,80 @@
 /* PERSONALIZATE - refinamiento visual compartido */
 :root{
-  --polish-surface:rgba(255,255,255,.055);
-  --polish-surface-strong:rgba(255,255,255,.085);
-  --polish-line:rgba(255,255,255,.12);
-  --polish-muted:rgba(255,255,255,.62);
-  --polish-soft-shadow:0 18px 50px rgba(0,0,0,.34);
-  --polish-glow:0 0 0 1px rgba(255,216,0,.18),0 18px 55px rgba(255,45,155,.12);
+  --polish-bg:#f3eee6;
+  --polish-bg-soft:#ede6db;
+  --polish-surface:#fffdfa;
+  --polish-surface-strong:#f8f2ea;
+  --polish-surface-tint:#f4ede4;
+  --polish-line:rgba(72,54,39,.14);
+  --polish-line-strong:rgba(72,54,39,.22);
+  --polish-text:#241a14;
+  --polish-text-soft:#4f4236;
+  --polish-muted:#6d5e52;
+  --polish-soft-shadow:0 14px 34px rgba(95,73,50,.10);
+  --polish-soft-shadow-hover:0 18px 42px rgba(95,73,50,.14);
+  --polish-glow:0 0 0 1px rgba(255,167,87,.18),0 14px 36px rgba(255,109,145,.10);
+  --polish-accent-pink:#d85f89;
+  --polish-accent-orange:#de8b4a;
+  --polish-accent-yellow:#d9aa34;
+  --polish-accent-cyan:#4a9cab;
+  --polish-accent-green:#5f9d63;
 }
 
 html{scroll-padding-top:86px;}
-body{font-synthesis-weight:none;text-rendering:optimizeLegibility;}
-body::before{opacity:.92;}
+body{
+  background:var(--polish-bg)!important;
+  color:var(--polish-text)!important;
+  font-synthesis-weight:none;
+  text-rendering:optimizeLegibility;
+}
+body::before{
+  opacity:1;
+  background:
+    radial-gradient(ellipse 520px 360px at 12% 14%,rgba(216,95,137,.10) 0%,transparent 68%),
+    radial-gradient(ellipse 460px 320px at 88% 10%,rgba(74,156,171,.09) 0%,transparent 70%),
+    radial-gradient(ellipse 620px 360px at 50% 88%,rgba(217,170,52,.08) 0%,transparent 72%),
+    linear-gradient(180deg,var(--polish-bg),var(--polish-bg-soft))!important;
+}
 
 nav{
-  box-shadow:0 14px 38px rgba(0,0,0,.36);
+  background:rgba(247,241,233,.90)!important;
+  border-bottom:1px solid var(--polish-line)!important;
+  box-shadow:0 12px 28px rgba(70,52,38,.08);
 }
 
 .nav-logo,
 .logo,
 .footer-brand-logo{
   letter-spacing:.045em!important;
+}
+
+.nav-links a,
+nav a,
+.footer-col a,
+.footer-brand p,
+.footer-bottom p{
+  color:var(--polish-text-soft)!important;
+}
+
+.nav-links a:hover,
+nav a:hover,
+nav a.active,
+.footer-col a:hover{
+  color:var(--polish-accent-pink)!important;
+}
+
+.nav-mobile{
+  background:rgba(250,246,240,.96)!important;
+  border-bottom:1px solid var(--polish-line)!important;
+}
+
+.nav-mobile a{
+  color:var(--polish-text-soft)!important;
+  border-bottom-color:rgba(72,54,39,.08)!important;
+}
+
+.nav-toggle span{
+  background:var(--polish-text)!important;
 }
 
 .nav-cta,
@@ -45,7 +100,9 @@ nav{
 .modal-btn,
 .cta-btn,
 .nav-cta{
-  box-shadow:0 10px 28px rgba(0,0,0,.28),0 0 22px rgba(255,45,155,.22);
+  background:linear-gradient(135deg,var(--polish-accent-pink),var(--polish-accent-orange))!important;
+  color:#fff!important;
+  box-shadow:0 10px 24px rgba(216,95,137,.18)!important;
 }
 
 .btn-main:hover,
@@ -56,6 +113,22 @@ nav{
 .cta-btn:hover,
 .nav-cta:hover{
   transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(216,95,137,.22)!important;
+}
+
+.btn-sec,
+.btn-alt,
+.overlay-btn-secondary{
+  background:rgba(255,253,250,.78)!important;
+  border:1px solid var(--polish-line)!important;
+  color:var(--polish-text)!important;
+}
+
+.btn-sec:hover,
+.btn-alt:hover,
+.overlay-btn-secondary:hover{
+  border-color:rgba(216,95,137,.32)!important;
+  color:var(--polish-accent-pink)!important;
 }
 
 .hero{
@@ -69,8 +142,27 @@ nav{
 .page-hero-desc p,
 .modal-desc,
 .product-info .technique,
-.tecnica-item p{
+.tecnica-item p,
+.step p,
+.promo-banner p,
+.contact-left p,
+.product-info p{
   color:var(--polish-muted)!important;
+}
+
+.hero-title,
+.sec-title,
+.page-hero h1,
+.contact-left h2,
+.promo-banner h2{
+  color:var(--polish-text)!important;
+}
+
+.line1,
+.sec-title span,
+.promo-banner h2 span,
+.page-hero h1 em{
+  filter:saturate(.82) brightness(.94);
 }
 
 .hero-card,
@@ -81,32 +173,56 @@ nav{
 .cat-item,
 .product-card,
 .modal,
-.tecnica-item{
+.tecnica-item,
+.step,
+.stat,
+.contact-form{
   border-radius:8px!important;
-  border-color:var(--polish-line)!important;
-  box-shadow:var(--polish-soft-shadow);
+  border:1px solid var(--polish-line)!important;
+  box-shadow:var(--polish-soft-shadow)!important;
 }
 
 .hero-card,
 .svc,
 .product-card,
 .tecnica-item,
-.contact-right{
-  background:linear-gradient(180deg,var(--polish-surface-strong),rgba(255,255,255,.025))!important;
+.contact-right,
+.stat,
+.contact-form,
+.step{
+  background:linear-gradient(180deg,var(--polish-surface),var(--polish-surface-tint))!important;
 }
 
 .hero-card:hover,
 .svc:hover,
 .product-card:hover,
 .cat-item:hover{
-  box-shadow:var(--polish-glow)!important;
+  box-shadow:var(--polish-soft-shadow-hover)!important;
 }
 
 .hero-card h3,
 .svc h3,
 .product-info h3,
-.modal-content h2{
+.modal-content h2,
+.step h4,
+.tecnica-item h4,
+.catalog-header h2,
+.cat-header h2{
+  color:var(--polish-text)!important;
   letter-spacing:.015em!important;
+}
+
+.hero-card p,
+.svc p,
+.technique,
+.colors-label,
+.color-name,
+.feat-tag,
+.product-price small,
+.stat .l,
+.gi-cat,
+.form-note{
+  color:var(--polish-muted)!important;
 }
 
 .services-grid,
@@ -118,15 +234,21 @@ nav{
   gap:2rem!important;
 }
 
+.steps-grid::before{
+  opacity:.14!important;
+  background:linear-gradient(90deg,transparent,rgba(216,95,137,.34),rgba(217,170,52,.34),rgba(74,156,171,.34),transparent)!important;
+}
+
 .step-circle{
-  box-shadow:0 12px 26px rgba(0,0,0,.32),0 0 18px rgba(255,45,155,.28)!important;
+  box-shadow:0 12px 22px rgba(216,95,137,.16)!important;
+  filter:saturate(.88);
 }
 
 .promo-banner{
   padding:clamp(2rem,4vw,3.4rem)!important;
   background:
-    linear-gradient(135deg,rgba(255,45,155,.15),rgba(255,107,0,.105),rgba(255,215,0,.08)),
-    rgba(255,255,255,.03)!important;
+    linear-gradient(135deg,rgba(216,95,137,.10),rgba(222,139,74,.08),rgba(217,170,52,.06)),
+    linear-gradient(180deg,var(--polish-surface),var(--polish-surface-tint))!important;
 }
 
 .cat-filter,
@@ -136,18 +258,18 @@ nav{
 
 .cat-btn,
 .filter-btn{
-  background:rgba(255,255,255,.045)!important;
-  border-color:rgba(255,255,255,.14)!important;
-  color:rgba(255,255,255,.66)!important;
+  background:rgba(255,253,250,.76)!important;
+  border-color:var(--polish-line)!important;
+  color:var(--polish-text-soft)!important;
 }
 
 .cat-btn.active,
 .cat-btn:hover,
 .filter-btn.active,
 .filter-btn:hover{
-  background:rgba(245,216,0,.12)!important;
-  border-color:rgba(245,216,0,.62)!important;
-  color:var(--yellow)!important;
+  background:rgba(217,170,52,.10)!important;
+  border-color:rgba(217,170,52,.34)!important;
+  color:var(--polish-accent-orange)!important;
 }
 
 .cat-grid,
@@ -164,28 +286,30 @@ nav{
 .cat-item img,
 .product-img img,
 .modal-img img{
-  filter:saturate(1.03) contrast(1.02);
+  filter:saturate(.96) contrast(1.01);
 }
 
-.product-img{
-  background:linear-gradient(135deg,#171717,#0c0c0c)!important;
+.product-img,
+.modal-img{
+  background:linear-gradient(135deg,#e8dfd3,#f4eee7)!important;
 }
 
 .img-placeholder{
-  color:rgba(255,255,255,.22)!important;
+  color:rgba(72,54,39,.22)!important;
   background:
-    radial-gradient(circle at 50% 32%,rgba(245,216,0,.12),transparent 36%),
-    linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));
+    radial-gradient(circle at 50% 32%,rgba(217,170,52,.10),transparent 36%),
+    linear-gradient(180deg,rgba(255,255,255,.60),rgba(243,236,227,.92));
 }
 
 .img-placeholder p{
-  color:rgba(255,255,255,.44)!important;
+  color:rgba(72,54,39,.48)!important;
   max-width:18rem;
 }
 
 .product-overlay{
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  background:rgba(32,23,18,.36)!important;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
 }
 
 .product-info{
@@ -194,21 +318,32 @@ nav{
 
 .product-price,
 .modal-price{
-  color:var(--yellow)!important;
+  color:var(--polish-accent-orange)!important;
   text-wrap:balance;
 }
 
 .modal{
   overflow:hidden!important;
+  background:var(--polish-surface)!important;
 }
 
 .modal-content{
-  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(0,0,0,.08));
+  background:linear-gradient(180deg,var(--polish-surface),var(--polish-surface-tint))!important;
+}
+
+.modal-tag,
+.product-badge,
+.tecnica-tag,
+.card-tag,
+.cat-item-tag{
+  filter:saturate(.82) brightness(.96);
 }
 
 .modal-close{
   border-radius:8px!important;
-  background:rgba(0,0,0,.6)!important;
+  background:rgba(255,253,250,.94)!important;
+  color:var(--polish-text)!important;
+  border:1px solid var(--polish-line)!important;
 }
 
 .contact-form input,
@@ -218,12 +353,32 @@ nav{
 .fg select,
 .fg textarea{
   border-radius:8px!important;
+  background:rgba(255,252,248,.86)!important;
+  border:1px solid rgba(72,54,39,.12)!important;
+  color:var(--polish-text)!important;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder,
+.fg input::placeholder,
+.fg textarea::placeholder{
+  color:rgba(79,66,54,.52)!important;
+}
+
+.contact-form label,
+.fg label,
+.filter-label,
+.sec-eye,
+.hero-eyebrow,
+.breadcrumb{
+  color:var(--polish-accent-pink)!important;
 }
 
 .page-hero{
   background:
-    radial-gradient(circle at 12% 12%,rgba(255,45,155,.12),transparent 30%),
-    radial-gradient(circle at 85% 35%,rgba(245,216,0,.1),transparent 28%);
+    radial-gradient(circle at 12% 12%,rgba(216,95,137,.10),transparent 30%),
+    radial-gradient(circle at 85% 35%,rgba(217,170,52,.08),transparent 28%),
+    linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,0))!important;
 }
 
 .tecnicas-bar{
@@ -236,8 +391,29 @@ nav{
   padding-top:3rem!important;
 }
 
+.process-section,
+.promo-section,
+.videos-section,
+.catalogo-section,
+.contact-section,
+.catalog-section,
+.section{
+  background:transparent!important;
+}
+
+.ticker-wrap{
+  filter:saturate(.72) brightness(.97);
+}
+
 footer{
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.06);
+  background:rgba(246,239,230,.78)!important;
+  box-shadow:inset 0 1px 0 rgba(72,54,39,.08);
+  border-top:1px solid rgba(72,54,39,.10)!important;
+}
+
+.socials .soc,
+.footer-links a{
+  color:var(--polish-text-soft)!important;
 }
 
 @media (min-width:1100px){
