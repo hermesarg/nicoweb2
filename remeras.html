@@ -93,6 +93,8 @@
   .spec-row span:first-child{color:#666;} .spec-row span:last-child{color:var(--white);font-weight:500;}
   .modal-btn{display:block;text-align:center;margin-top:1.8rem;padding:1rem;background:var(--yellow);color:var(--black);font-weight:700;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:.2s;}
   .modal-btn:hover{background:var(--red);color:var(--white);}
+  .talle-btn{padding:.45rem .9rem;border:1px solid #333;background:transparent;color:#888;font-size:.75rem;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;}
+  .talle-btn:hover,.talle-btn.active{border-color:var(--yellow);color:var(--yellow);background:rgba(245,216,0,.06);}
   .cta-banner{margin:0 4rem 6rem;background:var(--yellow);padding:3rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;clip-path:polygon(20px 0%,100% 0%,calc(100% - 20px) 100%,0% 100%);}
   .cta-banner h3{font-family:'Fredoka One',sans-serif;font-size:2.5rem;color:var(--black);line-height:.95;}
   .cta-banner p{color:rgba(0,0,0,.6);font-size:.9rem;margin-top:.5rem;}
@@ -349,6 +351,26 @@
       <div class="modal-tag">DTF · Transferencia directa al tejido</div>
       <h2>Remera DTF Full Color</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="talle-selector" style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Color de prenda</h4>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <div onclick="setModalColorLabel(this,'r1-color-name')" style="width:24px;height:24px;border-radius:50%;background:#111;border:2px solid #f5d800;cursor:pointer;" title="Negra"></div>
+          <div onclick="setModalColorLabel(this,'r1-color-name')" style="width:24px;height:24px;border-radius:50%;background:#eee;border:2px solid #333;cursor:pointer;" title="Blanca"></div>
+          <div onclick="setModalColorLabel(this,'r1-color-name')" style="width:24px;height:24px;border-radius:50%;background:#888;border:2px solid #333;cursor:pointer;" title="Gris"></div>
+          <div onclick="setModalColorLabel(this,'r1-color-name')" style="width:24px;height:24px;border-radius:50%;background:#1e3a8a;border:2px solid #333;cursor:pointer;" title="Azul"></div>
+          <span id="r1-color-name" style="font-size:.7rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-left:.3rem;">Negra</span>
+        </div>
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Talle</h4>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="talle-btn active" onclick="selectTalle(this)">S</button>
+          <button class="talle-btn" onclick="selectTalle(this)">M</button>
+          <button class="talle-btn" onclick="selectTalle(this)">L</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XL</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XXL</button>
+        </div>
+      </div>
       <p class="modal-desc">Estampado DTF de alta resolución. Permite reproducir cualquier diseño — fotografías, degradés, ilustraciones complejas. Colores vivos y resistentes al lavado.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -373,6 +395,25 @@
       <div class="modal-tag">Sublimación · El color forma parte de la tela</div>
       <h2>Remera Sublimación 360°</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="talle-selector" style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Color de prenda</h4>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <div onclick="setModalColorLabel(this,\'r2-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#eee;border:2px solid #f5d800;cursor:pointer;" title="Blanca"></div>
+          <div onclick="setModalColorLabel(this,\'r2-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#d9d9d9;border:2px solid #333;cursor:pointer;" title="Gris claro"></div>
+          <div onclick="setModalColorLabel(this,\'r2-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#bfd7ff;border:2px solid #333;cursor:pointer;" title="Celeste"></div>
+          <span id="r2-color-name" style="font-size:.7rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-left:.3rem;">Blanca</span>
+        </div>
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Talle</h4>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="talle-btn active" onclick="selectTalle(this)">S</button>
+          <button class="talle-btn" onclick="selectTalle(this)">M</button>
+          <button class="talle-btn" onclick="selectTalle(this)">L</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XL</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XXL</button>
+        </div>
+      </div>
       <p class="modal-desc">Con sublimación
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -397,6 +438,26 @@
       <div class="modal-tag">Vinilo textil · Termosellado de precisión</div>
       <h2>Remera Vinilo Textil</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="talle-selector" style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Color de prenda</h4>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <div onclick="setModalColorLabel(this,\'r3-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#111;border:2px solid #f5d800;cursor:pointer;" title="Negra"></div>
+          <div onclick="setModalColorLabel(this,\'r3-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#eee;border:2px solid #333;cursor:pointer;" title="Blanca"></div>
+          <div onclick="setModalColorLabel(this,\'r3-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#888;border:2px solid #333;cursor:pointer;" title="Gris"></div>
+          <div onclick="setModalColorLabel(this,\'r3-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#c8b89a;border:2px solid #333;cursor:pointer;" title="Crema"></div>
+          <span id="r3-color-name" style="font-size:.7rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-left:.3rem;">Negra</span>
+        </div>
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Talle</h4>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="talle-btn active" onclick="selectTalle(this)">S</button>
+          <button class="talle-btn" onclick="selectTalle(this)">M</button>
+          <button class="talle-btn" onclick="selectTalle(this)">L</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XL</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XXL</button>
+        </div>
+      </div>
       <p class="modal-desc">El vinilo textil se corta con precisión y se sella con calor. Resultado limpio y profesional, ideal para logos, textos y diseños de colores sólidos. Altísima durabilidad.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -421,6 +482,28 @@
       <div class="modal-tag">Pack · Precio mayorista desde x10</div>
       <h2>Pack Remeras x10</h2>
       <div class="modal-price">Precio especial</div>
+      <div class="talle-selector" style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Color de prenda</h4>
+        <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+          <div onclick="setModalColorLabel(this,\'r4-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#111;border:2px solid #f5d800;cursor:pointer;" title="Negra"></div>
+          <div onclick="setModalColorLabel(this,\'r4-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#eee;border:2px solid #333;cursor:pointer;" title="Blanca"></div>
+          <div onclick="setModalColorLabel(this,\'r4-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#1e3a8a;border:2px solid #333;cursor:pointer;" title="Azul"></div>
+          <div onclick="setModalColorLabel(this,\'r4-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#6b1f2b;border:2px solid #333;cursor:pointer;" title="Bordo"></div>
+          <div onclick="setModalColorLabel(this,\'r4-color-name\')" style="width:24px;height:24px;border-radius:50%;background:#888;border:2px solid #333;cursor:pointer;" title="Gris"></div>
+          <span id="r4-color-name" style="font-size:.7rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-left:.3rem;">Negra</span>
+        </div>
+      </div>
+      <div style="margin-bottom:1.2rem;">
+        <h4 style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.6rem;">Talle</h4>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+          <button class="talle-btn active" onclick="selectTalle(this)">S</button>
+          <button class="talle-btn" onclick="selectTalle(this)">M</button>
+          <button class="talle-btn" onclick="selectTalle(this)">L</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XL</button>
+          <button class="talle-btn" onclick="selectTalle(this)">XXL</button>
+          <button class="talle-btn" onclick="selectTalle(this)">Mix</button>
+        </div>
+      </div>
       <p class="modal-desc">Pedidos de 10 unidades o más con precio mayorista. Podés mezclar talles y colores de prenda manteniendo el mismo diseño. Ideal para marcas, eventos y equipos.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -508,6 +591,15 @@ function cambiarRemeraModal(src, dot, nombre){
   document.getElementById('modal-img-lisa').src = src;
   document.getElementById('color-label-lisa').textContent = nombre;
   dot.closest('div').querySelectorAll('div[onclick]').forEach(d=>d.style.borderColor='#333');
+  dot.style.borderColor='#f5d800';
+}
+function setModalColorLabel(dot, labelId){
+  if(!dot||!labelId)return;
+  var label=document.getElementById(labelId);
+  if(label)label.textContent = dot.getAttribute('title') || '';
+  dot.parentElement.querySelectorAll('div[title]').forEach(function(item){
+    item.style.borderColor='#333';
+  });
   dot.style.borderColor='#f5d800';
 }
 </script>

@@ -544,7 +544,7 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
             <select id="f_producto" required>
               <option value="">Elegir...</option>
               <option>Remeras</option><option>Stickers</option>
-              <option>Gorras</option><option>Banderas</option><option>Banners</option><option>Tarjetería</option><option>Combo varios productos</option><option>Otro</option>
+          <option>Gorras</option><option>Pullovers</option><option>Banderas</option><option>Banners</option><option>Tarjetería</option><option>Combo varios productos</option><option>Otro</option>
             </select>
           </div>
           <div class="fg"><label>Cantidad</label>
@@ -694,6 +694,10 @@ function sendWA(){
   const otraCant=cleanField(otraEl.value,80);
   const cant=cantSel==='otro'?otraCant:cantSel;
   const msg=cleanField(msgEl.value,700);
+  const quoteContext=window.PersonalizateQuote&&window.PersonalizateQuote.getContext?window.PersonalizateQuote.getContext():null;
+  const modelo=cleanField(quoteContext&&quoteContext.product,90);
+  const talle=cleanField(quoteContext&&quoteContext.size,90);
+  const color=cleanField(quoteContext&&quoteContext.color,90);
   
   if(!nombre||!prod||!msg){
     alert('Por favor completá Nombre, Producto y tu consulta antes de enviar.');
@@ -724,6 +728,9 @@ function sendWA(){
     `- Nombre: ${nombre}\n`+
     (tel?`- Telefono: ${tel}\n`:'')+
     `- Producto: ${prod}\n`+
+    (modelo?`- Modelo: ${modelo}\n`:'')+
+    (talle?`- Talle: ${talle}\n`:'')+
+    (color?`- Color: ${color}\n`:'')+
     (cant?`- Cantidad: ${cant}\n`:'')+
     `- Consulta: ${msg}`+
     `\n\nSi tenes un diseño, envialo como imagen en este mismo chat.\nEnviado desde la web`;

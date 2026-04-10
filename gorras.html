@@ -100,6 +100,16 @@
   .spec-row span:first-child{color:#555;}
   .modal-btn{display:block;padding:.85rem;text-align:center;background:var(--yellow);color:var(--black);font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
   .modal-btn:hover{background:var(--red);color:#fff;}
+  .modal-sizes{margin-bottom:1.5rem;}
+  .modal-sizes h4,.modal-colors h4{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.7rem;}
+  .size-grid{display:flex;gap:.4rem;flex-wrap:wrap;}
+  .size-btn{padding:.4rem .9rem;border:1px solid #333;background:transparent;color:#888;font-size:.75rem;cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;}
+  .size-btn:hover,.size-btn.sel{border-color:var(--yellow);color:var(--yellow);background:rgba(245,216,0,.06);}
+  .modal-colors{margin-bottom:1.5rem;}
+  .modal-color-dots{display:flex;gap:.6rem;flex-wrap:wrap;}
+  .modal-color-dot{width:24px;height:24px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:.2s;}
+  .modal-color-dot:hover,.modal-color-dot.sel{border-color:var(--yellow);transform:scale(1.15);}
+  .modal-color-name{font-size:.72rem;color:#888;letter-spacing:.1em;text-transform:uppercase;margin-top:.45rem;}
 
   footer{padding:2rem 4rem;border-top:1px solid #1a1a1a;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
   footer p{font-size:.75rem;color:#444;}
@@ -362,6 +372,23 @@
       <div class="modal-tag">Gorra · Vinilo termosellado</div>
       <h2>Trucker Vinilo</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="modal-sizes">
+        <h4>Talle</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">Adulto</button>
+          <button class="size-btn">Nino</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a;" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#f5f0e8;border:2px solid #555;" title="Blanco"></span>
+          <span class="modal-color-dot" style="background:#1a3a6a;" title="Azul"></span>
+          <span class="modal-color-dot" style="background:#7d1220;" title="Rojo"></span>
+        </div>
+        <div class="modal-color-name" id="g1-color-name">Negro</div>
+      </div>
       <p class="modal-desc">Vinilo termosellado sobre panel frontal. Colores sólidos y brillantes, muy resistente al uso diario. Ideal para logos simples y texto.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -388,6 +415,23 @@
       <div class="modal-tag">Gorra · Transfer DTF</div>
       <h2>Snapback Transfer DTF</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="modal-sizes">
+        <h4>Talle</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">Adulto</button>
+          <button class="size-btn">Nino</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a;" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#f5f0e8;border:2px solid #555;" title="Blanco"></span>
+          <span class="modal-color-dot" style="background:#1a3a6a;" title="Azul"></span>
+          <span class="modal-color-dot" style="background:#666;" title="Gris"></span>
+        </div>
+        <div class="modal-color-name" id="g2-color-name">Negro</div>
+      </div>
       <p class="modal-desc">Transfer DTF sobre panel frontal. Degradés, fotografías y diseños complejos sin límite de colores. Alta resolución y colores vivos.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -411,6 +455,23 @@
       <div class="modal-tag">Gorra · Bucket Hat</div>
       <h2>Bucket Hat</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="modal-sizes">
+        <h4>Talle</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">Adulto</button>
+          <button class="size-btn">Nino</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a;" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#c8b89a;" title="Beige"></span>
+          <span class="modal-color-dot" style="background:#1a3a6a;" title="Azul"></span>
+          <span class="modal-color-dot" style="background:#f5f0e8;border:2px solid #555;" title="Blanco"></span>
+        </div>
+        <div class="modal-color-name" id="g3-color-name">Negro</div>
+      </div>
       <p class="modal-desc">Sombrero de pescador personalizado. Estampado DTF o vinilo en panel frontal. Popular para eventos, equipos y uso diario.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -437,6 +498,23 @@
       <div class="modal-tag">Gorra · Trucker DTF</div>
       <h2>Trucker DTF</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="modal-sizes">
+        <h4>Talle</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">Adulto</button>
+          <button class="size-btn">Nino</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a;" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#f5f0e8;border:2px solid #555;" title="Blanco"></span>
+          <span class="modal-color-dot" style="background:#1a3a6a;" title="Azul"></span>
+          <span class="modal-color-dot" style="background:#7d1220;" title="Rojo"></span>
+        </div>
+        <div class="modal-color-name" id="g4-color-name">Negro</div>
+      </div>
       <p class="modal-desc">Gorra trucker con estampado DTF prensado. Ideal para logos de empresas, clubes y eventos. Colores perfectos y alta durabilidad.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -463,6 +541,23 @@
       <div class="modal-tag">Gorra · 5 Paneles</div>
       <h2>5 Paneles</h2>
       <div class="modal-price">Consultar precio</div>
+      <div class="modal-sizes">
+        <h4>Talle</h4>
+        <div class="size-grid">
+          <button class="size-btn sel">Adulto</button>
+          <button class="size-btn">Nino</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a;" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#445c2b;" title="Verde"></span>
+          <span class="modal-color-dot" style="background:#1a3a6a;" title="Azul"></span>
+          <span class="modal-color-dot" style="background:#c8b89a;" title="Beige"></span>
+        </div>
+        <div class="modal-color-name" id="g5-color-name">Negro</div>
+      </div>
       <p class="modal-desc">Gorra de 5 paneles estilo skate/surf. Vinilo o transfer en el panel central. Diseño limpio y moderno para cualquier marca.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -485,6 +580,24 @@
       <div class="modal-tag">Pack · Equipos y eventos</div>
       <h2>Pack Equipos / Eventos</h2>
       <div class="modal-price">Precio especial</div>
+      <div class="modal-sizes">
+        <h4>Talle</h4>
+        <div class="size-grid">
+          <button class="size-btn">Adulto</button>
+          <button class="size-btn">Nino</button>
+          <button class="size-btn sel">Mix</button>
+        </div>
+      </div>
+      <div class="modal-colors">
+        <h4>Color</h4>
+        <div class="modal-color-dots">
+          <span class="modal-color-dot sel" style="background:#1a1a1a;" title="Negro"></span>
+          <span class="modal-color-dot" style="background:#f5f0e8;border:2px solid #555;" title="Blanco"></span>
+          <span class="modal-color-dot" style="background:#1a3a6a;" title="Azul"></span>
+          <span class="modal-color-dot" style="background:#7d1220;" title="Rojo"></span>
+        </div>
+        <div class="modal-color-name" id="g6-color-name">Negro</div>
+      </div>
       <p class="modal-desc">Pedidos de 12 unidades o más con precio mayorista. Podés mezclar colores, talles y agregar nombres individuales en cada gorra.</p>
       <div class="modal-specs">
         <h4>Especificaciones</h4>
@@ -522,6 +635,26 @@
   }
   function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
   function closeModal(e,id){if(e.target.classList.contains('modal-overlay')){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}}
+  document.querySelectorAll('.size-btn').forEach(btn=>{
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      const group=this.closest('.size-grid');
+      if(!group)return;
+      group.querySelectorAll('.size-btn').forEach(item=>item.classList.remove('sel'));
+      this.classList.add('sel');
+    });
+  });
+  document.querySelectorAll('.modal-color-dot').forEach(dot=>{
+    dot.addEventListener('click',function(e){
+      e.stopPropagation();
+      const group=this.closest('.modal-color-dots');
+      if(!group)return;
+      group.querySelectorAll('.modal-color-dot').forEach(item=>item.classList.remove('sel'));
+      this.classList.add('sel');
+      const label=this.closest('.modal-colors').querySelector('.modal-color-name');
+      if(label)label.textContent = this.getAttribute('title') || '';
+    });
+  });
 </script>
   <script src="site.js"></script>
   <script src="lightbox.js"></script>
