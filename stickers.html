@@ -305,6 +305,17 @@
   </div>
 </section>
 
+
+<!-- TRABAJOS REALES -->
+<section style="padding:2rem 4rem 4rem;">
+  <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:1.5rem;">Trabajos realizados</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#1a1a1a;">
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_remera3.jpg" alt="BG Servicio Técnico" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="foto_1775477341753.jfif" alt="Sticker lencería" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="foto_1775477354923.jfif" alt="Sticker taller mecánico" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+  </div>
+</section>
+
 <div class="cta-banner reveal">
   <div>
     <h3>PACKS DESDE<br>10 UNIDADES</h3>
@@ -464,7 +475,28 @@
   </div>
 </div>
 
-  <script src="site.js"></script>
+  
+<script>
+function cotizarWA(e, producto, colorId, modalId) {
+  e.preventDefault();
+  var colorEl = colorId ? document.getElementById(colorId) : null;
+  var color = colorEl ? colorEl.textContent.trim() : '';
+  if (!color && modalId) {
+    var selDot = document.querySelector('#' + modalId + ' .modal-color-dot.sel');
+    if (selDot) color = selDot.getAttribute('title') || '';
+  }
+  var talleActive = modalId ? document.querySelector('#' + modalId + ' .size-btn.sel, #' + modalId + ' .talle-btn.active') : null;
+  var talle = talleActive ? talleActive.textContent.trim() : '';
+  var msg = 'Hola! Quiero cotizar una *' + producto + '*';
+  if (color) msg += ' — Color: *' + color + '*';
+  if (talle) msg += ' — Talle: *' + talle + '*';
+  window.open('https://wa.me/542995174801?text=' + encodeURIComponent(msg), '_blank');
+}
+function lbOpen(img) {
+  if(window.openLightbox) { openLightbox(img.src, img.alt); }
+}
+</script>
+<script src="site.js"></script>
   <script src="lightbox.js"></script>
 </body>
 </html>

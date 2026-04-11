@@ -147,7 +147,7 @@
     <h1>PULLOVERS<em>PERSONALIZADOS</em></h1>
   </div>
   <div class="page-hero-desc">
-    <p>Busos con capucha estampados DTF full color. Cualquier diseño, frente y/o espalda. Talles adulto y niño desde una sola unidad.</p>
+    <p>Buzos con capucha estampados DTF full color. Cualquier diseño, frente y/o espalda. Talles adulto y niño desde una sola unidad.</p>
     <a href="index.html#contacto" class="hero-btn">Pedir cotización</a>
   </div>
 </section>
@@ -336,7 +336,7 @@
         <tr><td>Talles niño</td><td>4 / 6 / 8 / 10 / 12</td></tr>
         <tr><td>Mínimo</td><td>1 unidad</td></tr>
       </table>
-      <a href="index.html#contacto" class="cta-btn">Cotizar pullover →</a>
+      <a href="index.html#contacto" class="cta-btn">💬 Cotizar por WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -403,6 +403,17 @@
   </div>
 </div>
 
+
+<!-- TRABAJOS REALES -->
+<section style="padding:2rem 4rem 4rem;">
+  <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:1.5rem;">Trabajos realizados</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:#1a1a1a;">
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_pullover1.jpg" alt="Pullover Sangre Negra" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="mockup_pullover.jpg" alt="Pullover personalizado" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_remera2.jpg" alt="Ejemplo estampado DTF" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+  </div>
+</section>
+
 <footer>
   <p>© 2025 PERSONALIZATE — Villa Manzano, Cinco Saltos, Río Negro.</p>
   <div class="footer-links">
@@ -455,7 +466,28 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:0.06});
 reveals.forEach(el=>observer.observe(el));
 </script>
-  <script src="site.js"></script>
+  
+<script>
+function cotizarWA(e, producto, colorId, modalId) {
+  e.preventDefault();
+  var colorEl = colorId ? document.getElementById(colorId) : null;
+  var color = colorEl ? colorEl.textContent.trim() : '';
+  if (!color && modalId) {
+    var selDot = document.querySelector('#' + modalId + ' .modal-color-dot.sel');
+    if (selDot) color = selDot.getAttribute('title') || '';
+  }
+  var talleActive = modalId ? document.querySelector('#' + modalId + ' .size-btn.sel, #' + modalId + ' .talle-btn.active') : null;
+  var talle = talleActive ? talleActive.textContent.trim() : '';
+  var msg = 'Hola! Quiero cotizar un *' + producto + '*';
+  if (color) msg += ' — Color: *' + color + '*';
+  if (talle) msg += ' — Talle: *' + talle + '*';
+  window.open('https://wa.me/542995174801?text=' + encodeURIComponent(msg), '_blank');
+}
+function lbOpen(img) {
+  if(window.openLightbox) { openLightbox(img.src, img.alt); }
+}
+</script>
+<script src="site.js"></script>
   <script src="lightbox.js"></script>
 </body>
 </html>

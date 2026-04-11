@@ -334,6 +334,22 @@
   </div>
 </section>
 
+
+<!-- TRABAJOS REALES -->
+<section style="padding:2rem 4rem 4rem;">
+  <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:1.5rem;">Trabajos realizados</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:#1a1a1a;">
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_remera2.jpg" alt="Ají picante DTF" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_remera5.jpg" alt="La Chorineta" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_remera6.jpg" alt="Maradona DIOS" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_remera7.jpg" alt="Carros Food Truck" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_bolsas.jpg" alt="Maradona espalda DTF" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_gorras_pack.jpg" alt="Los Pollos Hermanos" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="gallery_gorra2.jpg" alt="Power Clean" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+    <div style="background:var(--black);overflow:hidden;aspect-ratio:1;"><img src="foto_1775477376095.jfif" alt="Remera taller mecánico" loading="lazy" style="width:100%;height:100%;object-fit:cover;cursor:zoom-in;" onclick="lbOpen(this)"></div>
+  </div>
+</section>
+
 <div class="cta-banner reveal">
   <div>
     <h3>¿NO TENÉS<br>DISEÑO PROPIO?</h3>
@@ -382,7 +398,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar remera DTF →</a>
+      <a href="#" class="modal-btn">💬 Cotizar por WhatsApp →" onclick="cotizarWA(event,'Remera DTF Full Color','r1-color-name','r1')</a>
     </div>
   </div>
 </div>
@@ -425,7 +441,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar sublimación →</a>
+      <a href="#" class="modal-btn">💬 Cotizar por WhatsApp →" onclick="cotizarWA(event,'Remera Sublimación 360°','r2-color-name','r2')</a>
     </div>
   </div>
 </div>
@@ -469,7 +485,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>2–4 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar vinilo textil →</a>
+      <a href="#" class="modal-btn">💬 Cotizar por WhatsApp →" onclick="cotizarWA(event,'Remera Vinilo Textil','r3-color-name','r3')</a>
     </div>
   </div>
 </div>
@@ -514,7 +530,7 @@
         <div class="spec-row"><span>Producción</span><span>5–7 días hábiles</span></div>
         <div class="spec-row"><span>Descuento</span><span>Mayor cantidad = menor precio</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar pack →</a>
+      <a href="#" class="modal-btn">💬 Cotizar por WhatsApp →" onclick="cotizarWA(event,'Pack Remeras x10','r4-color-name','r4')</a>
     </div>
   </div>
 </div>
@@ -576,7 +592,7 @@
         <div class="spec-row"><span>Talles</span><span>S / M / L / XL / XXL</span></div>
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar remera lisa →</a>
+      <a href="#" class="modal-btn">💬 Cotizar por WhatsApp →" onclick="cotizarWA(event,'Remera Lisa','color-label-lisa','mr-lisa')</a>
     </div>
   </div>
 </div>
@@ -604,6 +620,26 @@ function setModalColorLabel(dot, labelId){
 }
 </script>
 
+  
+<script>
+function cotizarWA(e, producto, colorId, modalId) {
+  e.preventDefault();
+  var color = (document.getElementById(colorId)||{}).textContent || '';
+  var talleActive = document.querySelector('#' + modalId + ' .talle-btn.active');
+  var talle = talleActive ? talleActive.textContent.trim() : '';
+  var msg = 'Hola! Quiero cotizar una *' + producto + '*';
+  if (color) msg += ' — Color: *' + color + '*';
+  if (talle) msg += ' — Talle: *' + talle + '*';
+  window.open('https://wa.me/542995174801?text=' + encodeURIComponent(msg), '_blank');
+}
+function lbOpen(img) {
+  if(window.openLightbox) { openLightbox(img.src, img.alt); }
+}
+function selectTalle(btn){
+  btn.closest('div').querySelectorAll('.talle-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+}
+</script>
   <script src="site.js"></script>
   <script src="lightbox.js"></script>
 </body>
