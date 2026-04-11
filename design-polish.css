@@ -386,6 +386,29 @@ li,
   color:var(--polish-text)!important;
 }
 
+.contact-form .fg select,
+.fg select{
+  background-color:rgba(255,252,248,.98)!important;
+  color:var(--polish-text)!important;
+  -webkit-text-fill-color:var(--polish-text)!important;
+  appearance:auto!important;
+}
+
+.contact-form .fg select option,
+.contact-form select option,
+.fg select option{
+  background:#fffaf6!important;
+  color:var(--polish-text)!important;
+}
+
+.contact-form .fg select:hover,
+.contact-form .fg select:focus,
+.fg select:hover,
+.fg select:focus{
+  background-color:#fffaf6!important;
+  color:var(--polish-text)!important;
+}
+
 .contact-right{
   box-sizing:border-box!important;
   padding:clamp(2rem,3.6vw,2.75rem)!important;

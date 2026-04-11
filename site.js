@@ -1,6 +1,7 @@
 // PERSONALIZATE - hardening compartido para paginas estaticas
 (function(){
   var quoteContext = null;
+  var QUOTE_STORAGE_KEY = 'personalizateQuoteContext';
 
   function ready(fn){
     if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
@@ -49,6 +50,42 @@
     if(size) params.set('talle', size);
     if(color) params.set('color', color);
     return 'index.html' + (params.toString() ? ('?' + params.toString()) : '') + '#contacto';
+  }
+
+  function saveQuoteContext(context){
+    try{
+      if(!window.sessionStorage) return;
+      var cleanContext = {
+        category: cleanQuoteValue(context && context.category, 60),
+        product: cleanQuoteValue(context && context.product, 90),
+        size: cleanQuoteValue(context && context.size, 90),
+        color: cleanQuoteValue(context && context.color, 90)
+      };
+      window.sessionStorage.setItem(QUOTE_STORAGE_KEY, JSON.stringify(cleanContext));
+    }catch(_error){}
+  }
+
+  function readStoredQuoteContext(){
+    try{
+      if(!window.sessionStorage) return null;
+      var raw = window.sessionStorage.getItem(QUOTE_STORAGE_KEY);
+      if(!raw) return null;
+      var parsed = JSON.parse(raw);
+      return {
+        category: cleanQuoteValue(parsed && parsed.category, 60),
+        product: cleanQuoteValue(parsed && parsed.product, 90),
+        size: cleanQuoteValue(parsed && parsed.size, 90),
+        color: cleanQuoteValue(parsed && parsed.color, 90)
+      };
+    }catch(_error){
+      return null;
+    }
+  }
+
+  function clearStoredQuoteContext(){
+    try{
+      if(window.sessionStorage) window.sessionStorage.removeItem(QUOTE_STORAGE_KEY);
+    }catch(_error){}
   }
 
   var modalQuoteConfigs = {
@@ -122,19 +159,21 @@
       var product = cleanQuoteValue(params.get('modelo'), 90);
       var size = cleanQuoteValue(params.get('talle'), 90);
       var color = cleanQuoteValue(params.get('color'), 90);
+      var storedContext = (!category && !product && !size && !color) ? readStoredQuoteContext() : null;
       quoteContext = {
-        category: category,
-        product: product,
-        size: size,
-        color: color
+        category: category || cleanQuoteValue(storedContext && storedContext.category, 60),
+        product: product || cleanQuoteValue(storedContext && storedContext.product, 90),
+        size: size || cleanQuoteValue(storedContext && storedContext.size, 90),
+        color: color || cleanQuoteValue(storedContext && storedContext.color, 90)
       };
+      if(storedContext) clearStoredQuoteContext();
 
       var productSelect = document.getElementById('f_producto');
-      if(productSelect && category){
+      if(productSelect && quoteContext.category){
         var optionMatch = Array.prototype.find.call(productSelect.options, function(option){
-          return option.value === category;
+          return option.value === quoteContext.category;
         });
-        if(optionMatch) productSelect.value = category;
+        if(optionMatch) productSelect.value = quoteContext.category;
       }
     }catch(_error){
       quoteContext = null;
@@ -171,9 +210,10 @@
       if(!quoteLink) return;
       var context = quoteLink.hasAttribute('data-quote-category') ? getQuoteContextFromLink(quoteLink) : (getModalQuoteContext(quoteLink) || getCardQuoteContext(quoteLink));
       if(context && (context.category || context.product)){
+        saveQuoteContext(context);
         quoteLink.setAttribute('href', buildQuoteUrl(context));
       }
-    });
+    }, true);
   });
 
   window.closeModalById = function(id){
