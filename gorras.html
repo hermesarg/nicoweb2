@@ -399,7 +399,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar trucker vinilo →</a>
+      <a href="#" class="modal-btn" onclick="cotizarWA(event,'Trucker Vinilo',null,'g1')">💬 Cotizar por WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -442,7 +442,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar snapback DTF →</a>
+      <a href="#" class="modal-btn" onclick="cotizarWA(event,'Snapback DTF',null,'g2')">💬 Cotizar por WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -482,7 +482,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar bucket hat →</a>
+      <a href="#" class="modal-btn" onclick="cotizarWA(event,'Bucket Hat',null,'g3')">💬 Cotizar por WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -525,7 +525,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar trucker DTF →</a>
+      <a href="#" class="modal-btn" onclick="cotizarWA(event,'Trucker DTF',null,'g4')">💬 Cotizar por WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -567,7 +567,7 @@
         <div class="spec-row"><span>Mínimo</span><span>1 unidad</span></div>
         <div class="spec-row"><span>Producción</span><span>3–5 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar 5 paneles →</a>
+      <a href="#" class="modal-btn" onclick="cotizarWA(event,'Gorra 5 Paneles',null,'g5')">💬 Cotizar por WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -607,7 +607,7 @@
         <div class="spec-row"><span>Talles</span><span>Adulto / Niño / Mix</span></div>
         <div class="spec-row"><span>Producción</span><span>7–10 días hábiles</span></div>
       </div>
-      <a href="index.html#contacto" class="modal-btn">Cotizar pack equipos →</a>
+      <a href="#" class="modal-btn" onclick="cotizarWA(event,'Pack Gorras Equipos',null,'g6')">💬 Cotizar por WhatsApp →</a>
     </div>
   </div>
 </div>
@@ -690,6 +690,26 @@ function cotizarWA(e, producto, colorId, modalId) {
 function lbOpen(img) {
   if(window.openLightbox) { openLightbox(img.src, img.alt); }
 }
+</script>
+
+<script>
+function cotizarWA(e, producto, colorId, modalId) {
+  e.preventDefault();
+  var colorEl = colorId ? document.getElementById(colorId) : null;
+  var color = colorEl ? colorEl.textContent.trim() : '';
+  if (!color && modalId) {
+    var selDot = document.querySelector('#' + modalId + ' .modal-color-dot.sel');
+    if (selDot) color = selDot.getAttribute('title') || '';
+  }
+  var talleActive = modalId ? document.querySelector('#' + modalId + ' .size-btn.sel, #' + modalId + ' .talle-btn.active') : null;
+  var talle = talleActive ? talleActive.textContent.trim() : '';
+  var art = producto.toLowerCase().startsWith('pack') ? 'un' : 'una';
+  var msg = 'Hola! Quiero cotizar ' + art + ' *' + producto + '*';
+  if (color) msg += ' — Color: *' + color + '*';
+  if (talle) msg += ' — Talle: *' + talle + '*';
+  window.open('https://wa.me/542995174801?text=' + encodeURIComponent(msg), '_blank');
+}
+function lbOpen(img) { if(window.openLightbox) openLightbox(img.src, img.alt); }
 </script>
 <script src="site.js"></script>
   <script src="lightbox.js"></script>
