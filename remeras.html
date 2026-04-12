@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self'; connect-src 'self'; form-action 'self'">
-<title>Remeras Personalizadas — PERSONALIZATE</title>
-<meta name="description" content="Remeras personalizadas DTF, sublimación y vinilo textil desde Villa Manzano, Río Negro. Full color desde 1 unidad.">
+<title>Remeras Estampadas Personalizadas | DTF, Sublimación y Vinilo | Personalizate</title>
+<meta name="description" content="Remeras personalizadas con estampado DTF full color, sublimación y vinilo textil en Cinco Saltos, Río Negro. Desde 1 unidad. Cualquier diseño.">
 <link rel="canonical" href="https://hermesarg.github.io/nicoweb2/remeras.html">
 <meta property="og:title" content="Remeras Personalizadas — PERSONALIZATE">
 <meta property="og:description" content="Remeras personalizadas DTF, sublimación y vinilo textil desde Villa Manzano, Río Negro.">
@@ -108,6 +108,8 @@
   .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
   .reveal.visible{opacity:1;transform:none;}
   @media(max-width:900px){
+    .nav-toggle{display:flex;}
+    ul.nav-links, nav > ul{display:none!important;}
     nav ul{display:none;
     /* Fix modal mobile */
     .modal{grid-template-columns:1fr!important;border-radius:12px 12px 0 0;}
@@ -131,6 +133,15 @@
     .cta-banner{margin:0 1.5rem 4rem;padding:2rem;flex-direction:column;clip-path:none;}
     footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;}
   }
+
+  /* Hamburger mobile */
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:8px;margin-left:.5rem;}
+  .nav-toggle span{display:block;width:24px;height:2px;background:currentColor;border-radius:2px;transition:.3s;}
+  .nav-mobile{display:none;position:fixed;top:56px;left:0;right:0;background:rgba(255,253,250,.98);backdrop-filter:blur(20px);padding:1rem 1.5rem 1.5rem;border-bottom:1px solid rgba(0,0,0,.08);z-index:999;box-shadow:0 8px 32px rgba(0,0,0,.12);}
+  .nav-mobile.open{display:block;}
+  .nav-mobile ul{list-style:none;display:flex;flex-direction:column;gap:.1rem;}
+  .nav-mobile a{color:#222;text-decoration:none;font-size:.95rem;font-weight:700;padding:.75rem .5rem;display:flex;align-items:center;gap:.8rem;border-bottom:1px solid rgba(0,0,0,.06);letter-spacing:.04em;}
+  .nav-mobile a:last-child{border-bottom:none;}
 </style>
 <link rel="stylesheet" href="design-polish.css">
 </head>
@@ -616,5 +627,24 @@ function lbOpen(img) { if(window.openLightbox) openLightbox(img.src, img.alt); }
 </script>
 <script src="site.js"></script>
   <script src="lightbox.js"></script>
+
+<script>
+function toggleNav(){
+  var m=document.getElementById('navMobile');
+  m.classList.toggle('open');
+}
+function closeNav(){
+  var m=document.getElementById('navMobile');
+  if(m) m.classList.remove('open');
+}
+document.addEventListener('click',function(e){
+  var nav=document.querySelector('nav');
+  var mob=document.getElementById('navMobile');
+  if(mob && mob.classList.contains('open') && !nav.contains(e.target) && !mob.contains(e.target)){
+    mob.classList.remove('open');
+  }
+});
+</script>
+
 </body>
 </html>
