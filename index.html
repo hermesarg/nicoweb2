@@ -260,7 +260,13 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
   .nav-mobile{top:54px;}
 
   .hero{grid-template-columns:1fr;padding:80px 1.2rem 2.5rem;min-height:auto;gap:0;}
-  .hero-right{display:none;}
+  .hero-right{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-top:1.2rem;}
+  .hero-card{padding:.75rem .5rem;border-radius:10px;}
+  .hero-card-icon{font-size:1.6rem;margin-bottom:.3rem;}
+  .hero-card h3{font-size:.82rem;margin-bottom:.1rem;}
+  .hero-card p{font-size:.58rem;}
+  .hero-card:nth-child(2),.hero-card:nth-child(4){margin-top:0;}
+  .card-tag{font-size:.55rem;padding:.2rem .5rem;}
   .hero-title{font-size:clamp(2.4rem,10vw,3.5rem);}
   .hero-sub{font-size:.9rem;margin:1rem 0 1.8rem;}
   .hero-actions{flex-direction:column;}
@@ -364,6 +370,7 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
     <li><a href="remeras.html" onclick="closeNav()">👕 Remeras</a></li>
     <li><a href="stickers.html" onclick="closeNav()">🏷️ Stickers</a></li>
     <li><a href="gorras.html" onclick="closeNav()">🧢 Gorras</a></li>
+    <li><a href="pullovers.html" onclick="closeNav()">👘 Pullovers</a></li>
     <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas%20personalizadas" target="_blank" onclick="closeNav()" rel="noopener noreferrer">🚩 Banderas</a></li>
     <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners%20personalizados" target="_blank" onclick="closeNav()" rel="noopener noreferrer">🖼️ Banners</a></li>
     <li><a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria%20personalizada" target="_blank" onclick="closeNav()" rel="noopener noreferrer">📇 Tarjetería</a></li>
@@ -412,9 +419,10 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
     </div>
   </div>
   <div class="hero-right">
-    <a href="remeras.html" class="hero-card"><span class="hero-card-icon">👕</span><h3>Remeras</h3><p>DTF · Sublimación · Vinilo</p><span class="card-tag tag-pink">Ver modelos</span></a>
-    <a href="stickers.html" class="hero-card"><span class="hero-card-icon">🏷️</span><h3>Stickers</h3><p>Rectangular · Holo · UV</p><span class="card-tag tag-cyan">Ver tipos</span></a>
-    <a href="gorras.html" class="hero-card"><span class="hero-card-icon">🧢</span><h3>Gorras</h3><p>DTF · Vinilo · Transfer</p><span class="card-tag tag-green">Ver modelos</span></a>
+    <a href="remeras.html" class="hero-card"><span class="hero-card-icon">👕</span><h3>Remeras</h3><p>DTF · Sublimación · Vinilo</p><span class="card-tag tag-pink">Ver</span></a>
+    <a href="stickers.html" class="hero-card"><span class="hero-card-icon">🏷️</span><h3>Stickers</h3><p>Rectangular · Holo · UV</p><span class="card-tag tag-cyan">Ver</span></a>
+    <a href="gorras.html" class="hero-card"><span class="hero-card-icon">🧢</span><h3>Gorras</h3><p>DTF · Vinilo · Transfer</p><span class="card-tag tag-green">Ver</span></a>
+    <a href="pullovers.html" class="hero-card"><span class="hero-card-icon">👘</span><h3>Pullovers</h3><p>DTF full color · Capucha</p><span class="card-tag tag-pink">Ver</span></a>
     <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar" class="hero-card" target="_blank" rel="noopener noreferrer"><span class="hero-card-icon">🎨</span><h3>Tu diseño</h3><p>Lo creamos gratis</p><span class="card-tag tag-yellow">Cotizar</span></a>
   </div>
 </section>
@@ -437,6 +445,7 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
     <a href="remeras.html" class="svc reveal"><div class="svc-num">01</div><span class="svc-icon">👕</span><h3>Remeras</h3><p>Full color, cualquier diseño, en cualquier color de prenda.</p><div class="svc-tags"><span class="stag">DTF</span><span class="stag">Sublimación</span><span class="stag">Vinilo</span></div><span class="svc-link">Ver remeras</span></a>
     <a href="stickers.html" class="svc reveal" data-c="cyan"><div class="svc-num">02</div><span class="svc-icon">🏷️</span><h3>Stickers</h3><p>Vinilo premium resistente. Rectangular, holográfico, transparente y UV.</p><div class="svc-tags"><span class="stag">Rectangular</span><span class="stag">Holográfico</span><span class="stag">Transparente</span><span class="stag">UV</span></div><span class="svc-link">Ver stickers</span></a>
     <a href="gorras.html" class="svc reveal" data-c="green"><div class="svc-num">03</div><span class="svc-icon">🧢</span><h3>Gorras</h3><p>Estampado DTF y vinilo termosellado. Cualquier modelo o estilo.</p><div class="svc-tags"><span class="stag">DTF</span><span class="stag">Vinilo</span><span class="stag">Transfer</span></div><span class="svc-link">Ver gorras</span></a>
+    <a href="pullovers.html" class="svc reveal" data-c="pink"><div class="svc-num">04</div><span class="svc-icon">👘</span><h3>Pullovers</h3><p>Buzos con capucha estampados DTF full color. Talles adulto y niño desde 1 unidad.</p><div class="svc-tags"><span class="stag">DTF</span><span class="stag">Capucha</span><span class="stag">Full color</span></div><span class="svc-link">Ver pullovers</span></a>
     <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas%20personalizadas" target="_blank" class="svc reveal" data-c="flag" rel="noopener noreferrer"><div class="svc-num">04</div><span class="svc-icon">🚩</span><h3>Banderas</h3><p>Banderas sublimadas en tela para eventos, clubes, negocios y equipos deportivos.</p><div class="svc-tags"><span class="stag">Sublimación</span><span class="stag">Tela</span><span class="stag">Full color</span></div><span class="svc-link" style="color:var(--yellow)">Cotizar →</span></a>
     <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners%20personalizados" target="_blank" class="svc reveal" data-c="banner" rel="noopener noreferrer"><div class="svc-num">05</div><span class="svc-icon">🖼️</span><h3>Banners</h3><p>Banners PVC y lona para locales, eventos y publicidad exterior. Alta resolución.</p><div class="svc-tags"><span class="stag">PVC</span><span class="stag">Lona</span><span class="stag">Exterior</span></div><span class="svc-link" style="color:var(--cyan)">Cotizar →</span></a>
     <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria%20personalizada" target="_blank" class="svc reveal" data-c="tarjeta" rel="noopener noreferrer"><div class="svc-num">06</div><span class="svc-icon">📇</span><h3>Tarjetería</h3><p>Tarjetas de presentación, flyers, menús y papelería corporativa en alta calidad.</p><div class="svc-tags"><span class="stag">Tarjetas</span><span class="stag">Flyers</span><span class="stag">Papelería</span></div><span class="svc-link" style="color:var(--pink)">Cotizar →</span></a>
