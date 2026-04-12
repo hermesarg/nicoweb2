@@ -267,6 +267,8 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
   .hero-card p{font-size:.58rem;}
   .hero-card:nth-child(2),.hero-card:nth-child(4){margin-top:0;}
   .card-tag{font-size:.55rem;padding:.2rem .5rem;}
+  .hero-section-title{display:block;}
+  .hero-right-extra{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-top:.45rem;}
   .hero-title{font-size:clamp(2.4rem,10vw,3.5rem);}
   .hero-sub{font-size:.9rem;margin:1rem 0 1.8rem;}
   .hero-actions{flex-direction:column;}
@@ -309,6 +311,11 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
   .cat-grid{grid-template-columns:repeat(2,1fr);}
   .steps-grid{grid-template-columns:1fr;}
 }
+
+  /* Título "Lo que hacemos" sobre los cuadros */
+  .hero-section-title{display:none;font-family:'Fredoka One',cursive;font-size:.65rem;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:.3rem;}
+  /* Cuadros extra (Banderas/Banners/Tarjetería) solo mobile */
+  .hero-right-extra{display:none;}
 </style>
 <link rel="stylesheet" href="design-polish.css">
 <script type="application/ld+json">
@@ -418,12 +425,18 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
       <div><div class="stat-num">100%</div><div class="stat-lab">Custom</div></div>
     </div>
   </div>
+  <div class="hero-section-title">Lo que hacemos</div>
   <div class="hero-right">
     <a href="remeras.html" class="hero-card"><span class="hero-card-icon">👕</span><h3>Remeras</h3><p>DTF · Sublimación · Vinilo</p><span class="card-tag tag-pink">Ver</span></a>
     <a href="stickers.html" class="hero-card"><span class="hero-card-icon">🏷️</span><h3>Stickers</h3><p>Rectangular · Holo · UV</p><span class="card-tag tag-cyan">Ver</span></a>
     <a href="gorras.html" class="hero-card"><span class="hero-card-icon">🧢</span><h3>Gorras</h3><p>DTF · Vinilo · Transfer</p><span class="card-tag tag-green">Ver</span></a>
     <a href="pullovers.html" class="hero-card"><span class="hero-card-icon">👘</span><h3>Pullovers</h3><p>DTF full color · Capucha</p><span class="card-tag tag-pink">Ver</span></a>
     <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar" class="hero-card" target="_blank" rel="noopener noreferrer"><span class="hero-card-icon">🎨</span><h3>Tu diseño</h3><p>Lo creamos gratis</p><span class="card-tag tag-yellow">Cotizar</span></a>
+  </div>
+  <div class="hero-right hero-right-extra">
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banderas" class="hero-card" target="_blank" rel="noopener noreferrer"><span class="hero-card-icon">🚩</span><h3>Banderas</h3><p>Sublimadas · Tela</p><span class="card-tag tag-yellow">Cotizar</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20banners" class="hero-card" target="_blank" rel="noopener noreferrer"><span class="hero-card-icon">🖼️</span><h3>Banners</h3><p>PVC · Lona · Exterior</p><span class="card-tag tag-cyan">Cotizar</span></a>
+    <a href="https://wa.me/542995174801?text=Hola!%20Quiero%20cotizar%20tarjeteria" class="hero-card" target="_blank" rel="noopener noreferrer"><span class="hero-card-icon">📇</span><h3>Tarjetería</h3><p>Tarjetas · Flyers</p><span class="card-tag tag-pink">Cotizar</span></a>
   </div>
 </section>
 
@@ -435,7 +448,7 @@ footer{background:rgba(0,0,0,.5);border-top:1px solid rgba(255,255,255,.05);padd
 </div>
 
 <!-- SERVICIOS -->
-<section class="section" id="servicios">
+<section class="section" id="servicios" style="display:none;">
   <div class="reveal">
     <div class="sec-eye">Nuestros productos</div>
     <h2 class="sec-title">LO QUE <span>HACEMOS</span></h2>
